@@ -1,0 +1,47 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="../../layout/template.xhtml">
+
+<ui:define name="body">
+
+<h:form>
+
+    <rich:panel>
+        <f:facet name="header">Carga Inicial de Formas de Pagamento</f:facet>
+
+		<h:panelGrid columns="1">
+			
+			<h:outputLabel
+				rendered="#{not empty param.showMsgCargaSucess}"
+				value="Carga de Formas de Pagamento excecutada com sucesso!" 
+				styleClass="infoMessage"/>
+			
+			<h:commandButton 
+				action="#{formaPagamentoHome.cargaFormasPagto}"
+				value="#{messages['bt.carga.frm.pgto']}" 
+				style="width:350px;"/>
+			
+		</h:panelGrid>
+
+    </rich:panel>
+
+</h:form>
+
+    <div class="actionButtons">
+
+        <s:button 
+        	view="/pages/formapagto/#{empty formaPagamentoFrom ? 'FormaPagamentoList' : formaPagamentoFrom}.xhtml"
+            value="#{messages['bt.retornar']}"
+            id="done" />
+
+    </div>
+
+</ui:define>
+
+</ui:composition>

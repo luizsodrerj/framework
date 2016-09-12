@@ -1,0 +1,79 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="../../layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="formaPagamento" styleClass="edit">
+
+		<style>
+		
+			label {
+				width: 130px !important;
+			}
+		
+		</style>
+
+        <rich:panel>
+            <f:facet name="header">#{formaPagamentoHome.managed ? 'Editar' : 'Nova'} Forma Pagamento</f:facet>
+
+
+            <s:decorate id="formaField" template="../../layout/edit.xhtml">
+                <ui:define name="label">Forma de Pagamento</ui:define>
+                <h:inputText
+                    value="#{formaPagamentoHome.instance.forma}"
+                	id="forma" style=" width : 514px;"
+                    required="true"/>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton action="#{formaPagamentoHome.persist}"
+	                       disabled="#{!formaPagamentoHome.wired}"
+	                       rendered="#{!formaPagamentoHome.managed}"
+	                          value="Salvar"
+	            				 id="save" />
+
+            <h:commandButton id="update"
+                          value="Salvar"
+                         action="#{formaPagamentoHome.update}"
+                       rendered="#{formaPagamentoHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Remover"
+                         action="#{formaPagamentoHome.remove}"
+                      immediate="true"
+                       rendered="#{formaPagamentoHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancelar"
+             propagation="end"
+                    view="/pages/formapagto/FormaPagamento.xhtml"
+                rendered="#{formaPagamentoHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancelar"
+             propagation="end"
+                    view="/pages/formapagto/#{empty formaPagamentoFrom ? 'FormaPagamentoList' : formaPagamentoFrom}.xhtml"
+                rendered="#{!formaPagamentoHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

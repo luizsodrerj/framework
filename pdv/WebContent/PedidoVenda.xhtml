@@ -1,0 +1,179 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Pedido venda Details</f:facet>
+
+        <s:decorate id="id" template="layout/display.xhtml">
+            <ui:define name="label">Id</ui:define>
+            <h:outputText value="#{pedidoVendaHome.instance.id}"/>
+        </s:decorate>
+
+        <s:decorate id="data" template="layout/display.xhtml">
+            <ui:define name="label">Data</ui:define>
+            <h:outputText value="#{pedidoVendaHome.instance.data}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/PedidoVendaEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty pedidoVendaFrom ? 'PedidoVendaList' : pedidoVendaFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Forma pagamento</h:panelGroup>
+        </f:facet>
+    <div class="association" id="formaPagamentoParent">
+
+        <h:outputText value="There is no formaPagamento associated with this pedidoVenda."
+                   rendered="#{pedidoVendaHome.instance.formaPagamento == null}"/>
+
+        <rich:dataTable var="_formaPagamento"
+                   value="#{pedidoVendaHome.instance.formaPagamento}"
+                rendered="#{pedidoVendaHome.instance.formaPagamento != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="formaPagamentoTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_formaPagamento.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Forma</f:facet>
+                <h:outputText value="#{_formaPagamento.forma}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewformaPagamento"
+                     value="View"
+                      view="/FormaPagamento.xhtml">
+                    <f:param name="formaPagamentoId"
+                           value="#{_formaPagamento.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Itens</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="itensChildren">
+
+        <h:outputText value="There are no itens associated with this pedidoVenda."
+                   rendered="#{empty pedidoVendaHome.itens}"/>
+
+        <rich:dataTable value="#{pedidoVendaHome.itens}"
+                       var="_itemPedido"
+                  rendered="#{not empty pedidoVendaHome.itens}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="itensTable">
+            <rich:column sortBy="#{_itemPedido.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_itemPedido.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_itemPedido.codigo}">
+                <f:facet name="header">Codigo</f:facet>
+                <h:outputText value="#{_itemPedido.codigo}"/>
+            </rich:column>
+            <rich:column sortBy="#{_itemPedido.descricao}">
+                <f:facet name="header">Descricao</f:facet>
+                <h:outputText value="#{_itemPedido.descricao}"/>
+            </rich:column>
+            <rich:column sortBy="#{_itemPedido.qtdPedida}">
+                <f:facet name="header">Qtd pedida</f:facet>
+                <h:outputText value="#{_itemPedido.qtdPedida}"/>
+            </rich:column>
+            <rich:column sortBy="#{_itemPedido.valorVenda}">
+                <f:facet name="header">Valor venda</f:facet>
+                <h:outputText value="#{_itemPedido.valorVenda}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectitemPedido"
+                     value="Select"
+                      view="/ItemPedido.xhtml">
+                    <f:param name="itemPedidoId"
+                            value="#{_itemPedido.id}"/>
+                    <f:param name="itemPedidoFrom" value="PedidoVenda"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add itemPedido"
+                view="/ItemPedidoEdit.xhtml">
+            <f:param name="pedidoVendaId"
+                    value="#{pedidoVendaHome.instance.id}"/>
+            <f:param name="itemPedidoFrom" value="PedidoVenda"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Status</h:panelGroup>
+        </f:facet>
+    <div class="association" id="statusParent">
+
+        <h:outputText value="There is no status associated with this pedidoVenda."
+                   rendered="#{pedidoVendaHome.instance.status == null}"/>
+
+        <rich:dataTable var="_statusPedido"
+                   value="#{pedidoVendaHome.instance.status}"
+                rendered="#{pedidoVendaHome.instance.status != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="statusTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_statusPedido.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ds status</f:facet>
+                <h:outputText value="#{_statusPedido.dsStatus}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewstatusPedido"
+                     value="View"
+                      view="/StatusPedido.xhtml">
+                    <f:param name="statusPedidoId"
+                           value="#{_statusPedido.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

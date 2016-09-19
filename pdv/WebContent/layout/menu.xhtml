@@ -12,16 +12,12 @@
 	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
 		<f:facet name="label">Cadastros</f:facet>
 		<rich:menuItem>
-			<s:link view="/ItemList.xhtml" value="Itens" id="ItemId"
+			<s:link view="/pages/CadItem/ItemList.xhtml" value="Itens" id="ItemId"
 				includePageParams="false" propagation="none" />
 		</rich:menuItem>
 		<rich:menuItem>
 			<s:link view="/PedidoVendaList.xhtml" value="Pedido de Venda"
 				id="PedidoVendaId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/StatusPedidoList.xhtml" value="Status do Pedido"
-				id="StatusPedidoId" includePageParams="false" propagation="none" />
 		</rich:menuItem>
 		<rich:menuItem>
 			<s:link view="/pages/formapagto/FormaPagamentoList.xhtml"

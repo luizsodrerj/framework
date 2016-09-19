@@ -12,4 +12,11 @@
    <param name="codigo" value="#{itemList.item.codigo}"/>
    <param name="descricao" value="#{itemList.item.descricao}"/>
 
+<!--
+  <navigation from-action="#{itemHome.onClickLinkEditItem}">
+  <rule if-outcome="edit">
+   <redirect view-id="/pages/CadItem/ItemEdit.xhtml"/>
+  </rule>
+ </navigation>
+ -->
 </page>

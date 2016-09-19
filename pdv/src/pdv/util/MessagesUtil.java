@@ -10,6 +10,7 @@ import java.util.Set;
 public class MessagesUtil {
 
 	public static final String DEFAULT_MSG_PROP_FM_PGTO = "FormaPagto.properties";
+	public static final String DEFAULT_MSG_PROP_ST_PED = "StatusPedido.properties";
 	
 	
 	public static Map<String,String> getAllMessages(String msgPropName) {

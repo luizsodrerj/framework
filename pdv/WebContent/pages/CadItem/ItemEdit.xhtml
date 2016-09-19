@@ -5,61 +5,72 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    xmlns:a="http://richfaces.org/a4j"
+    template="../../layout/template.xhtml">
 
 <ui:define name="body">
+
+	<a:loadScript src="resource://jquery.js"/>
+	<a:loadScript src="/javascript/util/MaskUtil.js?versao=#{request.session.id}"/>
 
     <h:form id="item" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{itemHome.managed ? 'Edit' : 'Add'} Item</f:facet>
+            <f:facet name="header">
+            	#{itemHome.managed ? messages['label.alterar'] : messages['label.add']} Item
+            </f:facet>
 
-
-
-            <s:decorate id="codigoField" template="layout/edit.xhtml">
-                <ui:define name="label">Codigo</ui:define>
+            <s:decorate id="codigoField" template="../../layout/edit.xhtml">
+                <ui:define name="label">#{messages['label.codigo']}</ui:define>
                 <h:inputText id="codigo"
+                          value="#{itemHome.instance.codigo}"
                        required="true"
-                           size="35"
                       maxlength="35"
-                          value="#{itemHome.instance.codigo}">
+                           size="35">
                     <a:support event="onblur" reRender="codigoField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
 
 
-            <s:decorate id="descricaoField" template="layout/edit.xhtml">
-                <ui:define name="label">Descricao</ui:define>
-                <h:inputTextarea id="descricao"
-                               cols="80"
-                               rows="2"
-                           required="true"
-                              value="#{itemHome.instance.descricao}"/>
+            <s:decorate id="descricaoField" template="../../layout/edit.xhtml">
+                <ui:define name="label">#{messages['label.descr']}</ui:define>
+                 <h:inputText 
+                 	value="#{itemHome.instance.descricao}"
+                 	style="width:635px;"
+                 	maxlength="200"
+                 	required="true" 
+                 	id="descricao" />
             </s:decorate>
 
 
-            <s:decorate id="qtdEstoqueField" template="layout/edit.xhtml">
-                <ui:define name="label">Qtd estoque</ui:define>
+            <s:decorate id="qtdEstoqueField" template="../../layout/edit.xhtml">
+                <ui:define name="label">#{messages['label.qtd.estoq']}</ui:define>
                 <h:inputText id="qtdEstoque"
                           value="#{itemHome.instance.qtdEstoque}">
                     <a:support event="onblur" reRender="qtdEstoqueField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
 
-
-            <s:decorate id="valorField" template="layout/edit.xhtml">
-                <ui:define name="label">Valor</ui:define>
+            <s:decorate id="valorField" template="../../layout/edit.xhtml">
+                <ui:define name="label">#{messages['label.valor']}</ui:define>
                 <h:inputText id="valor"
-                          value="#{itemHome.instance.valor}">
-                    <a:support event="onblur" reRender="valorField" bypassUpdates="true" ajaxSingle="true"/>
+		  			 onkeypress="return validateKeyNumber(this, 17, event);"
+		  				onkeyup="return formatMoney(this, event);"
+                          value="#{itemHome.instance.valor}"
+                      converter="#{monetaryConverter}"
+			  		 styleClass="valor">
+					<a:support 
+						oncomplete="formatDecimal(jQuery('.valor')[0]);"
+						bypassUpdates="true" 
+						ajaxSingle="true"
+						event="onblur" />
                 </h:inputText>
             </s:decorate>
 
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                #{messages['label.req.fields']}
             </div>
 
         </rich:panel>
@@ -67,32 +78,32 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="#{messages['bt.salvar']}"
                          action="#{itemHome.persist}"
                        disabled="#{!itemHome.wired}"
                        rendered="#{!itemHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="#{messages['bt.salvar']}"
                          action="#{itemHome.update}"
                        rendered="#{itemHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="#{messages['bt.delete']}"
                          action="#{itemHome.remove}"
                       immediate="true"
                        rendered="#{itemHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="#{messages['bt.cancel']}"
              propagation="end"
-                    view="/Item.xhtml"
+                    view="/pages/CadItem/Item.xhtml"
                 rendered="#{itemHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="#{messages['bt.cancel']}"
              propagation="end"
-                    view="/#{empty itemFrom ? 'ItemList' : itemFrom}.xhtml"
+                    view="/pages/CadItem/#{empty itemFrom ? 'ItemList' : itemFrom}.xhtml"
                 rendered="#{!itemHome.managed}"/>
 
         </div>

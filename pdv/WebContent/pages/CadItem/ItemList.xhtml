@@ -6,37 +6,44 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="../../layout/template.xhtml">
 
 <ui:define name="body">
 
     <h:form id="itemSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="Item Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="#{messages['label.search.filt']}" switchType="ajax">
 
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Codigo</ui:define>
+            <s:decorate template="../../layout/display.xhtml">
+                <ui:define name="label">#{messages['label.codigo']}</ui:define>
                 <h:inputText id="codigo" value="#{itemList.item.codigo}"/>
             </s:decorate>
 
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Descricao</ui:define>
+            <s:decorate template="../../layout/display.xhtml">
+                <ui:define name="label">#{messages['label.descr']}</ui:define>
                 <h:inputText id="descricao" value="#{itemList.item.descricao}"/>
             </s:decorate>
 
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+            <s:decorate template="../../layout/display.xhtml">
+                <ui:define name="label">#{messages['label.match']}</ui:define>
                 <h:selectOneRadio id="logic" value="#{itemList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos" itemValue="and"/>
+                    <f:selectItem itemLabel="Qualquer" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/ItemList.xhtml"/>
-            <s:button id="reset" value="Reset" includePageParams="false"/>
+            <h:commandButton 
+            	action="/pages/CadItem/ItemList.xhtml"
+            	value="#{messages['bt.pesquisar']}" 
+            	id="search"/>
+            
+            <s:button 
+            	includePageParams="false"
+            	value="Reset" 
+            	id="reset"/>
         </div>
 
     </h:form>
@@ -54,19 +61,9 @@
            rendered="#{not empty itemList.resultList}">
         <h:column>
             <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
+                <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
-                    <ui:param name="propertyLabel" value="Id"/>
-                    <ui:param name="propertyPath" value="item.id"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_item.id}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{itemList}"/>
-                    <ui:param name="propertyLabel" value="Codigo"/>
+                    <ui:param name="propertyLabel" value="#{messages['label.codigo']}"/>
                     <ui:param name="propertyPath" value="item.codigo"/>
                 </ui:include>
             </f:facet>
@@ -74,9 +71,9 @@
         </h:column>
         <h:column>
             <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
+                <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
-                    <ui:param name="propertyLabel" value="Descricao"/>
+                    <ui:param name="propertyLabel" value="#{messages['label.descr']}"/>
                     <ui:param name="propertyPath" value="item.descricao"/>
                 </ui:include>
             </f:facet>
@@ -84,9 +81,9 @@
         </h:column>
         <h:column>
             <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
+                <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
-                    <ui:param name="propertyLabel" value="Qtd estoque"/>
+                    <ui:param name="propertyLabel" value="#{messages['label.qtd.estoq']}"/>
                     <ui:param name="propertyPath" value="item.qtdEstoque"/>
                 </ui:include>
             </f:facet>
@@ -94,9 +91,9 @@
         </h:column>
         <h:column>
             <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
+                <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
-                    <ui:param name="propertyLabel" value="Valor"/>
+                    <ui:param name="propertyLabel" value="#{messages['label.valor']}"/>
                     <ui:param name="propertyPath" value="item.valor"/>
                 </ui:include>
             </f:facet>
@@ -104,7 +101,7 @@
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
-            <s:link view="/#{empty from ? 'Item' : from}.xhtml"
+            <s:link view="/pages/CadItem/#{empty from ? 'Item' : from}.xhtml"
                    value="#{empty from ? 'View' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="itemViewId">
@@ -112,13 +109,13 @@
                         value="#{_item.id}"/>
             </s:link>
             #{' '}
-            <s:link view="/ItemEdit.xhtml"
-                   value="Edit"
-             propagation="none"
-                      id="itemEdit"
-                rendered="#{empty from}">
-                <f:param name="itemId"
-                        value="#{_item.id}"/>
+            <s:link
+            	action="#{itemHome.onClickLinkEditItem}"
+            	rendered="#{empty from}"
+            	value="Edit">
+                <f:param 
+                    value="#{_item.id}"
+                	name="itemId"/>
             </s:link>
         </rich:column>
     </rich:dataTable>
@@ -128,14 +125,14 @@
 
     <div class="tableControl">
 
-        <s:link view="/ItemList.xhtml"
+        <s:link view="/pages/CadItem/ItemList.xhtml"
             rendered="#{itemList.previousExists}"
                value="#{messages.left}#{messages.left} First Page"
                   id="firstPage">
           <f:param name="firstResult" value="0"/>
         </s:link>
 
-        <s:link view="/ItemList.xhtml"
+        <s:link view="/pages/CadItem/ItemList.xhtml"
             rendered="#{itemList.previousExists}"
                value="#{messages.left} Previous Page"
                   id="previousPage">
@@ -143,7 +140,7 @@
                     value="#{itemList.previousFirstResult}"/>
         </s:link>
 
-        <s:link view="/ItemList.xhtml"
+        <s:link view="/pages/CadItem/ItemList.xhtml"
             rendered="#{itemList.nextExists}"
                value="Next Page #{messages.right}"
                   id="nextPage">
@@ -151,7 +148,7 @@
                     value="#{itemList.nextFirstResult}"/>
         </s:link>
 
-        <s:link view="/ItemList.xhtml"
+        <s:link view="/pages/CadItem/ItemList.xhtml"
             rendered="#{itemList.nextExists}"
                value="Last Page #{messages.right}#{messages.right}"
                   id="lastPage">
@@ -162,10 +159,10 @@
     </div>
 
     <s:div styleClass="actionButtons" rendered="#{empty from}">
-        <s:button view="/ItemEdit.xhtml"
+        <s:button view="/pages/CadItem/ItemEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create item">
+                 value="Cadastrar Novo Item">
             <f:param name="itemId"/>
         </s:button>
     </s:div>

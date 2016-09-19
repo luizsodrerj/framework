@@ -14,8 +14,8 @@ public class PedidoVendaHome extends EntityHome<PedidoVenda> {
 	
 	@In(create = true)
 	FormaPagamentoHome formaPagamentoHome;
-	@In(create = true)
-	StatusPedidoHome statusPedidoHome;
+	
+	
 
 	public void setPedidoVendaId(Long id) {
 		setId(id);
@@ -43,10 +43,10 @@ public class PedidoVendaHome extends EntityHome<PedidoVenda> {
 		if (formaPagamento != null) {
 			getInstance().setFormaPagamento(formaPagamento);
 		}
-		StatusPedido status = statusPedidoHome.getDefinedInstance();
-		if (status != null) {
-			getInstance().setStatus(status);
-		}
+//		StatusPedido status = statusPedidoHome.getDefinedInstance();
+//		if (status != null) {
+//			getInstance().setStatus(status);
+//		}
 	}
 
 	public boolean isWired() {

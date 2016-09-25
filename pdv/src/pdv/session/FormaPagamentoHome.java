@@ -1,5 +1,6 @@
 package pdv.session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,14 +20,22 @@ public class FormaPagamentoHome extends EntityHome<FormaPagamento> {
 
 	private static final long serialVersionUID = 7930047145508332492L;
 
-	public static final String CARGA_FM_PGTO_VIEW = "/pages/formapagto/CargaFormaPagto.xhtml";
-	
+	public static final String FM_PGTO_LIST_VIEW 	= "/pages/formapagto/FormaPagamentoList.xhtml";
+	public static final String CARGA_FM_PGTO_VIEW	= "/pages/formapagto/CargaFormaPagto.xhtml";
 	public static final String PARAM_SHOW_MSG_CARGA_SUC = "?showMsgCargaSucess=true";
-	
+
+	private List<FormaPagamento>formaPagtoList = new ArrayList<FormaPagamento>();
+
 	@In(required = false, create = true)
 	ApplicationService appService;
 	
 	
+	
+	public String onClickBtLocalizar() {
+		formaPagtoList = appService.findAllByCriteria(FormaPagamento.class);
+		
+		return FM_PGTO_LIST_VIEW;
+	}
 	
 	public String cargaFormasPagto() {
 		List<FormaPagamento>list = appService.findAllByCriteria(FormaPagamento.class);
@@ -80,6 +89,14 @@ public class FormaPagamentoHome extends EntityHome<FormaPagamento> {
 
 	public FormaPagamento getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
+	}
+
+	public List<FormaPagamento> getFormaPagtoList() {
+		return formaPagtoList;
+	}
+
+	public void setFormaPagtoList(List<FormaPagamento> formaPagtoList) {
+		this.formaPagtoList = formaPagtoList;
 	}
 
 }

@@ -1,9 +1,11 @@
 package pdv.session;
 
-import pdv.entity.*;
+import java.util.Arrays;
+
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityQuery;
-import java.util.Arrays;
+
+import pdv.entity.FormaPagamento;
 
 @Name("formaPagamentoList")
 public class FormaPagamentoList extends EntityQuery<FormaPagamento> {

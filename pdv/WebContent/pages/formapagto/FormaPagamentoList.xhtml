@@ -3,16 +3,30 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
     xmlns:s="http://jboss.com/products/seam/taglib"
     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
+    xmlns:a="http://richfaces.org/a4j"
     template="../../layout/template.xhtml">
 
 <ui:define name="body">
 
+	<style>
+
+		.ui-datatable-odd {
+		    background: none repeat scroll 0 0 #F2F5F9;
+		}
+			
+		.alignCenter {
+			text-align: center;
+		}
+	
+	</style>
+
     <h:form id="formaPagamentoSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="FormaPagamento Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="FormaPagamento Search Filter" switchType="client">
 
             <s:decorate template="../../layout/display.xhtml">
                 <ui:define name="label">Forma</ui:define>
@@ -30,7 +44,11 @@
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Localizar" action="/FormaPagamentoList.xhtml"/>
+            <h:commandButton 
+            	action="#{formaPagamentoHome.onClickBtLocalizar}"
+            	value="Localizar" 
+            	id="search"/>
+            
             <s:button id="reset" value="Redefinir" includePageParams="false"/>
         </div>
 
@@ -43,11 +61,11 @@
     <h:outputText value="The formaPagamento search returned no results."
                rendered="#{empty formaPagamentoList.resultList}"/>
 
-    <rich:dataTable id="formaPagamentoList"
-                var="_formaPagamento"
-              value="#{formaPagamentoList.resultList}"
-           rendered="#{not empty formaPagamentoList.resultList}">
-        <h:column>
+	<p:dataTable
+		value="#{formaPagamentoHome.formaPagtoList}"
+		id="formaPagamentoList"
+		var="_formaPagamento">
+        <p:column width="85" styleClass="alignCenter">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{formaPagamentoList}"/>
@@ -56,38 +74,21 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_formaPagamento.id}"/>
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column width="370">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{formaPagamentoList}"/>
-                    <ui:param name="propertyLabel" value="Forma"/>
+                    <ui:param name="propertyLabel" value="Forma de Pagamento"/>
                     <ui:param name="propertyPath" value="formaPagamento.forma"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_formaPagamento.forma}"/>
-        </h:column>
-        <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
-            <s:link view="/pages/formapagto/#{empty from ? 'FormaPagamento' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
-             propagation="#{empty from ? 'none' : 'default'}"
-                      id="formaPagamentoViewId">
-                <f:param name="formaPagamentoId"
-                        value="#{_formaPagamento.id}"/>
-            </s:link>
-            #{' '}
-            <s:link view="/pages/formapagto/FormaPagamentoEdit.xhtml"
-                   value="Edit"
-             propagation="none"
-                      id="formaPagamentoEdit"
-                rendered="#{empty from}">
-                <f:param name="formaPagamentoId"
-                        value="#{_formaPagamento.id}"/>
-            </s:link>
-        </rich:column>
-    </rich:dataTable>
+        </p:column>
+	</p:dataTable>
 
+<!--  
+-->
     </div>
     </rich:panel>
 

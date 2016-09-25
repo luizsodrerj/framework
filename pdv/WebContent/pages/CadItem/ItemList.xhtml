@@ -59,7 +59,7 @@
                 var="_item"
               value="#{itemList.resultList}"
            rendered="#{not empty itemList.resultList}">
-        <h:column>
+        <rich:column width="120">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
@@ -68,8 +68,8 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_item.codigo}"/>
-        </h:column>
-        <h:column>
+        </rich:column>
+        <rich:column width="235">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
@@ -78,8 +78,10 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_item.descricao}"/>
-        </h:column>
-        <h:column>
+        </rich:column>
+        <rich:column
+        	style="text-align:center;" 
+        	width="100">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
@@ -88,8 +90,10 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_item.qtdEstoque}"/>
-        </h:column>
-        <h:column>
+        </rich:column>
+        <rich:column 
+        	style="text-align:right;"
+        	width="100">
             <f:facet name="header">
                 <ui:include src="../../layout/sort.xhtml">
                     <ui:param name="entityList" value="#{itemList}"/>
@@ -97,18 +101,12 @@
                     <ui:param name="propertyPath" value="item.valor"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_item.valor}"/>
-        </h:column>
+            <h:outputText
+            	converter="#{monetaryConverter}" 
+            	value="#{_item.valor}"/>
+        </rich:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
-            <s:link view="/pages/CadItem/#{empty from ? 'Item' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
-             propagation="#{empty from ? 'none' : 'default'}"
-                      id="itemViewId">
-                <f:param name="itemId"
-                        value="#{_item.id}"/>
-            </s:link>
-            #{' '}
             <s:link
             	action="#{itemHome.onClickLinkEditItem}"
             	rendered="#{empty from}"

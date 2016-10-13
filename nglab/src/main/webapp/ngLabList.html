@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="nglab">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>NG Lab</title>
+	
+	<link href="styles/bootstrap.css" rel="stylesheet" type="text/css"/>
+	
+	<style>
+		
+		.mainDiv {
+			margin-right: auto;
+			margin-left: auto;
+			width: 1025px;
+		}
+	
+		.mainDiv table {
+			margin-right: auto;
+			margin-left: auto;
+		}
+		
+		h2 {
+			text-align: center;
+		}
+	
+		.table-striped > tbody > tr:nth-of-type(odd) {
+			background-color: #F0F0F0;
+		}
+	
+	</style>
+	<script type="text/javascript" src="script/jquery-3.1.1.min.js"></script> 
+	<script type="text/javascript" src="script/jquery.maskMoney.min.js"></script>
+	<script type="text/javascript" src="script/angular.min.js"></script>
+	<script type="text/javascript" src="script/angular.maskMoney.js"></script>
+	<script type="text/javascript" src="script/ModuleConf.js"></script>
+	<script type="text/javascript" src="script/LabController.js"></script>
+</head>
+
+<body>
+
+	<div class="mainDiv" ng-controller="LabController">
+		<h2>Lista de Contatos</h2>
+	
+		<input 
+			ng-model="contato.nome"
+			placeholder="Informe o nome" 
+			type="text"
+			style="width:351px;"
+			id="nome"/>
+		<br/>
+
+		<input 
+			ng-model="contato.tel"
+			placeholder="Informe o telefone" 
+			type="text"
+			id="tel"/>
+		<br/>
+			
+<!--
+ -->
+ 		<input 
+			placeholder="Informe o valor"
+			ng-model="valor"
+			thousands="'.'"
+			decimal="','"
+			mask-money
+			type="text"
+			id="vlr"/>
+ 			<!-- money-mask-drv -->
+		<br/>
+		<br/>
+		 
+		<button
+			class="btn btn-primary" 
+			ng-click="listContatos()">
+			Listar todos
+		</button>
+		&nbsp;
+<!--
+ 		<button
+			class="btn btn-primary" 
+			ng-click="addContato()">
+			Cadastrar
+		</button>
+ -->		&nbsp;
+		<button
+			class="btn btn-primary" 
+			ng-click="testSession()">
+			Session
+		</button>
+		
+		<br/>
+		<br/>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th style="width:714px;">Nome</th>
+					<th>Telefone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="contato in contatos">
+					<td style="text-align:left;">{{contato.nome}}</td>
+					<td>{{contato.tel}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"> 
+
+<h:head></h:head> 
+<body> 
+
+	<style>
+		
+		.errorSpan {
+			color: red;
+		}
+	
+	</style>
+
+	<script src="#{request.contextPath}/script/jquery.js"></script>
+	<script src="#{request.contextPath}/script/crud.js"></script>
+
+	<h:form>
+		<br/>
+
+		<table align="center">
+			<tr>
+				<td>Exig&ecirc;ncia:</td>
+				<td>
+					<h:inputText 
+						value="#{crudBean.exigencia}"
+						style=" width : 366px;"
+						id="exigencia"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Mensagem:</td>
+				<td>
+					<h:inputText 
+						value="#{crudBean.mensagem}"
+						style=" width : 366px;"
+						id="mensagem" />
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table align="center" border="0">
+			<tr>
+				<td>
+					<h:commandButton
+						style="width:158px; height:26px;"
+						action="#{crudBean.adicionar()}" 
+						value="Adicionar" />
+				</td>
+			</tr> 
+		</table>
+		<br/>
+		
+		<table align="center" border="0">
+			<a4j:repeat
+				rendered="#{not empty crudBean.nomes}" 
+				value="#{crudBean.nomes}"
+				rowKeyVar="row"
+				var="nome">
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<input
+										style=" width : 318px;"
+										value="#{nome}" 
+										name="nome"
+										type="text"/>
+								</td>
+								<td>
+									<h:commandButton 
+										action="#{crudBean.excluir}" 
+										value="Excluir">
+										<f:param
+											value="#{row}"
+											name="index"/>
+									</h:commandButton>
+									
+									&nbsp;
+									<span class="errorSpan"></span>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input 
+										value="#{crudBean.msgs[row]}"
+										style=" width : 318px;"
+										type="text"
+										name="msg" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</a4j:repeat>
+		</table> 
+		<br/>
+		<table align="center">
+			<tr>
+				<td>
+					<h:commandButton
+						onclick="return validateClickBtSalvar();" 
+						action="#{crudBean.onClickBtSalvar()}" 
+						value="Salvar" />
+				</td>
+			</tr>
+		</table>
+
+		
+		
+	</h:form>
+
+</body> 
+</html>

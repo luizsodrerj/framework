@@ -16,30 +16,43 @@ import java.util.StringTokenizer;
  * @date    24/01/2005
  */
 public class DateUtil extends GregorianCalendar {
-  /** Retorna a data no formato dd/MM/yyyy */            
-  public static final int DMN_DATA      = 1;
+
+  /** Retorna a data no formato dd/MM/yyyy HH:mm:ss */            
+  public static final int dd_MM_yyyy_HH_mm_ss = 12;
+	
+  /** Retorna a data no formato dd/MM/yyyy dd_MM_yyyy */            
+  public static final int dd_MM_yyyy = 1;
+  
   /** Retorna a hora no formato hh:mm */            
-  public static final int DMN_HORA      = 2;
+  public static final int hh_mm = 2;
+  
   /** Retorna a hora no formato hh:mm:ss */            
-  public static final int DMN_HORA_SEG  = 3;
+  public static final int hh_mm_ss = 3;
+  
   /** Retorna a data no formato dd/MM/yyyy hh:mm:ss */            
-  public static final int DMN_DATA_COMPL = 4;
+  public static final int dd_MM_yyyy_hh_mm_ss = 4;
+  
   /** Retorna a data no formato dd/MM/yyyy hh:mm */            
-  public static final int DMN_DATA_HORA = 5;
+  public static final int dd_MM_yyyy_hh_mm = 5;
+  
   /** Retorna a hora no formato HH:mm a (isto é, exibindo am ou pm)*/  
-  public static final int DMN_HORA_AM_PM = 6;
+  public static final int HH_mm = 6;
+  
   /** Retorna a data no formato ddMMyyyyhhmmss */
-  public static final int DMN_DATA_COMPL_CONCAT = 7;
-  /** Retorna a data no formato MM/yyyy */
-  public static final int DMN_MES_ANO = 8;
+  public static final int ddMMyyyyhhmmss = 7;
+  
+  /** Retorna a data no formato MM/yyyy  MM_yyyy */
+  public static final int MM_yyyy = 8;
+  
   /** Retorna a data no formato yyyyMM */
-  public static final int DMN_ANO_MES_CONCAT = 9;
+  public static final int yyyyMM = 9;
   
   /** Retorna a data no formato ddMMyyyy */
-  public static final int DMN_DATA_CONCAT	= 10;
+  public static final int ddMMyyyy	= 10;
   
   /** Retorna a data no formato hhmmss */
-  public static final int DMN_HORA_CONCAT	= 11;
+  public static final int hhmmss = 11;
+
   private String strData = "";
   private boolean showString = false;
   private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -647,51 +660,130 @@ public class DateUtil extends GregorianCalendar {
 	    }
     }
 
+    public static String format(Date date, int paramMask) {
+        return new SimpleDateFormat(
+        			 getPattern(paramMask)
+        		   )
+	               .format(
+	            	  date
+	               );
+    }
 
+    public static Date parse(String date, int paramMask) throws ParseException {
+        return new SimpleDateFormat(
+        			 getPattern(paramMask)
+        		   )
+	               .parse(
+	            	  date
+	               );
+    }
+    
+	private static String getPattern(int paramMask) {
+		String pattern = "";
+		
+		switch(paramMask) {
+            case dd_MM_yyyy:
+				pattern = "dd/MM/yyyy";
+				break;
+			case hh_mm:
+				pattern = "hh:mm";
+				break;
+			case hh_mm_ss:
+				pattern = "hh:mm:ss";
+				break;
+			case dd_MM_yyyy_hh_mm_ss:
+				pattern = "dd/MM/yyyy hh:mm:ss";
+				break;
+			case dd_MM_yyyy_HH_mm_ss:
+				pattern = "dd/MM/yyyy HH:mm:ss";
+				break;
+			case dd_MM_yyyy_hh_mm:
+				pattern = "dd/MM/yyyy hh:mm";
+				break;
+			case HH_mm:
+				pattern = "HH:mm a";
+				break;
+			case ddMMyyyyhhmmss:
+				pattern = "ddMMyyyyhhmmss";
+				break;
+			case MM_yyyy:
+				pattern = "MM/yyyy";
+				break;
+			case yyyyMM:
+				pattern = "yyyyMM";
+				break;
+			case ddMMyyyy:
+				pattern = "ddMMyyyy";
+				break;
+			case hhmmss:
+				pattern = "hhmmss";
+				break;
+			default: throw new IllegalArgumentException(
+					  "Mascara invalida passada como parametro: "+ paramMask
+					 );	
+        }
+		return pattern;
+	}
+
+    
     /**
      * Retorna a data formatada de acordo com o parâmetro
      * @param   pIntTipo formato da data
      * @return  data formatada de acordo com o parâmetro
      */
     public String getDate(int pIntTipo){
-        String lStrMascara = "";
-        switch(pIntTipo) {
-            case DMN_DATA:
-			lStrMascara = "dd/MM/yyyy";
-			break;
-		case DMN_HORA:
-			lStrMascara = "hh:mm";
-			break;
-		case DMN_HORA_SEG:
-			lStrMascara = "hh:mm:ss";
-			break;
-		case DMN_DATA_COMPL:
-			lStrMascara = "dd/MM/yyyy hh:mm:ss";
-			break;
-		case DMN_DATA_HORA:
-			lStrMascara = "dd/MM/yyyy hh:mm";
-			break;
-		case DMN_HORA_AM_PM:
-			lStrMascara = "HH:mm a";
-			break;
-		case DMN_DATA_COMPL_CONCAT:
-			lStrMascara = "ddMMyyyyhhmmss";
-			break;
-		case DMN_MES_ANO:
-			lStrMascara = "MM/yyyy";
-			break;
-		case DMN_ANO_MES_CONCAT:
-			lStrMascara = "yyyyMM";
-			break;
-		case DMN_DATA_CONCAT:
-			lStrMascara = "ddMMyyyy";
-			break;
-		case DMN_HORA_CONCAT:
-			lStrMascara = "hhmmss";
-			break;
-        }
-        return new SimpleDateFormat(lStrMascara).format(this.getTime());
+        String mask = "";
+        
+        return new SimpleDateFormat(getMask(pIntTipo, mask))
+        		            .format(
+        		            	this.getTime()
+        		            );
     }
+
+	private String getMask(int paramMask, String mask) {
+		switch(paramMask) {
+            case dd_MM_yyyy:
+				mask = "dd/MM/yyyy";
+				break;
+			case hh_mm:
+				mask = "hh:mm";
+				break;
+			case hh_mm_ss:
+				mask = "hh:mm:ss";
+				break;
+			case dd_MM_yyyy_HH_mm_ss:
+				mask = "dd/MM/yyyy HH:mm:ss";
+				break;
+			case dd_MM_yyyy_hh_mm_ss:
+				mask = "dd/MM/yyyy hh:mm:ss";
+				break;
+			case dd_MM_yyyy_hh_mm:
+				mask = "dd/MM/yyyy hh:mm";
+				break;
+			case HH_mm:
+				mask = "HH:mm a";
+				break;
+			case ddMMyyyyhhmmss:
+				mask = "ddMMyyyyhhmmss";
+				break;
+			case MM_yyyy:
+				mask = "MM/yyyy";
+				break;
+			case yyyyMM:
+				mask = "yyyyMM";
+				break;
+			case ddMMyyyy:
+				mask = "ddMMyyyy";
+				break;
+			case hhmmss:
+				mask = "hhmmss";
+				break;
+			default: throw new IllegalArgumentException(
+					  "Mascara invalida passada como parametro: "+ paramMask
+					 );	
+        }
+		return mask;
+	}
     
     /**
 	 * Retorna a data como String
@@ -700,7 +792,7 @@ public class DateUtil extends GregorianCalendar {
 	 */
     public String toString() {
 		if (!showString) {
-			return this.getDate(DateUtil.DMN_DATA_COMPL);
+			return this.getDate(DateUtil.dd_MM_yyyy_hh_mm_ss);
 		} else {
 			return strData;
 		}
@@ -825,7 +917,7 @@ public class DateUtil extends GregorianCalendar {
      * @return este objeto como sql.Date
      */
     public java.sql.Date toSqlDate() {
-    	String date = getDate(DMN_DATA);
+    	String date = getDate(dd_MM_yyyy);
     	
     	String ano = date.substring(6, date.length());
     	String mes = date.substring(3, 5);
@@ -895,4 +987,30 @@ public class DateUtil extends GregorianCalendar {
 		return businessDays;
     }
 
+//    public static void main(String[] args) throws Exception {
+//		Date d = new Date();
+//		
+//		String f = DateUtil.format(d, DateUtil.dd_MM_yyyy_HH_mm_ss);
+//		
+//		System.out.println("Data formatada - " + f);
+//		
+//		String s = "05/10/2000";
+//		
+//		d = DateUtil.parse(s, DateUtil.dd_MM_yyyy);
+//		
+//		System.out.println("Data parseada - " + d);
+//		
+//		f = DateUtil.format(d, DateUtil.dd_MM_yyyy);
+//		
+//		System.out.println("Data formatada - " + f);		
+//	}
+
 }
+
+
+
+
+
+
+
+

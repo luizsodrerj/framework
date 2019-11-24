@@ -110,7 +110,7 @@ public class ValidatorUtil {
 						return false;
 					}
 				}
-				String newDate = new DateUtil(date).getDate(DateUtil.DMN_DATA);
+				String newDate = new DateUtil(date).getDate(DateUtil.dd_MM_yyyy);
 				
 				if (!newDate.equals(date)) {
 					return false;

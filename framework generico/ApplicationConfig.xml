@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding='UTF-8'?>
+
+<ApplicationConfig>
+	<!-- ***** CONFIGURACOES GERAIS ***** -->     
+    <applicationParameter>
+        <paramName>dataSourceName</paramName>
+        <paramValue>java:/ds.mtcc</paramValue>
+    </applicationParameter>
+    <applicationParameter>
+        <paramName>hibernate.cfg</paramName>
+        <paramValue>/br/gov/ancine/mtcc/model/hibernate/hibernate.cfg.xml</paramValue>
+    </applicationParameter>
+    <applicationParameter>
+        <paramName>xmlQueryResources</paramName>
+        <paramValue>/br/gov/ancine/mtcc/model/dao/mtccQueries.xml</paramValue>
+    </applicationParameter>
+
+	<!-- ***** DECLARACOES DE DAOs ***** -->     
+    <applicationParameter>
+        <paramName>genericDAO</paramName>
+        <paramValue>br.gov.ancine.commons.model.dao.GenericHibernateDAOImpl</paramValue>
+	</applicationParameter>
+    <applicationParameter>
+        <paramName>entidadeDAO</paramName>
+        <paramValue>br.gov.ancine.mtcc.model.dao.EntidadeHibernateDAOImpl</paramValue>
+	</applicationParameter>
+	<applicationParameter>
+        <paramName>transferenciaDAO</paramName>
+        <paramValue>br.gov.ancine.mtcc.model.dao.TransferenciaHibernateDAOImpl</paramValue>
+	</applicationParameter>
+	
+	<!-- ***** DECLARACOES DE BOs ***** -->     
+	<applicationParameter>
+        <paramName>manterRetificacaoBO</paramName>
+        <paramValue>br.gov.ancine.mtcc.model.bo.ManterRetificacaoTransferenciaBOImpl</paramValue>
+    </applicationParameter>
+	<applicationParameter>	
+		<paramName>solicitarTransferenciaBO</paramName>
+        <paramValue>br.gov.ancine.mtcc.model.bo.SolicitarTransferenciaBOImpl</paramValue>
+    </applicationParameter>
+	<applicationParameter>
+		<paramName>administrarTransferenciaBO</paramName>
+		<paramValue>br.gov.ancine.mtcc.model.bo.AdministrarTransferenciaBOImpl</paramValue>
+	</applicationParameter>
+	<applicationParameter>
+        <paramName>manterEntidadeBO</paramName>
+        <paramValue>br.gov.ancine.mtcc.model.bo.ManterEntidadeBOImpl</paramValue>
+    </applicationParameter>
+	
+	
+
+	<!-- ******** CONSTANTES ********* -->     
+	
+
+	
+		
+</ApplicationConfig>
+
+
+
+
+
+

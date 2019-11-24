@@ -1,0 +1,44 @@
+<?xml version = '1.0'?>
+<project name="lass" default="pkg.lib">
+
+	<target name="init">
+		<property name="dir.lib" 		value="./dist"/>
+		<property name="dir.classes" 	value="./WebRoot/WEB-INF/classes"/>
+		<property name="jar.name" 		value="generic-framework.jar"/>
+		<property name="file.jar" 		value="${dir.lib}/${jar.name}"/>
+	</target>
+
+<!--
+	<target name="copia">
+		<copy todir="./web/WEB-INF/lib">
+			<fileset dir="./lib">
+				<include name="commons-logging.jar"/>
+			</fileset>
+		</copy>
+	</target>
+-->
+
+	<target name="unpkg.lib" depends="init">
+		<delete>
+			<fileset dir="${dir.lib}" includes="${jar.name}" />
+		</delete>		
+	</target>
+
+	<target name="pkg.lib" depends="unpkg.lib">
+		<jar destfile="${file.jar}">
+			<fileset dir="${dir.classes}" excludes="**/*.properties"/>
+		</jar>
+	</target>
+
+</project>
+
+
+
+
+
+
+
+
+
+
+

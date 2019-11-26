@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=generic-framework.jar -DgroupId=framework -DartifactId=framework -Dversion=1.0 -Dpackaging=jar
+

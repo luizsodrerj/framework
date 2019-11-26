@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 /**
  * Created on 23/05/2006
  *
@@ -20,12 +23,27 @@ public class Window {
     private Window() {
     }
 
+    
+    
+    public static void setNimbusLookAndFeel() {
+    	try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
     /**
      * Centraliza uma janela
      *
      * @param window janela a ser centralizada
      */
-    public static final void centerWindow(Component window) {
+    public static final void centralizeWindow(Component window) {
         Dimension screenSize    = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension componentSize = window.getSize();
 

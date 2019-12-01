@@ -19,7 +19,9 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
+<!-- mvn install:install-file -Dfile=hsqldb.jar -DgroupId=org.hsqldb -DartifactId=hsqldb -Dversion=1.8.0 -Dpackaging=jar -->
+
 	<dependencies>
 		<dependency>
 			<groupId>framework</groupId>
@@ -31,6 +33,36 @@
 			<artifactId>uicomponents</artifactId>
 			<version>1.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0</version>
+		</dependency>
 	</dependencies>
-	
+
 </project>
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ import framework.swing.Button;
 import framework.swing.Label;
 import java.awt.Font;
 
-public class AppDialog extends JDialog {
+public class AppDlg extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class AppDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AppDialog dialog = new AppDialog();
+			AppDlg dialog = new AppDlg();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class AppDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AppDialog() {
+	public AppDlg() {
 		setTitle("Criar Aplica\u00E7\u00E3o");
 		setBounds(100, 100, 787, 368);
 		getContentPane().setLayout(new BorderLayout());
@@ -58,21 +58,21 @@ public class AppDialog extends JDialog {
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new Button("Salvar e Finalizar");
-		btnNewButton.setBounds(507, 23, 250, 42);
-		contentPanel.add(btnNewButton);
+		JButton save = new Button("Salvar e Finalizar");
+		save.setBounds(507, 23, 250, 42);
+		contentPanel.add(save);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(479, 13, 16, 297);
 		contentPanel.add(separator);
 		
-		JButton btnNewButton_1 = new Button("Cancelar");
-		btnNewButton_1.setBounds(507, 78, 250, 42);
-		contentPanel.add(btnNewButton_1);
+		JButton cancel = new Button("Cancelar");
+		cancel.setBounds(507, 78, 250, 42);
+		contentPanel.add(cancel);
 		
-		JButton btnCriarPrimeiroFormulrio = new Button("Criar primeiro Formul\u00E1rio");
-		btnCriarPrimeiroFormulrio.setBounds(507, 133, 250, 42);
-		contentPanel.add(btnCriarPrimeiroFormulrio);
+		JButton createForm = new Button("Criar primeiro Formul\u00E1rio");
+		createForm.setBounds(507, 133, 250, 42);
+		contentPanel.add(createForm);
 	}
 }

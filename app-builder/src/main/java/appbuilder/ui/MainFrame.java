@@ -23,7 +23,7 @@ public class MainFrame extends BaseFrame {
 	
 	
 	void criarApp() {
-		AppDialog app = new AppDialog();
+		AppDlg app = new AppDlg();
 		app.setModal(true);
 		app.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		Window.centralizeWindow(app);

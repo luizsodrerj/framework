@@ -282,10 +282,33 @@ public class DateUtil extends GregorianCalendar {
        return (int) Math.round(result);
     }
 
+    
+    public static long getDifferenceInMinutes(DateUtil dateStart, DateUtil dateStop) {
+    	return dateStop.getMinutesRange(dateStart);
+    }
+
+    public static long getDifferenceInHours(DateUtil dateStart, DateUtil dateStop) {
+    	return (long)dateStop.getHourRange(dateStart);
+    }
+    
     /**
-     * Calcula o número de dias entre esta data e uma anterior.
+     * Calcula a quantidade de minutos entre esta data e uma anterior.
      * @param calendarIni Uma data anterior a ser calculada
-     * @return O número de dias entre as datas
+     * @return A quantidade de minutos entre as datas
+     */
+    public long getMinutesRange(DateUtil calendarIni) {
+        long dataIniMilis = calendarIni.getTimeInMillis();
+        long dataFimMilis = this.getTimeInMillis();
+        long diff 		  = dataFimMilis - dataIniMilis;
+        long diffMinutes  = diff / (60 * 1000) % 60;
+        
+        return diffMinutes;
+    }
+    
+    /**
+     * Calcula o n&uacute;mero de horas entre esta data e uma anterior.
+     * @param calendarIni Uma data anterior a ser calculada
+     * @return O n&uacute;mero de horas entre as datas
      */
     public double getHourRange(DateUtil calendarIni) {
        long dataIniMilis = calendarIni.getTimeInMillis();

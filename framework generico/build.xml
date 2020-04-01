@@ -4,7 +4,7 @@
 	<target name="init">
 		<property name="dir.lib" 		value="./dist"/>
 		<property name="dir.classes" 	value="./WebRoot/WEB-INF/classes"/>
-		<property name="jar.name" 		value="generic-framework.jar"/>
+		<property name="jar.name" 		value="framework.jar"/>
 		<property name="file.jar" 		value="${dir.lib}/${jar.name}"/>
 	</target>
 

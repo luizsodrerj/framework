@@ -1,0 +1,38 @@
+   
+   
+
+<table id="tb" class="tb" style="border-spacing: 15px !important; border-collapse: separate;">
+  <tr>
+    <td>
+      <input
+        [mask]="'99:99'"
+        [(ngModel)]="ti"
+        name="ti"
+        id="ti"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input
+        [mask]="'99:99'"
+        [(ngModel)]="tf"
+        name="tf"
+        id="tf">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input 
+        [(ngModel)]="res"
+        name="res" 
+        id="res">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="getTimeDiff()" class="btn btn-outline-primary btn-lg">
+        Calcular
+      </button>
+    </td>
+  </tr>
+</table>

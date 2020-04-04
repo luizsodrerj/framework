@@ -784,7 +784,7 @@ public class DateUtil extends GregorianCalendar {
 				mask = "dd/MM/yyyy hh:mm";
 				break;
 			case HH_mm:
-				mask = "HH:mm a";
+				mask = "HH:mm";
 				break;
 			case ddMMyyyyhhmmss:
 				mask = "ddMMyyyyhhmmss";

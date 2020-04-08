@@ -14,6 +14,51 @@ public class ResultSetMap {
 	private String[]columns = null;
 
 
+    public int executeUpdate(
+				 Connection connection,
+				 Object[] params,
+				 String query
+			   ) {
+    	int rowCount = 0;
+    	
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			
+			if (params != null && params.length > 0) {
+				int index = 0;
+				
+				for (Object param: params) {
+					ps.setObject(++index, param);
+				}
+			}
+			rowCount = ps.executeUpdate();
+			
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return rowCount;
+    }
+	
+	
+    public Map<String,Object> executeSingleResultQuery(
+							Connection connection,
+							Object[] params,
+							String query
+						  ) {
+		List<Map<String,Object>>list = executeQuery(
+										 connection, 
+										 params, 
+										 query
+									   ); 
+		return !list.isEmpty() ? 
+				list.get(0) : 
+				null;
+	}	
+	
+	
     public List<Map<String,Object>>executeQuery(
     					Connection connection,
     					Object[] params,

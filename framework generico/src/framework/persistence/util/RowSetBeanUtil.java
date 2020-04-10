@@ -4,6 +4,8 @@ import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -21,6 +23,57 @@ public class RowSetBeanUtil {
 
 	private String[] columns;
 
+	
+	public <T>T getSingleResult(
+			   		Class type,
+					Connection connection,
+					Object[] params,
+					String query
+				) {
+		List list = getBeanCollection(
+						type, 
+						connection, 
+						params, 
+						query
+					);
+		return (T) (
+					!list.isEmpty() ? 
+					list.get(0) : 
+					null
+				   );	
+	}	
+	
+	public <T>T getBeanCollection(
+			   		Class type,
+					Connection connection,
+					Object[] params,
+					String query
+				) {
+		List list = null;
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			
+			if (params != null && params.length > 0) {
+				int index = 0;
+				
+				for (Object param: params) {
+					ps.setObject(++index, param);
+				}
+			}
+			ResultSet result = ps.executeQuery();
+		
+			list = resultSetToCollection(result, type);
+			
+			result.close();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return (T)list;
+	}
 	
 	/**
 	 * Retorna um objeto a partir do banco

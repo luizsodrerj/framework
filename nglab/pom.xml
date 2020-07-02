@@ -12,7 +12,7 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<mysql.connector.version>5.1.31</mysql.connector.version>
+		<mysql.connector.version>8.0.16</mysql.connector.version>
 		<hibernate.version>4.0.0.Final</hibernate.version>
 		<spring.version>4.0.1.RELEASE</spring.version>
 		<jackson.library>2.7.5</jackson.library>

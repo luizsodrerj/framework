@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-    selector: 'app-mask',
-    template: `<label></label>`
-})
-export class MaskUtilComponent implements OnInit {
+export class MaskUtilComponent  {
 
     constructor() { }
 

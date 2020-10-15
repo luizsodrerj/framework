@@ -35,7 +35,7 @@ export class AppTdiffComponent implements OnInit {
   }
 
   timeDiffService(body): Observable<any> {
-    let url: string = 'http://localhost:8899/timediff/rest/service';
+    let url: string = 'http://localhost:8888/timediff/rest/service';
 
     return this.http.post(url, body);
   }

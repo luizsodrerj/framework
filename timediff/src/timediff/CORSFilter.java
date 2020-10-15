@@ -12,14 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CORSFilter implements Filter {
-
-	private static final String OPTIONS = "OPTIONS";
-	private static final String POST 	= "POST";
-    private static final String GET  	= "GET";
-
-    
-    
-	/**
+	 
+    /**
      * Default constructor.
      */
     public CORSFilter() {
@@ -45,12 +39,11 @@ public class CORSFilter implements Filter {
         ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
         
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-
-        String method = request.getMethod(); 
-        
+ 
         // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
-        if (GET.equals(method) || POST.equals(method) || OPTIONS.equals(method) ) {
+        if (request.getMethod().equals("OPTIONS")) {
             resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+            return;
         }
  
         // pass the request along the filter chain

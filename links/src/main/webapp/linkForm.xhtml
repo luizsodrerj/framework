@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Gerenciador de Links</title>
+
+  <link href="#{request.contextPath}/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- <script src="#{request.contextPath}/js/materialize.min.js"></script> -->
+</h:head>
+<body>
+  <style>
+  	label {
+  		color: black;
+  	}
+  
+  	input[type='text'] {
+  		width: 715px;
+  	}
+  
+  	.cmdLink {
+  		width: 155px;
+  	}
+  	
+  </style>	
+
+ <ui:include src="/includeNav.xhtml"></ui:include>
+
+ <f:loadBundle var="msg" basename="messages" />
+
+ <div class="row" style="margin-left:75px;">
+    <h:form id="form" styleClass="col s10">
+    	
+      <br/><br/>	
+    	
+      <div class="row">
+        <div class="col s10">
+          	<p:outputLabel value="#{msg.descricao}"/>
+          	<p:spacer width="25"/>
+          	<p:inputText 
+          		value="#{linkBean.link.descricao}"
+          		styleClass="browser-default"
+          		id="descricao"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="URL"/>
+          <p:spacer width="73" height="20" />
+          <p:inputText 
+          	value="#{linkBean.link.url}"
+          	styleClass="browser-default"
+          	id="url"/>
+        </div>
+      </div>
+	  
+	  <br/>	
+	  
+	  <div class="row center">
+	  	<div class="col s2">
+		  	<h:commandButton 
+		  		styleClass="waves-effect waves-light btn-large blue darken-4 cmdLink"
+		  		action="#{linkBean.createLink}" 
+		  		value="Confirmar" />  	
+	  	</div>
+	  </div>		
+      
+    </h:form>
+  </div>
+
+
+
+</body>	
+</html>
+
+
+

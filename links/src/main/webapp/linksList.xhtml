@@ -16,9 +16,11 @@
 </h:head>
 <body>
 
-	<ui:include src="/includeNav.xhtml"></ui:include>
+  <ui:include src="/includeNav.xhtml"></ui:include>
 
-	<f:loadBundle var="msg" basename="messages" />
+  <f:loadBundle var="msg" basename="messages" />
+
+  <h:form>
 
 	<div class="row" style="margin-left:1px; margin-top: 50px;">
 
@@ -28,6 +30,21 @@
 		  style="width: 207px; margin-left: 5px;"	
 		  value="Novo Link"
 		  type="button"/>
+	
+		<p:spacer width="185" height="20"/>
+	
+		<p:inputText 
+			value="#{linkBean.searchParameter}"
+			styleClass="browser-default"
+			style="width: 450px;"
+			id="searchParameter"/>
+	
+		<p:spacer width="25" height="20"/>
+	
+		<h:commandButton 
+			action="#{linkBean.search()}"
+			class="waves-effect waves-light btn-large orange darken-4" 
+			value="Pesquisar" />
 	
 		<br/><br/>
 	
@@ -41,6 +58,7 @@
 		</p:dataTable>
 	
 	</div>
+  </h:form>
 
 </body>
 </html>

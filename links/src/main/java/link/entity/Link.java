@@ -2,17 +2,31 @@ package link.entity;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "LINK")
+@NamedQueries(
+	@NamedQuery(
+		name  = Link.FIND_BY_FILTER,
+		query =   "SELECT o "
+				+ "FROM   Link o "
+				+ "WHERE  (upper(o.descricao) LIKE ? "
+				+ "OR     o.url LIKE ?)"
+	)	
+)
 public class Link implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_FILTER = "link.findByFilter";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

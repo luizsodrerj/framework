@@ -17,9 +17,29 @@ public class LinkBean {
 	
 	private List<Link>links = new ArrayList<Link>();
 
+	private String searchParameter;
+	
 	private Link link = new Link();
 	
+
 	
+	public String search() {
+		String desc = searchParameter.toUpperCase();
+		String url  = searchParameter;
+		
+		try {
+			links = persistence.findByNamedQuery(
+							Link.FIND_BY_FILTER, 
+							new Object[] {
+								"%" + desc + "%",
+								"%" + url + "%"
+							}
+						);
+		} finally {
+			persistence.close();
+		}
+		return "/linksList.xhtml";
+	}
 	
 	public String createLink() {
 
@@ -56,6 +76,14 @@ public class LinkBean {
 
 	public void setLink(Link link) {
 		this.link = link;
+	}
+
+	public String getSearchParameter() {
+		return searchParameter;
+	}
+
+	public void setSearchParameter(String searchParameter) {
+		this.searchParameter = searchParameter;
 	}
 	
 	

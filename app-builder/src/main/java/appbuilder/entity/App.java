@@ -1,45 +1,38 @@
 package appbuilder.entity;
 
-// default package
+import java.io.Serializable;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
- * App entity. @author MyEclipse Persistence Tools
+ * The persistent class for the APP database table.
+ * 
  */
 @Entity
-@Table(name = "APP")
-public class App implements java.io.Serializable {
-
-	// Fields
-
-	private static final long serialVersionUID = -7223529662430141356L;
+@NamedQuery(name="App.findAll", query="SELECT a FROM App a")
+public class App implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name = "ID", unique = true, nullable = false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name = "NOME_APP", nullable = false, length = 300)	
+
+	@Column(name="NOME_APP")
 	private String nomeApp;
 
-	
-	
-	// Constructors
+	//bi-directional many-to-one association to Form
+	@OneToMany(mappedBy="app")
+	private List<Form> forms = new ArrayList<>();
 
-	/** default constructor */
+	
+	
 	public App() {
 	}
 
-	/** full constructor */
-	public App(Integer id, String nomeApp) {
-		this.id = id;
-		this.nomeApp = nomeApp;
-	}
-
-	// Property accessors
 	public Integer getId() {
 		return this.id;
 	}
@@ -54,6 +47,28 @@ public class App implements java.io.Serializable {
 
 	public void setNomeApp(String nomeApp) {
 		this.nomeApp = nomeApp;
+	}
+
+	public List<Form> getForms() {
+		return this.forms;
+	}
+
+	public void setForms(List<Form> forms) {
+		this.forms = forms;
+	}
+
+	public Form addForm(Form form) {
+		getForms().add(form);
+		form.setApp(this);
+
+		return form;
+	}
+
+	public Form removeForm(Form form) {
+		getForms().remove(form);
+		form.setApp(null);
+
+		return form;
 	}
 
 	@Override
@@ -81,4 +96,5 @@ public class App implements java.io.Serializable {
 		return true;
 	}
 
+	
 }

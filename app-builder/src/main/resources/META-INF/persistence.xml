@@ -8,12 +8,15 @@
 	<persistence-unit name="DEFAULT_PERSISTENCE_UNIT" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>appbuilder.entity.App</class>
+		<class>appbuilder.entity.ComponentType</class>
+		<class>appbuilder.entity.Form</class>
+		<class>appbuilder.entity.FormField</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost" />
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/AppBuilderServer" />
 			<property name="hibernate.connection.username" value="sa" />
-			<property name="hibernate.show_sql"   value="true" />
     		<property name="hibernate.format_sql" value="true" />			
+			<property name="hibernate.show_sql"   value="true" />
 		</properties>
 	</persistence-unit>
 

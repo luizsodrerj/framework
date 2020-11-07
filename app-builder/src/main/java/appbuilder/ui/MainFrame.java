@@ -10,10 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import framework.persistence.jpa.PersistenceServiceUtil;
 import framework.presentation.swing.Window;
 import framework.swing.BaseFrame;
 import framework.swing.Button;
 import java.awt.Color;
+import java.awt.Font;
 
 public class MainFrame extends BaseFrame {
 
@@ -40,6 +42,8 @@ public class MainFrame extends BaseFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				PersistenceServiceUtil persis = new PersistenceServiceUtil();
+				
 				try {
 					MainFrame frame = new MainFrame();
 					Window.setNimbusLookAndFeel();
@@ -49,8 +53,12 @@ public class MainFrame extends BaseFrame {
 					frame.setBackGroundImage();
 					frame.setVisible(true);
 					
+					persis.connect();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
+				} finally {
+					persis.close();
 				}
 			}
 		});
@@ -69,6 +77,9 @@ public class MainFrame extends BaseFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCriarUmaAplicao = new Button("Criar uma Aplica\u00E7\u00E3o");
+		btnCriarUmaAplicao.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnCriarUmaAplicao.setBackground(Color.DARK_GRAY);
+		btnCriarUmaAplicao.setForeground(Color.WHITE);
 		btnCriarUmaAplicao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				criarApp();
@@ -78,6 +89,9 @@ public class MainFrame extends BaseFrame {
 		contentPane.add(btnCriarUmaAplicao);
 		
 		JButton btnImportarPlanilha = new Button("Importar Planilha");
+		btnImportarPlanilha.setForeground(Color.WHITE);
+		btnImportarPlanilha.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnImportarPlanilha.setBackground(Color.DARK_GRAY);
 		btnImportarPlanilha.setText("Configurar uma Aplica\u00E7\u00E3o");
 		btnImportarPlanilha.setBounds(12, 108, 1003, 49);
 		contentPane.add(btnImportarPlanilha);

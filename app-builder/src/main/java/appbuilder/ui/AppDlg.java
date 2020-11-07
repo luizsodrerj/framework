@@ -12,9 +12,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import framework.presentation.swing.Window;
 import framework.swing.Button;
 import framework.swing.Label;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AppDlg extends JDialog {
 
@@ -23,6 +26,16 @@ public class AppDlg extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 
+	
+	void createFormAction() {
+		FormDesignDlg dialog = new FormDesignDlg();
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		Window.centralizeWindow(dialog);
+		dialog.setModal(true);
+		dialog.setVisible(true);
+	}
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -72,7 +85,13 @@ public class AppDlg extends JDialog {
 		contentPanel.add(cancel);
 		
 		JButton createForm = new Button("Criar primeiro Formul\u00E1rio");
+		createForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createFormAction();
+			}
+		});
 		createForm.setBounds(507, 133, 250, 42);
 		contentPanel.add(createForm);
 	}
+
 }

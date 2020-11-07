@@ -1,34 +1,28 @@
 package appbuilder.entity;
 
 import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
- * The persistent class for the COMPONENT_TYPE database table.
+ * The persistent class for the DATA_TYPE database table.
  * 
  */
 @Entity
-@Table(name="COMPONENT_TYPE")
-@NamedQuery(name="ComponentType.findAll", query="SELECT c FROM ComponentType c")
-public class ComponentType implements Serializable {
+@Table(name="DATA_TYPE")
+@NamedQuery(name="DataType.findAll", query="SELECT d FROM DataType d")
+public class DataType implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	private String tipo;
+	private String descricao;
 
 	
 	
-	public ComponentType() {
+	public DataType() {
 	}
 
 	public Integer getId() {
@@ -39,12 +33,12 @@ public class ComponentType implements Serializable {
 		this.id = id;
 	}
 
-	public String getTipo() {
-		return this.tipo;
+	public String getDescricao() {
+		return this.descricao;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -63,7 +57,7 @@ public class ComponentType implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ComponentType other = (ComponentType) obj;
+		DataType other = (DataType) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

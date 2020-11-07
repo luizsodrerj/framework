@@ -111,7 +111,8 @@ public class PersistenceManager {
      */
     public static Session getSession() throws DAOException {
         Session s = (Session) session.get();
-        try {
+        /*
+		try {
             if (s == null) {
                 log.debug("Opening new Session for this thread.");
                 if (getInterceptor() != null) {
@@ -133,6 +134,7 @@ public class PersistenceManager {
         } catch (HibernateException ex) {
             throw new DAOException(ex);
         }
+		*/
         return s;
     }    
 

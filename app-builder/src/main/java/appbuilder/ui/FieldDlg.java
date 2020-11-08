@@ -51,67 +51,90 @@ public class FieldDlg extends JDialog {
 		if (tipoComponente.getSelectedIndex() == 0) {
 			return;
 		}
-		Dimension prefSize	= new Dimension(355, 40);
+		Dimension prefSize	= new Dimension(355, 45);
 		ComponentType type 	= compTypes.get(tipoComponente.getSelectedIndex() - 1);
 		int typeId 			= type.getId();  
+		Label label			= null;
 		
 		switch (typeId) {
 			case CAIXA_DE_TEXTO:
+				label = new Label("Exemplo de Caixa de Texto:");
+				label.setHorizontalAlignment(SwingConstants.RIGHT);
+				label.setPreferredSize(prefSize);
 				JTextField tx = new JTextField();
 				tx.setPreferredSize(prefSize);
-				
-				if (previewComp != null && !(previewComp instanceof JTextField)) {
-					panel.remove(previewComp);
-					previewComp = tx;
-					panel.add(tx);
-				} else if (previewComp == null) {
-					previewComp = tx;
-					panel.add(tx);
-				}
+				addPreviewComponent(JTextField.class, tx, false, label);
 				break;
 			case AREA_DE_TEXTO:
+				label = new Label("Exemplo de Area de Texto:");
+				label.setHorizontalAlignment(SwingConstants.RIGHT);
+				label.setPreferredSize(prefSize);
 				JTextArea ta = new JTextArea();
 				ta.setPreferredSize(new Dimension(355, 75));
-				
-				if (previewComp != null && !(previewComp instanceof JTextArea)) {
-					panel.remove(previewComp);
-					previewComp = ta;
-					panel.add(ta);
-				} else if (previewComp == null) {
-					previewComp = ta;
-					panel.add(ta);
-				}
+				addPreviewComponent(JTextArea.class, ta, false, label);
 				break;
 			case CAIXA_DE_CHECAGEM:
+				label = new Label("Exemplo de Caixa de Checagem:");
+				label.setHorizontalAlignment(SwingConstants.RIGHT);
+				label.setPreferredSize(prefSize);
 				JCheckBox ck = new JCheckBox();
 				ck.setSelected(true);
-				
-				if (previewComp != null && !(previewComp instanceof JCheckBox)) {
-					panel.remove(previewComp);
-					previewComp = ck;
-					panel.add(ck);
-				} else if (previewComp == null) {
-					previewComp = ck;
-					panel.add(ck);
-				}
+				addPreviewComponent(JCheckBox.class, ck, true, label);
 				break;
 			case LISTA_DE_VALORES:
+				label = new Label("Exemplo de Lista de Valores:");
+				label.setHorizontalAlignment(SwingConstants.RIGHT);
+				label.setPreferredSize(prefSize);
 				JComboBox cb = new JComboBox();
 				cb.setPreferredSize(prefSize);
-				
-				if (previewComp != null && !(previewComp instanceof JComboBox)) {
-					panel.remove(previewComp);
-					previewComp = cb;
-					panel.add(cb);
-				} else if (previewComp == null) {
-					previewComp = cb;
-					panel.add(cb);
-				}
+				addPreviewComponent(JComboBox.class, cb, false, label);				
 				break;
 			default:
 				break;
 		}
 		panel.doLayout();
+	}
+
+	private void addPreviewComponent(
+					Class componentClass, 
+					Component component,
+					boolean labelAfter,
+					JLabel label
+				 ) {
+		boolean compNotNull = previewComp != null;
+		boolean notEquals	= compNotNull && !(
+											    previewComp.getClass()
+											    		   .getName()
+											    		   .equals(
+											    			componentClass.getName()
+											    		   )
+											  );
+		if (compNotNull && notEquals) {
+			previewComp.setVisible(false);
+			panel.removeAll();
+			
+			previewComp = component;
+			
+			if (labelAfter) {
+				label.setHorizontalAlignment(SwingConstants.LEFT);
+				panel.add(component);
+				panel.add(label);
+			} else {
+				panel.add(label);
+				panel.add(component);
+			}
+		} else if (previewComp == null) {
+			previewComp = component;
+			
+			if (labelAfter) {
+				label.setHorizontalAlignment(SwingConstants.LEFT);
+				panel.add(component);
+				panel.add(label);
+			} else {
+				panel.add(label);
+				panel.add(component);
+			}
+		}
 	}
 	
 	private void getAllComponentTypes() {
@@ -169,7 +192,7 @@ public class FieldDlg extends JDialog {
 	 */
 	public FieldDlg() {
 		getContentPane().setBackground(Color.WHITE);
-		setBounds(100, 100, 910, 585);
+		setBounds(100, 100, 917, 518);
 		getContentPane().setLayout(null);
 		
 		JLabel lblInformeOLabel = new Label("Informe o Label do Campo");
@@ -216,7 +239,7 @@ public class FieldDlg extends JDialog {
 		getContentPane().add(lblNewLabel);
 		
 		panel = new JPanel();
-		panel.setBounds(22, 220, 858, 229);
+		panel.setBounds(22, 220, 858, 168);
 		getContentPane().add(panel);
 
 	}

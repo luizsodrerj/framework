@@ -22,11 +22,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import java.awt.Font;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class FieldDlg extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
+	static final int CAIXA_DE_TEXTO 	= 0;
+	static final int AREA_DE_TEXTO 		= 1;
+	static final int CAIXA_DE_CHECAGEM	= 2;
+	static final int LISTA_DE_VALORES 	= 3;
+	
+	
 	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
 
 	private List<ComponentType>compTypes;
@@ -40,46 +48,70 @@ public class FieldDlg extends JDialog {
 	
 	
 	void preview() {
-//		VALUES ('CAIXA DE TEXTO'); --> 0
-//		VALUES ('ÁREA DE TEXTO'); --> 1
-//		VALUES ('CAIXA DE CHECAGEM'); --> 2
-//		VALUES ('LISTA DE VALORES'); --> 3
-
-		int index 			= tipoComponente.getSelectedIndex();
-		ComponentType type 	= compTypes.get(index);
-		int typeId 			= type.getId();  
-
-		if (previewComp != null) {
-			panel.remove(previewComp);
+		if (tipoComponente.getSelectedIndex() == 0) {
+			return;
 		}
+		Dimension prefSize	= new Dimension(355, 40);
+		ComponentType type 	= compTypes.get(tipoComponente.getSelectedIndex() - 1);
+		int typeId 			= type.getId();  
 		
 		switch (typeId) {
-			case 0:
+			case CAIXA_DE_TEXTO:
 				JTextField tx = new JTextField();
-				tx.setPreferredSize(new Dimension(255, 25));
-				previewComp = tx;
-				panel.add(tx);
+				tx.setPreferredSize(prefSize);
+				
+				if (previewComp != null && !(previewComp instanceof JTextField)) {
+					panel.remove(previewComp);
+					previewComp = tx;
+					panel.add(tx);
+				} else if (previewComp == null) {
+					previewComp = tx;
+					panel.add(tx);
+				}
 				break;
-			case 1:
+			case AREA_DE_TEXTO:
 				JTextArea ta = new JTextArea();
-				ta.setPreferredSize(new Dimension(255, 45));
-				previewComp = ta;
-				panel.add(ta);
+				ta.setPreferredSize(new Dimension(355, 75));
+				
+				if (previewComp != null && !(previewComp instanceof JTextArea)) {
+					panel.remove(previewComp);
+					previewComp = ta;
+					panel.add(ta);
+				} else if (previewComp == null) {
+					previewComp = ta;
+					panel.add(ta);
+				}
 				break;
-			case 2:
+			case CAIXA_DE_CHECAGEM:
 				JCheckBox ck = new JCheckBox();
-				previewComp = ck;
-				panel.add(ck);
+				ck.setSelected(true);
+				
+				if (previewComp != null && !(previewComp instanceof JCheckBox)) {
+					panel.remove(previewComp);
+					previewComp = ck;
+					panel.add(ck);
+				} else if (previewComp == null) {
+					previewComp = ck;
+					panel.add(ck);
+				}
 				break;
-			case 3:
+			case LISTA_DE_VALORES:
 				JComboBox cb = new JComboBox();
-				cb.setPreferredSize(new Dimension(255, 25));
-				previewComp = cb;
-				panel.add(cb);
+				cb.setPreferredSize(prefSize);
+				
+				if (previewComp != null && !(previewComp instanceof JComboBox)) {
+					panel.remove(previewComp);
+					previewComp = cb;
+					panel.add(cb);
+				} else if (previewComp == null) {
+					previewComp = cb;
+					panel.add(cb);
+				}
 				break;
 			default:
 				break;
 		}
+		panel.doLayout();
 	}
 	
 	private void getAllComponentTypes() {
@@ -169,6 +201,11 @@ public class FieldDlg extends JDialog {
 		getContentPane().add(tipoDado);
 		
 		tipoComponente = new JComboBox();
+		tipoComponente.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				preview();
+			}
+		});
 		tipoComponente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tipoComponente.setBounds(341, 111, 539, 35);
 		getContentPane().add(tipoComponente);

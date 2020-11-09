@@ -1,6 +1,7 @@
 package framework.persistence.jpa;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -32,7 +33,7 @@ public class PersistenceUtil {
 			throw new RuntimeException(e);
 		}
 	}
-
+ 
 	/**
 	 * Cria um Gerenciador de Entidades JPA baseado no nome da PersisnceUnit
 	 * 

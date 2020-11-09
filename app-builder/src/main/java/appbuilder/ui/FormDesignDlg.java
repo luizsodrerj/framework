@@ -2,34 +2,118 @@ package appbuilder.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import appbuilder.entity.ComponentType;
+import appbuilder.entity.FormField;
 import framework.presentation.swing.Window;
 import framework.swing.Button;
 import framework.swing.Label;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class FormDesignDlg extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	
+	private List<FormField>fields = new ArrayList<FormField>();
+
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private JPanel previewPane;
 
+	
 
+	public void addField(FormField field) {
+		fields.add(field);
+		
+		populatePreviewPane();
+	}
+	
+	private void populatePreviewPane() {
+		previewPane.removeAll();
+		
+		Dimension prefSize = new Dimension(300, 30);
+		
+		for (FormField field : fields) {
+			ComponentType compType 	= field.getComponentType();
+			String fieldLabel		= field.getLabel();
+			Label label				= null;
+			
+			switch (compType.getId()) {
+				case ComponentType.CAIXA_DE_TEXTO:
+					label = getLabel(prefSize, fieldLabel);
+					JTextField tx = new JTextField();
+					tx.setPreferredSize(prefSize);
+					addToPreview(tx, label);
+					break;
+				case ComponentType.AREA_DE_TEXTO:
+					label = getLabel(prefSize, fieldLabel);
+					JTextArea ta = new JTextArea();
+					ta.setPreferredSize(new Dimension(355, 75));
+					addToPreview(ta, label);
+					break;
+				case ComponentType.CAIXA_DE_CHECAGEM:
+					label = getLabel(prefSize, fieldLabel);
+					JCheckBox ck = new JCheckBox();
+					ck.setSelected(true);
+					addToPreview(ck, label);
+					break;
+				case ComponentType.LISTA_DE_VALORES:
+					label = getLabel(prefSize, fieldLabel);
+					JComboBox cb = new JComboBox();
+					cb.setPreferredSize(prefSize);
+					addToPreview(cb, label);
+					break;
+				default:
+					break;
+			}
+			previewPane.doLayout();
+			previewPane.repaint();
+		}
+	}
+
+	private Label getLabel(Dimension prefSize, String fieldLabel) {
+		Label label = new Label(fieldLabel);
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setPreferredSize(prefSize);
+		
+		return label;
+	}
+	
+	private void addToPreview(Component field, Label label) {
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(650,75));
+		
+		if (field instanceof JCheckBox) {
+			panel.add(field);
+			panel.add(label);
+		} else {
+			panel.add(label);
+			panel.add(field);
+		}
+		previewPane.add(panel);
+	}
 	
 	void novoCampoActionPerformed() {
 		FieldDlg dialog = new FieldDlg();
 		dialog.postConstruct();
+		dialog.setParentForm(this);
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		Window.centralizeWindow(dialog);
 		dialog.setModal(true);
@@ -72,7 +156,7 @@ public class FormDesignDlg extends JDialog {
 		textField.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 186, 1107, 16);
+		separator.setBounds(6, 186, 1150, 16);
 		contentPanel.add(separator);
 		
 		JButton novoCampo = new Button("Incluir novo Campo");
@@ -102,7 +186,7 @@ public class FormDesignDlg extends JDialog {
 		lblpreviewDoLayout.setBounds(12, 202, 390, 16);
 		contentPanel.add(lblpreviewDoLayout);
 		
-		JPanel previewPane = new JPanel();
+		previewPane = new JPanel();
 		previewPane.setBounds(12, 243, 1150, 472);
 		contentPanel.add(previewPane);
 	}

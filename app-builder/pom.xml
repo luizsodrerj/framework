@@ -53,6 +53,10 @@
 					<groupId>javax.persistence</groupId>
 					<artifactId>persistence-api</artifactId>
 				</exclusion>
+				<exclusion>
+				    <groupId>org.jboss.logging</groupId>
+				    <artifactId>jboss-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -64,22 +68,17 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.8.Final</version>
+			<version>4.3.6.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.8.Final</version>
+			<version>4.3.6.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
 		</dependency>
 
 	</dependencies>

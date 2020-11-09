@@ -1,51 +1,67 @@
 package appbuilder.ui;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import appbuilder.entity.ComponentType;
 import appbuilder.entity.DataType;
+import appbuilder.entity.FormField;
 import framework.persistence.jpa.PersistenceServiceUtil;
+import framework.swing.Button;
 import framework.swing.Label;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import java.awt.Font;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 public class FieldDlg extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	static final int CAIXA_DE_TEXTO 	= 0;
-	static final int AREA_DE_TEXTO 		= 1;
-	static final int CAIXA_DE_CHECAGEM	= 2;
-	static final int LISTA_DE_VALORES 	= 3;
-	
-	
 	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
 
 	private List<ComponentType>compTypes;
 	private List<DataType>types; 		
-	
+
+	private FormDesignDlg parent;
 	private JComboBox tipoComponente;
 	private Component previewComp;
 	private JComboBox tipoDado;
 	private JTextField label;
 	private JPanel panel;
 	
+
+	void confirmarAction() {
+		ComponentType compType 	= compTypes.get(tipoComponente.getSelectedIndex() - 1);
+		DataType type			= types.get(tipoDado.getSelectedIndex() - 1);
+		
+		FormField field = new FormField();
+		field.setLabel(label.getText());
+		field.setComponentType(compType);
+		field.setDataType(type);
+		
+		parent.addField(field);
+		
+		this.dispose();
+	}
+	
+	public void setParentForm(FormDesignDlg parent) {
+		this.parent = parent;
+	}
 	
 	void preview() {
 		if (tipoComponente.getSelectedIndex() == 0) {
@@ -57,7 +73,7 @@ public class FieldDlg extends JDialog {
 		Label label			= null;
 		
 		switch (typeId) {
-			case CAIXA_DE_TEXTO:
+			case ComponentType.CAIXA_DE_TEXTO:
 				label = new Label("Exemplo de Caixa de Texto:");
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
@@ -65,7 +81,7 @@ public class FieldDlg extends JDialog {
 				tx.setPreferredSize(prefSize);
 				addPreviewComponent(JTextField.class, tx, false, label);
 				break;
-			case AREA_DE_TEXTO:
+			case ComponentType.AREA_DE_TEXTO:
 				label = new Label("Exemplo de Area de Texto:");
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
@@ -73,7 +89,7 @@ public class FieldDlg extends JDialog {
 				ta.setPreferredSize(new Dimension(355, 75));
 				addPreviewComponent(JTextArea.class, ta, false, label);
 				break;
-			case CAIXA_DE_CHECAGEM:
+			case ComponentType.CAIXA_DE_CHECAGEM:
 				label = new Label("Exemplo de Caixa de Checagem:");
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
@@ -81,7 +97,7 @@ public class FieldDlg extends JDialog {
 				ck.setSelected(true);
 				addPreviewComponent(JCheckBox.class, ck, true, label);
 				break;
-			case LISTA_DE_VALORES:
+			case ComponentType.LISTA_DE_VALORES:
 				label = new Label("Exemplo de Lista de Valores:");
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
@@ -192,7 +208,7 @@ public class FieldDlg extends JDialog {
 	 */
 	public FieldDlg() {
 		getContentPane().setBackground(Color.WHITE);
-		setBounds(100, 100, 917, 518);
+		setBounds(100, 100, 917, 499);
 		getContentPane().setLayout(null);
 		
 		JLabel lblInformeOLabel = new Label("Informe o Label do Campo");
@@ -241,6 +257,26 @@ public class FieldDlg extends JDialog {
 		panel = new JPanel();
 		panel.setBounds(22, 220, 858, 168);
 		getContentPane().add(panel);
+		
+		JButton confirmar = new Button("Confirmar");
+		confirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				confirmarAction();
+			}
+		});
+		confirmar.setBounds(353, 401, 255, 40);
+		getContentPane().add(confirmar);
+		
+		Button cancelar = new Button("Confirmar");
+		cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FieldDlg.this.dispose();
+			}
+		});
+		cancelar.setText("Cancelar");
+		cancelar.setBounds(625, 401, 255, 40);
+		getContentPane().add(cancelar);
 
 	}
+
 }

@@ -20,6 +20,12 @@ import javax.persistence.Table;
 public class ComponentType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public static final int CAIXA_DE_TEXTO 		= 0;
+	public static final int AREA_DE_TEXTO 		= 1;
+	public static final int CAIXA_DE_CHECAGEM	= 2;
+	public static final int LISTA_DE_VALORES 	= 3;
+
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;

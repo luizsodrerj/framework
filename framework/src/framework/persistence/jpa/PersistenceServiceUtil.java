@@ -2,10 +2,9 @@ package framework.persistence.jpa;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import org.hibernate.Session;
 
 /**
  * Classe utilitaria para servico de persistencia 
@@ -64,12 +63,6 @@ public class PersistenceServiceUtil {
 		if (conectaImediato) {
 			manager = PersistenceUtil.createEntityManager();
 		}
-	}
-
-	public Session getSession() {
-		connect();
-		
-		return (Session) manager.getDelegate();
 	}
 	
 	/**

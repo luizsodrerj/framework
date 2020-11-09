@@ -22,14 +22,15 @@ public class FormField implements Serializable {
 
 	private String label;
 
-	private String tipo;
-
-	//bi-directional many-to-one association to ComponentType
+	
+	@ManyToOne
+	@JoinColumn(name="ID_DATA_TYPE")
+	private DataType dataType;
+	
 	@ManyToOne
 	@JoinColumn(name="COMP_TYPE_ID")
 	private ComponentType componentType;
 
-	//bi-directional many-to-one association to Form
 	@ManyToOne
 	@JoinColumn(name="ID_FORM")
 	private Form form;
@@ -63,14 +64,6 @@ public class FormField implements Serializable {
 		this.label = label;
 	}
 
-	public String getTipo() {
-		return this.tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public ComponentType getComponentType() {
 		return this.componentType;
 	}
@@ -85,6 +78,14 @@ public class FormField implements Serializable {
 
 	public void setForm(Form form) {
 		this.form = form;
+	}
+
+	public DataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(DataType dataType) {
+		this.dataType = dataType;
 	}
 
 	@Override

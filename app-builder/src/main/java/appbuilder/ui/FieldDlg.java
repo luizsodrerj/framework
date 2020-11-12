@@ -67,7 +67,7 @@ public class FieldDlg extends JDialog {
 		if (tipoComponente.getSelectedIndex() == 0) {
 			return;
 		}
-		Dimension prefSize	= new Dimension(355, 45);
+		Dimension prefSize	= new Dimension(375, 45);
 		ComponentType type 	= compTypes.get(tipoComponente.getSelectedIndex() - 1);
 		int typeId 			= type.getId();  
 		Label label			= null;
@@ -79,6 +79,7 @@ public class FieldDlg extends JDialog {
 				label.setPreferredSize(prefSize);
 				JTextField tx = new JTextField();
 				tx.setPreferredSize(prefSize);
+				tx.setColumns(25);
 				addPreviewComponent(JTextField.class, tx, false, label);
 				break;
 			case ComponentType.AREA_DE_TEXTO:
@@ -86,7 +87,7 @@ public class FieldDlg extends JDialog {
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
 				JTextArea ta = new JTextArea();
-				ta.setPreferredSize(new Dimension(355, 75));
+				ta.setPreferredSize(new Dimension(375, 75));
 				addPreviewComponent(JTextArea.class, ta, false, label);
 				break;
 			case ComponentType.CAIXA_DE_CHECAGEM:

@@ -45,7 +45,7 @@ public class FormDesignDlg extends JDialog {
 		contentPanel.remove(previewPane);
 		
 		previewPane = new JPanel();
-		previewPane.setBounds(12, 243, 1150, 472);
+		previewPane.setBounds(12, 243, 1200, 472);
 		contentPanel.add(previewPane);
 		contentPanel.doLayout();
 		
@@ -71,7 +71,7 @@ public class FormDesignDlg extends JDialog {
 				case ComponentType.AREA_DE_TEXTO:
 					label = getLabel(fieldLabel);
 					JTextArea ta = new JTextArea();
-					ta.setPreferredSize(new Dimension(355, 75));
+					ta.setPreferredSize(new Dimension(395, 75));
 					addToPreview(ta, label);
 					break;
 				case ComponentType.CAIXA_DE_CHECAGEM:
@@ -83,7 +83,12 @@ public class FormDesignDlg extends JDialog {
 				case ComponentType.LISTA_DE_VALORES:
 					label = getLabel(fieldLabel);
 					JComboBox cb = new JComboBox();
-					cb.setPreferredSize(prefSize);
+					cb.setPreferredSize(
+						new Dimension(
+							(int)prefSize.getWidth() + 45, 
+							(int)prefSize.getHeight()
+						)
+					);
 					addToPreview(cb, label);
 					break;
 				default:

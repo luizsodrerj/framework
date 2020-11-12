@@ -54,8 +54,8 @@
 					<artifactId>persistence-api</artifactId>
 				</exclusion>
 				<exclusion>
-				    <groupId>org.jboss.logging</groupId>
-				    <artifactId>jboss-logging</artifactId>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -80,7 +80,11 @@
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.47</version>
+		</dependency>
 	</dependencies>
 
 </project>

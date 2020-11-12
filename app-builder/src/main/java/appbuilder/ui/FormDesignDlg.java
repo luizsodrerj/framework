@@ -42,13 +42,18 @@ public class FormDesignDlg extends JDialog {
 	public void addField(FormField field) {
 		fields.add(field);
 		
+		contentPanel.remove(previewPane);
+		
+		previewPane = new JPanel();
+		previewPane.setBounds(12, 243, 1150, 472);
+		contentPanel.add(previewPane);
+		contentPanel.doLayout();
+		
 		populatePreviewPane();
 	}
 	
 	private void populatePreviewPane() {
-		previewPane.removeAll();
-		
-		Dimension prefSize = new Dimension(300, 30);
+		Dimension prefSize = new Dimension(350, 45);
 		
 		for (FormField field : fields) {
 			ComponentType compType 	= field.getComponentType();
@@ -57,25 +62,26 @@ public class FormDesignDlg extends JDialog {
 			
 			switch (compType.getId()) {
 				case ComponentType.CAIXA_DE_TEXTO:
-					label = getLabel(prefSize, fieldLabel);
+					label = getLabel(fieldLabel);
 					JTextField tx = new JTextField();
 					tx.setPreferredSize(prefSize);
+					tx.setColumns(35);
 					addToPreview(tx, label);
 					break;
 				case ComponentType.AREA_DE_TEXTO:
-					label = getLabel(prefSize, fieldLabel);
+					label = getLabel(fieldLabel);
 					JTextArea ta = new JTextArea();
 					ta.setPreferredSize(new Dimension(355, 75));
 					addToPreview(ta, label);
 					break;
 				case ComponentType.CAIXA_DE_CHECAGEM:
-					label = getLabel(prefSize, fieldLabel);
+					label = getLabel(fieldLabel);
 					JCheckBox ck = new JCheckBox();
 					ck.setSelected(true);
 					addToPreview(ck, label);
 					break;
 				case ComponentType.LISTA_DE_VALORES:
-					label = getLabel(prefSize, fieldLabel);
+					label = getLabel(fieldLabel);
 					JComboBox cb = new JComboBox();
 					cb.setPreferredSize(prefSize);
 					addToPreview(cb, label);
@@ -84,21 +90,20 @@ public class FormDesignDlg extends JDialog {
 					break;
 			}
 			previewPane.doLayout();
-			previewPane.repaint();
 		}
 	}
 
-	private Label getLabel(Dimension prefSize, String fieldLabel) {
+	private Label getLabel(String fieldLabel) {
 		Label label = new Label(fieldLabel);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setPreferredSize(prefSize);
+		label.setPreferredSize(new Dimension(180, 40));
 		
 		return label;
 	}
 	
 	private void addToPreview(Component field, Label label) {
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(650,75));
+		panel.setPreferredSize(new Dimension(750,100));
 		
 		if (field instanceof JCheckBox) {
 			panel.add(field);
@@ -190,5 +195,4 @@ public class FormDesignDlg extends JDialog {
 		previewPane.setBounds(12, 243, 1150, 472);
 		contentPanel.add(previewPane);
 	}
-
 }

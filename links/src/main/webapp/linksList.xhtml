@@ -46,16 +46,24 @@
 			class="waves-effect waves-light btn-large orange darken-4" 
 			value="Pesquisar" />
 	
-		<br/><br/>
+		<br/><br/><br/>
 	
-		<p:dataTable var="link" value="#{linkBean.links}">
-			<p:column headerText="#{msg.descricao}">
-		        <h:outputText value="#{link.descricao}" />
-		    </p:column>		
-			<p:column headerText="URL">
-		        <h:outputText value="#{link.url}" />
-		    </p:column>		
-		</p:dataTable>
+		<h:dataTable var="link" value="#{linkBean.links}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg.descricao}" />
+				</f:facet>
+				<h:outputText value="#{link.descricao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="URL" />
+				</f:facet>
+				<a href="#{link.url}">
+					<h:outputText value="#{link.url}" />
+				</a>
+			</h:column>
+		</h:dataTable>
 	
 	</div>
   </h:form>

@@ -39,20 +39,15 @@ public class FormDesignDlg extends JDialog {
 
 	
 
-	public void addField(FormField field) {
-		fields.add(field);
-		
-		contentPanel.remove(previewPane);
-		
-		previewPane = new JPanel();
-		previewPane.setBounds(12, 243, 1200, 472);
-		contentPanel.add(previewPane);
-		contentPanel.doLayout();
-		
-		populatePreviewPane();
+	public void setFields(List<FormField> fields) {
+		this.fields = fields;
 	}
 	
-	private void populatePreviewPane() {
+	public List<FormField> getFields() {
+		return fields;
+	}
+	
+	public void populatePreviewPane() {
 		Dimension prefSize = new Dimension(350, 45);
 		
 		for (FormField field : fields) {
@@ -111,6 +106,7 @@ public class FormDesignDlg extends JDialog {
 		panel.setPreferredSize(new Dimension(750,100));
 		
 		if (field instanceof JCheckBox) {
+			label.setHorizontalAlignment(SwingConstants.LEFT);
 			panel.add(field);
 			panel.add(label);
 		} else {

@@ -63,6 +63,17 @@
 					<h:outputText value="#{link.url}" />
 				</a>
 			</h:column>
+			<h:column>
+				<h:commandLink 
+					action="#{linkBean.removeLink}"
+					onclick="return confirm('Deseja realmente deletar este link?')"
+					class="waves-effect waves-light btn-large red darken-4" 
+					value="Deletar">
+					<f:param 
+						value="#{link.id}"
+						name="linkId"/>
+				</h:commandLink>	
+			</h:column>
 		</h:dataTable>
 	
 	</div>

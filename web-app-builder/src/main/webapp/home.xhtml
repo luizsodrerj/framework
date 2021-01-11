@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Application Builder</title>
+
+  <!-- CSS  -->
+  <link href="#{request.contextPath}/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</h:head>
+
+<body>
+
+	<f:loadBundle var="msg" basename="msg"/>
+
+	<ui:include src="/includeNav.xhtml"></ui:include>
+
+	<h:form>
+	
+	  <div class="section no-pad-bot" id="index-banner">
+	    <div class="container">
+	      <br/><br/>
+	      <h1 class="header center orange-text">Gerenciador de #{msg['lb.apps']}</h1>
+	      <div class="row center">
+	        <h5 class="header col s12 light">
+	        	Clique em um dos botoes abaixo para gerenciar suas #{msg['lb.apps']}
+	        </h5>
+	      </div>
+	      <div class="row center">
+			<a 	href="#{request.contextPath}/faces/app/application.xhtml"
+				class="btn-large waves-effect waves-light red"
+				style="width: 355px;">
+				#{msg['lb.criar.app']}
+			</a>
+		
+			<br/><br/>
+		
+			<a class="btn-large waves-effect waves-light blue"
+			   style="width: 355px;"
+			   href="#">
+				#{msg['lb.config.app']}
+			</a>
+		
+		        
+	      </div>
+	    </div>
+	  </div>
+</h:form>
+
+  <!--  Scripts-->
+  <script src="#{request.contextPath}/js/jquery-2.2.4.min.js"></script>
+  <script src="#{request.contextPath}/js/materialize.min.js"></script>
+  <script src="#{request.contextPath}/js/init.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+

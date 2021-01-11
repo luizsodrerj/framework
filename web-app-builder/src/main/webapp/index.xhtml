@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>AppBuilder</title>
+	<link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</h:head>
+
+<body>
+	<style>
+		
+		.div-img {
+			text-align: center;
+		}
+		
+		.div-center {
+			text-align: center;
+		}	
+		
+	</style>
+
+	<f:loadBundle var="msg" basename="msg"/>
+
+	<br/><br/><br/>
+
+	<h:form>
+	  <div class="div-center">
+	
+		<a 	href="#{request.contextPath}/faces/app/application.xhtml"
+			class="btn btn-outline-primary btn-lg"
+			style="width: 500px;">
+			#{msg['lb.criar.app']}
+		</a>
+	
+		<br/><br/>
+
+		<input
+			value="#{msg['lb.config.app']}"
+			class="btn btn-outline-primary btn-lg"
+			style="width: 500px;"
+			type="button"/>
+	
+	  </div>
+
+	  <br/><br/><br/>
+
+	  <div class="div-img">
+	
+		<img src="#{request.contextPath}/img/apps.jpeg" 
+			 style="width:527px; height:303px;"/>
+	
+	  </div>
+	  
+</h:form>
+</body>
+</html>
+
+
+
+
+
+
+

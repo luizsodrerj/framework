@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>AppBuilder</title>
+  <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<body>
+	<style>
+	/*  
+	fieldset .ui-fieldset-legend {
+		padding-top: 0em !important;
+	    padding-right: 0.3em !important;
+	    padding-bottom: 0em !important;
+	    padding-left: 0.3em !important;	    
+	}
+	*/
+	</style>
+
+	<f:loadBundle var="msg" basename="msg"/>
+
+	<br/><br/><br/>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:panelGroup>
+				<fieldset>
+					<legend>Informe o Nome da #{msg['lb.app']}:</legend>
+					
+					<h:panelGrid columns="1" style="border-spacing: 10px;">
+						<p:inputText
+							style="width: 525px;" 
+							id="appName"/>
+					</h:panelGrid>
+					
+					<p:spacer width="125"/>
+				</fieldset>
+			</h:panelGroup>
+		
+			<h:panelGroup>
+				<p:spacer width="15"/>
+			</h:panelGroup>
+		
+			<h:panelGrid columns="1" style="border-spacing: 20px;">
+				<h:panelGroup>
+					<input
+						value="Finalizar e Retornar"
+						class="btn btn-dark btn-lg"
+						style="width: 338px;"
+						type="button"/>
+				</h:panelGroup>
+				
+				<h:panelGroup>
+					<p:spacer height="10"/>
+				</h:panelGroup>
+				
+				<h:panelGroup>
+					<input
+						value="Criar Primeiro #{msg['lb.form']}"
+						class="btn btn-dark btn-lg"
+						style="width: 338px;"
+						type="button"/>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p:spacer height="10"/>
+				</h:panelGroup>
+				
+				<h:panelGroup>
+					<input
+						value="Cancelar e Retornar"
+						class="btn btn-warning btn-lg"
+						style="width: 338px;"
+						type="button"/>
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+	
+	<br/><br/><br/>
+	
+
+</body>
+</html>

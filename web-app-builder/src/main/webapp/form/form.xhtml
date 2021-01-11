@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>AppBuilder</title>
+</h:head>
+<body>
+	<style>
+	
+		fieldset .ui-fieldset-legend {
+		    padding: 0.4em 1em !important;
+		}
+
+		.bts {
+			width: 415px;
+		}
+			
+	</style>
+
+	<f:loadBundle var="msg" basename="msg"/>
+
+	<br/><br/><br/>
+	<h:form>
+		<h:panelGrid columns="2" style="border-spacing: 15px;">
+			<p:fieldset legend="Informe o Nome do #{msg['lb.form']}:">
+				<h:panelGrid columns="1" style="border-spacing: 10px;">
+					<p:inputText
+						style="width: 525px;" 
+						id="formName"/>
+				</h:panelGrid>
+			</p:fieldset>
+	
+			<h:panelGrid columns="1" style="border-spacing: 10px;">
+				<p:commandButton 
+					value="Finalizar e Retornar"
+					styleClass="bts"/>
+				
+				<p:commandButton 
+					value="Adicionar Campos ao #{msg['lb.form']}"
+					action="#{formController.loadFormFields}"
+					styleClass="bts"
+					ajax="false"/>
+		
+				<p:commandButton 
+					value="Cancelar e Retornar"
+					styleClass="bts"/>
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+	<br/><br/>
+	
+	<p:fieldset legend="Preview do #{msg['lb.form']}:">
+		
+	</p:fieldset>
+	
+	
+	
+
+</body>
+</html>
+
+
+
+
+
+

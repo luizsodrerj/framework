@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>AppBuilder</title>
+</h:head>
+<body>
+	<style>
+	
+		fieldset .ui-fieldset-legend {
+		    padding: 0.4em 1em !important;
+		}
+			
+	</style>
+
+	<f:loadBundle var="msg" basename="msg"/>
+
+	<br/><br/><br/>
+
+	<p:fieldset legend="Dados do Campo">
+		<h:panelGrid columns="2" style="border-spacing: 10px;">
+			<h:panelGrid columns="1" style="border-spacing: 27px;">
+				<h:outputText value="Informe o Label do Campo:" />
+				<p:inputText
+					value="#{formController.formBean.field.label}"
+					style="width:500px;"
+					id="label"/>
+					
+				<h:outputText value="Tipo de Campo:" />	
+				<p:selectOneMenu id="compType" style="width:466px;">
+					<f:selectItems value="#{formController.formBean.compItems}"/>
+				</p:selectOneMenu>
+
+				<h:outputText value="Tipo de Dado:" />	
+				<p:selectOneMenu id="dataType" style="width:466px;">
+					<f:selectItems value="#{formController.formBean.typesItems}"/>
+				</p:selectOneMenu>
+			</h:panelGrid>
+	
+			<h:panelGrid columns="1" style="border-spacing: 15px;">
+				<p:commandButton 
+					value="Confirmar e Retornar"
+					style="width: 338px;"/>
+				
+				<p:commandButton 
+					value="Cancelar e Retornar"
+					style="width: 338px;"/>
+			</h:panelGrid>
+		</h:panelGrid>
+	</p:fieldset>
+	
+	<br/><br/>
+	
+	<p:fieldset legend="Preview do #{msg['lb.form']}:">
+		
+	</p:fieldset>
+	
+	
+	
+
+</body>
+</html>
+
+
+
+
+
+

@@ -5,10 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>AppBuilder</title>
-  <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <link href="#{request.contextPath}/css/style.css?id=#{request.session.id}" rel="stylesheet" type="text/css"/>
+	<ui:include src="/header.xhtml"></ui:include>
 </h:head>
 <body>
 
@@ -51,11 +48,11 @@
 				</h:panelGroup>
 				
 				<h:panelGroup>
-					<input
-						value="Criar Primeiro #{msg['lb.form']}"
-						class="btn btn-dark btn-lg"
-						style="width: 338px;"
-						type="button"/>
+					<a href="#{request.contextPath}/faces/form/form.xhtml"
+					   class="btn btn-dark btn-lg"
+					   style="width: 338px;">
+						Criar Primeiro #{msg['lb.form']}
+					</a>	
 				</h:panelGroup>
 
 				<h:panelGroup>

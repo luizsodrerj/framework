@@ -8,16 +8,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>AppBuilder</title>
   <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="#{request.contextPath}/css/style.css?id=#{request.session.id}" rel="stylesheet" type="text/css"/>
 </h:head>
 <body>
-	
+
 	<ui:include src="/menu.xhtml"></ui:include>
 	
 	<f:loadBundle var="msg" basename="msg"/>
 
 	<br/><br/><br/>
 	<h:form>
-		<h:panelGrid columns="3">
+		<h:panelGrid columns="3" style="margin-left:10px;">
 			<h:panelGroup>
 				<fieldset>
 					<legend>Informe o Nome da #{msg['lb.app']}:</legend>

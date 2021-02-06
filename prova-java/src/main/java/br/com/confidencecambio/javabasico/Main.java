@@ -3,9 +3,9 @@ package br.com.confidencecambio.javabasico;
 public class Main {
 
 	public static void main(String[] args) {
-		Entidade cliente = new Cliente();
-		Entidade gerente = new Gerente();
-		Entidade robo = new Robo();
+		Nomeavel cliente = new Cliente();
+		Nomeavel gerente = new Gerente();
+		Nomeavel robo    = new Robo();
 
 		try {
 			cliente.setNome(null);

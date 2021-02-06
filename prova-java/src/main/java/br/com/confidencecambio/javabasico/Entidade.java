@@ -1,6 +1,6 @@
 package br.com.confidencecambio.javabasico;
 
-public abstract class Entidade {
+public abstract class Entidade implements Nomeavel {
 
 	protected String nome;
 
@@ -80,7 +80,7 @@ public abstract class Entidade {
 	}
 
 	public String getNomeMaiusculo() {
-		return nome.toUpperCase();
+		return nome != null ? nome.toUpperCase() : nome;
 	}
 	
 	public String getNome() {

@@ -1,0 +1,2 @@
+
+mvn install:install-file -Dfile=start-1.0.10.jar -DgroupId=org.primefaces.themes -DartifactId=start -Dversion=1.0.10 -Dpackaging=jar

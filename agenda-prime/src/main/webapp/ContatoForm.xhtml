@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Agenda</title>
+
+  <link href="#{request.contextPath}/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- <script src="#{request.contextPath}/js/materialize.min.js"></script> -->
+</h:head>
+<body>
+  <style>
+  	label {
+  		color: black;
+  	}
+  
+  	input[type='text'] {
+  		width: 715px;
+  	}
+  
+  	.cmdLink {
+  		width: 155px;
+  	}
+  	
+	.ui-autocomplete .ui-autocomplete-dropdown {
+		height: 70%;
+	}  	
+  </style>	
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+    	<a id="logo-container" href="#{request.contextPath}/faces/index.xhtml" class="brand-logo">
+    		Agenda
+    	</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Gerenciar Contatos</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+ <div class="row" style="margin-left:75px;">
+    <h:form id="form" styleClass="col s10">
+      <div class="row">
+      	<div class="col s10">
+			<p:autoComplete 
+				completeMethod="#{contatoHome.autocompleteContato}"
+				value="#{contatoHome.selectedContato}"
+				styleClass="browser-default" 
+				inputStyle="width: 800px"
+				converter="contatoConverter"
+				itemLabel="#{contato.contato}"
+				itemValue="#{contato}"
+				id="autoComplContato"
+				dropdown="true"
+				var="contato">
+				<p:ajax 
+					event="itemSelect" 
+					listener="#{contatoHome.onItemSelect}"
+					oncomplete="updateFields();"
+					update="form"/>
+				<p:column>
+					<h:outputText value="#{contato.contato}" />
+				</p:column>
+			</p:autoComplete>
+		</div>      
+      </div>
+      <div class="row">
+        <div class="col s10">
+          	<p:outputLabel value="Nome"/>
+          	<p:spacer width="40"/>
+          	<p:inputText 
+          		id="nome" 
+          		value="#{contatoHome.contatoBean.contato}"
+          		styleClass="browser-default"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="Referencia"/>
+          <p:spacer width="2"/>	
+          <p:inputText 
+          	id="ref" 
+          	value="#{contatoHome.contatoBean.referencia}" 
+          	styleClass="browser-default"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="Endereco"/>
+          <p:spacer width="12"/>
+          <p:inputText 
+          	id="address" 
+          	value="#{contatoHome.contatoBean.endereco}" 
+          	styleClass="browser-default"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="Telefones"/>
+          <p:spacer width="10"/>
+          <p:inputText 
+          	id="tels" 
+          	value="#{contatoHome.contatoBean.telefones}" 
+          	styleClass="browser-default"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="E-mails"/>
+          <p:spacer width="25"/>
+          <p:inputText 
+          	id="email" 
+          	value="#{contatoHome.contatoBean.emails}"
+          	styleClass="browser-default"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10">
+          <p:outputLabel value="Obs"/>
+          <br/>
+          <p:inputTextarea 
+          	value="#{contatoHome.contatoBean.obs}"
+          	styleClass="browser-default"
+          	style="width:798px;"
+          	id="obs"/>
+        </div>
+      </div>
+	  <div class="row center">
+	  	<div class="col s2">
+		  	<h:commandLink
+		  		styleClass="waves-effect waves-light btn-large blue darken-4 cmdLink"
+		  		action="#{contatoHome.save}"
+		  		value="Salvar" />  	
+	  	</div>
+	  	<div class="col s2">
+		  	<h:commandLink
+		  		styleClass="waves-effect waves-light btn-large orange darken-4 cmdLink"
+		  		action="#{contatoHome.merge}" 
+		  		value="Atualizar" />  	
+	  	</div>
+	  	<div class="col s2">
+		  	<a class="waves-effect waves-light btn-large yellow darken-3 cmdLink"
+		  	   href="#{request.contextPath}/faces/ContatoForm.xhtml">
+		  		RESET
+		  	</a>	
+	  	</div> 
+	  	<div class="col s2">
+		  	<h:commandButton 
+		  		styleClass="waves-effect waves-light btn-large red darken-4 cmdLink"
+		  		onclick="return confirm('Deseja remover esse contato?');"
+		  		action="#{contatoHome.delete}" 
+		  		value="Remover" />  	
+	  	</div>
+	  </div>		
+
+      
+    </h:form>
+  </div>
+
+
+
+</body>	
+</html>
+
+
+

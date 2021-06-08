@@ -5,8 +5,8 @@
 	version="1.0">
 
 	<persistence-unit name="DEFAULT_PERSISTENCE_UNIT" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<!--  -->
+		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+		
 		<class>agendaweb.entity.Contato</class>
 				
 		<properties>

@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>agenda</groupId>
-	<artifactId>agendaprime</artifactId>
+	<artifactId>agenda-prime</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1</version>
 
@@ -23,7 +23,7 @@
 	<url>http://maven.apache.org</url>
 
 	<build>
-		<finalName>${project.name}</finalName>
+		<finalName>agenda-prime</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -54,18 +54,6 @@
 			<groupId>javax.el</groupId>
 			<artifactId>el-api</artifactId>
 			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0.2</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -105,7 +93,7 @@
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.7</version>
+			<version>1.8.0</version>
 		</dependency>
 	</dependencies>
 

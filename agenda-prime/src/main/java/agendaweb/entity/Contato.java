@@ -4,6 +4,7 @@ package agendaweb.entity;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,11 +35,23 @@ public class Contato implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)    
     private Integer id;
+    
+    @Column(name = "contato")
     private String contato;
+    
+    @Column(name = "referencia")
     private String referencia;
+    
+    @Column(name = "endereco")
     private String endereco;
+    
+    @Column(name = "telefones")
     private String telefones;
+    
+    @Column(name = "emails")
     private String emails;
+    
+    @Column(name = "obs")
     private String obs;
     
     

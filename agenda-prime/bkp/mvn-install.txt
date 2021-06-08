@@ -1,2 +1,8 @@
 
 mvn install:install-file -Dfile=start-1.0.10.jar -DgroupId=org.primefaces.themes -DartifactId=start -Dversion=1.0.10 -Dpackaging=jar
+
+mvn install:install-file -Dfile=hsqldb-1.8.0.jar -DgroupId=hsqldb -DartifactId=hsqldb -Dversion=1.8.0 -Dpackaging=jar
+
+
+
+

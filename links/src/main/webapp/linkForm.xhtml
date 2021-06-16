@@ -21,7 +21,7 @@
   	}
   
   	input[type='text'] {
-  		width: 715px;
+  		width: 735px;
   	}
   
   	.cmdLink {
@@ -40,9 +40,10 @@
       <br/><br/>	
     	
       <div class="row">
-        <div class="col s10">
+      	<div class="col s1">
           	<p:outputLabel value="#{msg.descricao}"/>
-          	<p:spacer width="25"/>
+      	</div>
+        <div class="col s11">
           	<p:inputText 
           		value="#{linkBean.link.descricao}"
           		styleClass="browser-default"
@@ -50,9 +51,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s10">
+      	<div class="col s1">
           <p:outputLabel value="URL"/>
-          <p:spacer width="73" height="20" />
+      	</div>
+        <div class="col s11">
           <p:inputText 
           	value="#{linkBean.link.url}"
           	styleClass="browser-default"

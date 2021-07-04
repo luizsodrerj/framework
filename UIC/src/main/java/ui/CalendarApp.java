@@ -18,6 +18,7 @@ import java.util.Date;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 public class CalendarApp extends JFrame {
 
@@ -32,17 +33,60 @@ public class CalendarApp extends JFrame {
 		gridPanel.setLayout(new GridLayout(6, 7));
 		
 		DateUtil dtUtil = new DateUtil(new Date());
-		int weekDay = dtUtil.getDayOfWeek();
 		
-		for (int i = 1; i <= 7; i++) {
-			JButton bt = new JButton();
-			bt.setText("");
-			gridPanel.add(bt);
-		}
+		int mes = dtUtil.getMonth();
+		int y 	= dtUtil.getYear();
+		int d	= 1;
 		
-		for (int i = 1; i <= 35; i++) {
+		dtUtil.set(DateUtil.YEAR, y);
+		dtUtil.set(DateUtil.MONTH, mes - 1);
+		dtUtil.set(DateUtil.DAY_OF_MONTH, d);
+		
+		int weekDayOfFirstDay = dtUtil.getDayOfWeek();
+		int lastDay			  = dtUtil.getActualMaximum(DateUtil.DAY_OF_MONTH);	
+		
+		setFirstSevenDays(weekDayOfFirstDay);
+		
+		DateUtil now = new DateUtil(new Date());
+		
+		for (int i = 2; i <= lastDay; i++) {
 			JButton bt = new JButton();
 			bt.setText(String.valueOf(i));
+			bt.setFont(new Font("Tahoma", Font.BOLD, 14));
+			
+			if (now.getDayOfMonth() == i) {
+				bt.setFont(new Font("Tahoma", Font.BOLD, 14));
+				bt.setBackground(Color.WHITE);
+				bt.setForeground(Color.RED);
+			}
+			gridPanel.add(bt);
+		}
+		int lastButtonRange = lastDay == 30 ? 8 : 7;
+		
+		for (int i = 1; i <= lastButtonRange; i++) {
+			gridPanel.add(new JButton(""));
+		}
+	}
+
+	private void setFirstSevenDays(int weekDay) {
+		DateUtil now 	 = new DateUtil(new Date());
+		boolean firstDay = false;
+		
+		for (int i = 1; i <= 7; i++) {
+			if (firstDay) {
+				break;
+			}
+			JButton bt 	 = new JButton();
+			String label = "";
+			label 		 = weekDay == i ? "1" : label;
+			firstDay	 = weekDay == i;
+			
+			bt.setFont(new Font("Tahoma", Font.BOLD, 14));
+			bt.setText(label);
+			
+			if (now.getDayOfMonth() == 1) {
+				bt.setBackground(Color.WHITE);
+			}
 			gridPanel.add(bt);
 		}
 	}

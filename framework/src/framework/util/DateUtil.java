@@ -17,7 +17,9 @@ import java.util.StringTokenizer;
  */
 public class DateUtil extends GregorianCalendar {
 
-  /** Retorna a data no formato dd/MM/yyyy HH:mm:ss */            
+  private static final long serialVersionUID = 1L;
+
+/** Retorna a data no formato dd/MM/yyyy HH:mm:ss */            
   public static final int dd_MM_yyyy_HH_mm_ss = 12;
 	
   /** Retorna a data no formato dd/MM/yyyy dd_MM_yyyy */            

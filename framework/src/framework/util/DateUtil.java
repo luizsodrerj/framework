@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
 /**
- * Classe utilitária para tratamento de datas
+ * Classe utilitaria para tratamento de datas
  * @author  Luiz Alberto
  * @date    24/01/2005
  */
@@ -37,7 +37,7 @@ public class DateUtil extends GregorianCalendar {
   /** Retorna a data no formato dd/MM/yyyy hh:mm */            
   public static final int dd_MM_yyyy_hh_mm = 5;
   
-  /** Retorna a hora no formato HH:mm a (isto é, exibindo am ou pm)*/  
+  /** Retorna a hora no formato HH:mm a (isto e, exibindo am ou pm)*/  
   public static final int HH_mm = 6;
   
   /** Retorna a data no formato ddMMyyyyhhmmss */
@@ -90,9 +90,9 @@ public class DateUtil extends GregorianCalendar {
     
    /**
     * Este construtor recebe tres inteiros representando dia, mes e ano. A partir desses  
-    * dados cria uma instancia do objeto Calendar que encpasulará uma data representada   
-    * pelos dados passados. O formato desejado para apresentar a data para o usuário é    
-    * determinado pelo segundo parâmetro. 
+    * dados cria uma instancia do objeto Calendar que encpasularï¿½ uma data representada   
+    * pelos dados passados. O formato desejado para apresentar a data para o usuï¿½rio ï¿½    
+    * determinado pelo segundo parï¿½metro. 
     * @param dia dia
     * @param mes mes
     * @param ano ano
@@ -105,8 +105,8 @@ public class DateUtil extends GregorianCalendar {
       this.set(Calendar.DAY_OF_MONTH, dia);
       this.set(Calendar.MONTH, mes-1);
       this.set(Calendar.YEAR, ano + 1900);
-      //Para não ter problemas na diferença de dias
-      // Por default é incluido a hora corrente
+      //Para nï¿½o ter problemas na diferenï¿½a de dias
+      // Por default ï¿½ incluido a hora corrente
       this.set(Calendar.HOUR_OF_DAY, 0);
       this.set(Calendar.MINUTE, 0);
       this.set(Calendar.SECOND, 0);
@@ -115,9 +115,9 @@ public class DateUtil extends GregorianCalendar {
     
    /**
     * Este construtor recebe tres inteiros representando dia, mes e ano. A partir desses  
-    * dados cria uma instancia do objeto Calendar que encpasulará uma data representada   
-    * pelos dados passados. O formato desejado para apresentar a data para o usuário é    
-    * determinado pelo segundo parâmetro. 
+    * dados cria uma instancia do objeto Calendar que encpasularï¿½ uma data representada   
+    * pelos dados passados. O formato desejado para apresentar a data para o usuï¿½rio ï¿½    
+    * determinado pelo segundo parï¿½metro. 
     * @param strDia dia
     * @param strMes mes
     * @param strAno ano
@@ -134,8 +134,8 @@ public class DateUtil extends GregorianCalendar {
       this.set(Calendar.DAY_OF_MONTH, dia);
       this.set(Calendar.MONTH, mes-1);
       this.set(Calendar.YEAR, ano + 1900);
-      //Para não ter problemas na diferença de dias
-      // Por default é incluido a hora corrente
+      //Para nï¿½o ter problemas na diferenï¿½a de dias
+      // Por default ï¿½ incluido a hora corrente
       this.set(Calendar.HOUR_OF_DAY, 0);
       this.set(Calendar.MINUTE, 0);
       this.set(Calendar.SECOND, 0);
@@ -144,9 +144,9 @@ public class DateUtil extends GregorianCalendar {
     
   /**
     * Este construtor recebe dois inteiros representando mes e ano. A partir desses  
-    * dados cria uma instancia do objeto Calendar que encpasulará uma data representada   
-    * pelos dados passados. O formato desejado para apresentar a data para o usuário é    
-    * determinado pelo segundo parâmetro. 
+    * dados cria uma instancia do objeto Calendar que encpasularï¿½ uma data representada   
+    * pelos dados passados. O formato desejado para apresentar a data para o usuï¿½rio ï¿½    
+    * determinado pelo segundo parï¿½metro. 
     * @param mes mes
     * @param ano ano
     */
@@ -158,8 +158,8 @@ public class DateUtil extends GregorianCalendar {
       this.set(Calendar.DAY_OF_MONTH, 1);
       this.set(Calendar.MONTH, mes - 1);
       this.set(Calendar.YEAR, ano + 1900);
-      //Para não ter problemas na diferença de dias
-      // Por default é incluido a hora corrente
+      //Para nï¿½o ter problemas na diferenï¿½a de dias
+      // Por default ï¿½ incluido a hora corrente
       this.set(Calendar.HOUR_OF_DAY, 0);
       this.set(Calendar.MINUTE, 0);
       this.set(Calendar.SECOND, 0);
@@ -168,9 +168,9 @@ public class DateUtil extends GregorianCalendar {
 
   /**
    * Este construtor recebe seis inteiros representando dia, mes, ano, hora, minuto e segundo.           
-   * A partir desses dados cria uma instancia do objeto Calendar que encpasulará uma data representada   
-   * pelos dados passados. O formato desejado para apresentar a data para o usuário é                    
-   * determinado pelo segundo parâmetro. 
+   * A partir desses dados cria uma instancia do objeto Calendar que encpasularï¿½ uma data representada   
+   * pelos dados passados. O formato desejado para apresentar a data para o usuï¿½rio ï¿½                    
+   * determinado pelo segundo parï¿½metro. 
    * @param dia dia
    * @param mes mes
    * @param ano ano
@@ -194,8 +194,8 @@ public class DateUtil extends GregorianCalendar {
 
   /**
    * Este construtor recebe uma String no formato dd.mm.yyyy e instancia um objeto       
-   * Calendar que encpasulará uma data representada pela String passada. O formato       
-   * desejado para apresentar a data para o usuário é determinado pelo segundo parâmetro. 
+   * Calendar que encpasularï¿½ uma data representada pela String passada. O formato       
+   * desejado para apresentar a data para o usuï¿½rio ï¿½ determinado pelo segundo parï¿½metro. 
    * @param pData data
    */
     public DateUtil(String pData) {
@@ -226,9 +226,9 @@ public class DateUtil extends GregorianCalendar {
 
   /**
    * Este construtor recebe uma String no formato dd.mm.yyyy, uma segunda String        
-   * no formato hh.mm.ss e instancia um objeto Calendar que encpasulará uma data         
+   * no formato hh.mm.ss e instancia um objeto Calendar que encpasularï¿½ uma data         
    * representada pelas duas Strings passadas. O formato desejado para apresentar a data 
-   * para o usuário é determinado pelo segundo parâmetro.
+   * para o usuï¿½rio ï¿½ determinado pelo segundo parï¿½metro.
    * @param pData data
    * @param pHora hora
    */
@@ -256,10 +256,10 @@ public class DateUtil extends GregorianCalendar {
     
   /**
    * Retorna o intervalo de dias entre o DateUtil
-   * corrente e a DateUtil passado como parâmetro
+   * corrente e a DateUtil passado como parï¿½metro
    * @param data DateUtil
    * @return o intervalo de dias entre data 
-   *         inicializa e data passada como parâmetro
+   *         inicializa e data passada como parï¿½metro
    */
    public int daysBetween(DateUtil data){
        return toJulian() - data.toJulian();
@@ -267,9 +267,9 @@ public class DateUtil extends GregorianCalendar {
     
 
     /**
-     * Calcula o número de dias entre esta data e uma anterior.
+     * Calcula o nï¿½mero de dias entre esta data e uma anterior.
      * @param calendarIni Uma data anterior a ser calculada
-     * @return O número de dias entre as datas
+     * @return O nï¿½mero de dias entre as datas
      */
     public int getDayRange(DateUtil calendarIni) {
        long dataIniMilis = calendarIni.getTimeInMillis();
@@ -327,7 +327,7 @@ public class DateUtil extends GregorianCalendar {
 
     
    /**
-    * Troca formato de mês (número)
+    * Troca formato de mï¿½s (nï¿½mero)
     * para data string (ex.: Jan, Fev)
     * recebendo o formato de DateUtil
     * @return data string (ex.: Jan, Fev)
@@ -376,7 +376,7 @@ public class DateUtil extends GregorianCalendar {
     }
 
    /**
-    * Troca formato de mês (número)
+    * Troca formato de mï¿½s (nï¿½mero)
     * para data string (ex.: Janeiro, Fevereiro, etc...)
     * recebendo o formato de DateUtil
     * @return data string (ex.: Janeiro, Fevereiro, etc...)
@@ -392,7 +392,7 @@ public class DateUtil extends GregorianCalendar {
             strMesNum = "Fevereiro";
         }
         else if(lIntMes == 2) {
-            strMesNum = "Março";
+            strMesNum = "Marï¿½o";
         }
         else if(lIntMes == 3) {
             strMesNum = "Abril";
@@ -514,39 +514,50 @@ public class DateUtil extends GregorianCalendar {
      * Recupera o dia da semana por extenso
      * @return O dia da semana por extenso
      */
-    public String getNameDayOfWeek(){
-      int lIntDayOfWeek = this.get(DateUtil.DAY_OF_WEEK);
-      String lStrDayOfWeek = "";
-      switch (lIntDayOfWeek) {
-        case DateUtil.SUNDAY:   lStrDayOfWeek = "Domingo";
-                                break;
-        case DateUtil.MONDAY:   lStrDayOfWeek = "Segunda";
-                                break;
-        case DateUtil.TUESDAY:  lStrDayOfWeek = "Terça";
-                                break;
-        case DateUtil.WEDNESDAY:lStrDayOfWeek = "Quarta";
-                                break;
-        case DateUtil.THURSDAY: lStrDayOfWeek = "Quinta";
-                                break;
-        case DateUtil.FRIDAY:   lStrDayOfWeek = "Sexta";
-                                break;
-        case DateUtil.SATURDAY: lStrDayOfWeek = "Sábado";
-                                break;
-      }
-      return lStrDayOfWeek;
+    public String getDayOfWeekName() {
+      int day = this.get(DateUtil.DAY_OF_WEEK);
+      
+      String dayOfWeek  = "";
+      
+		switch (day) {
+			case DateUtil.SUNDAY:
+				dayOfWeek = "domingo";
+				break;
+			case DateUtil.MONDAY:
+				dayOfWeek = "segunda";
+				break;
+			case DateUtil.TUESDAY:
+				dayOfWeek = "ter\u00E7a";
+				break;
+			case DateUtil.WEDNESDAY:
+				dayOfWeek = "quarta";
+				break;
+			case DateUtil.THURSDAY:
+				dayOfWeek = "quinta";
+				break;
+			case DateUtil.FRIDAY:
+				dayOfWeek = "sexta";
+				break;
+			case DateUtil.SATURDAY:
+				dayOfWeek = "s\u00E1bado";
+				break;
+			default : 
+				throw new IllegalArgumentException();
+		}
+		return dayOfWeek;
     }
 
     /**
-     * Recupera o dia no mês corrente
-     * @return O dia no mês corrente
+     * Recupera o dia no mes corrente
+     * @return O dia no mes corrente
      */
     public int getDayOfMonth(){
       return this.get(DateUtil.DAY_OF_MONTH);
     }
 
     /**
-     * Recupera o mês no ano corrente
-     * @return O mês no ano corrente
+     * Recupera o mï¿½s no ano corrente
+     * @return O mï¿½s no ano corrente
      */
     public int getMonth(){
       return this.get(DateUtil.MONTH) + 1;
@@ -563,7 +574,7 @@ public class DateUtil extends GregorianCalendar {
 
     /**
      * Recupera a hora corrente
-     * @return O mês no ano corrente
+     * @return O mï¿½s no ano corrente
      */
     public int getHour(){
       return this.get(DateUtil.HOUR);
@@ -572,7 +583,7 @@ public class DateUtil extends GregorianCalendar {
 
     /**
      * Recupera o minuto corrente
-     * @return O mês no ano corrente
+     * @return O mï¿½s no ano corrente
      */
     public int getMinute(){
       return this.get(DateUtil.MINUTE);
@@ -581,7 +592,7 @@ public class DateUtil extends GregorianCalendar {
 
     /**
      * Recupera o segundo corrente
-     * @return O mês no ano corrente
+     * @return O mï¿½s no ano corrente
      */
     public int getSecond(){
       return this.get(DateUtil.SECOND);
@@ -752,9 +763,9 @@ public class DateUtil extends GregorianCalendar {
 
     
     /**
-     * Retorna a data formatada de acordo com o parâmetro
+     * Retorna a data formatada de acordo com o parï¿½metro
      * @param   pIntTipo formato da data
-     * @return  data formatada de acordo com o parâmetro
+     * @return  data formatada de acordo com o parï¿½metro
      */
     public String getDate(int pIntTipo){
         String mask = "";
@@ -824,9 +835,9 @@ public class DateUtil extends GregorianCalendar {
 	}
 
    /**
-	 * Retorna a data atual + pIntNumDias, esse método verifica se a soma cai no
-	 * Final de Semana e adiciona dias a ela, para que so seja válido os dias
-	 * úteis da semana.
+	 * Retorna a data atual + pIntNumDias, esse mï¿½todo verifica se a soma cai no
+	 * Final de Semana e adiciona dias a ela, para que so seja vï¿½lido os dias
+	 * ï¿½teis da semana.
 	 * 
 	 * @param pIntNumDias
 	 *            numero de dias
@@ -841,7 +852,7 @@ public class DateUtil extends GregorianCalendar {
         if (date.getDayOfWeek() == DateUtil.SUNDAY){  // Se for igual a domingo
             date.set(DateUtil.DAY_OF_YEAR, date.get(DateUtil.DAY_OF_YEAR)+1);
         } 
-        else if (date.getDayOfWeek() == DateUtil.SATURDAY){   // Se for igual a sábado
+        else if (date.getDayOfWeek() == DateUtil.SATURDAY){   // Se for igual a sï¿½bado
             date.set(DateUtil.DAY_OF_YEAR, date.get(DateUtil.DAY_OF_YEAR)+2);
         }
       }
@@ -849,24 +860,24 @@ public class DateUtil extends GregorianCalendar {
     }
 
    /**
-    * Adianta a data no número de dias passado por parâmetro.
-    * @param pIntNumDias Número de dias a ser adiantado
+    * Adianta a data no nï¿½mero de dias passado por parï¿½metro.
+    * @param pIntNumDias Nï¿½mero de dias a ser adiantado
     */
     public void getDatePlus(int pIntNumDias) {
       this.set(DateUtil.DAY_OF_YEAR, this.get(DateUtil.DAY_OF_YEAR)+pIntNumDias);
     }
     
   /**
-   * Retrocede a data no número de dias passado por parâmetro.
-   * @param pIntNumDias Número de dias a ser retrocedido
+   * Retrocede a data no nï¿½mero de dias passado por parï¿½metro.
+   * @param pIntNumDias Nï¿½mero de dias a ser retrocedido
    */
     public void getDateMinus(int pIntNumDias) {
       this.set(DateUtil.DAY_OF_YEAR, this.get(DateUtil.DAY_OF_YEAR)-pIntNumDias);
     }
     
     /**
-    * Adianta a data no número de meses passado por parâmetro.
-    * @param pIntNumMeses Número de meses a ser adiantado
+    * Adianta a data no nï¿½mero de meses passado por parï¿½metro.
+    * @param pIntNumMeses Nï¿½mero de meses a ser adiantado
     */
     public void getMonthPlus(int pIntNumMeses) {
       this.set(DateUtil.MONTH, this.get(DateUtil.MONTH)+pIntNumMeses);
@@ -924,8 +935,8 @@ public class DateUtil extends GregorianCalendar {
 
     /**
      * Compara esta data com outra passada como parametro
-     * @param when data para comparação
-     * @return resultado da comparação
+     * @param when data para comparaï¿½ï¿½o
+     * @return resultado da comparaï¿½ï¿½o
      */
     public int compareTo(DateUtil when) {
       if (this.before(when)) {
@@ -985,10 +996,10 @@ public class DateUtil extends GregorianCalendar {
 
     /**
      * Retorna os dias uteis entre o DateUtil corrente
-     * e um intervalo de dias passado como parâmetro
+     * e um intervalo de dias passado como parï¿½metro
      * @param 	interval intervalo de dias
      * @return	os dias uteis entre o DateUtil corrente
-     * 			e um intervalo de dias passado como parâmetro
+     * 			e um intervalo de dias passado como parï¿½metro
      */
     public int getBusinessDays(int interval) {
     	int 		businessDays	= 0;

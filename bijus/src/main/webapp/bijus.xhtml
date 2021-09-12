@@ -10,6 +10,12 @@
 
 	<f:loadBundle basename="msg" var="msgRes"/>
 
+	<style>
+	  .value {
+		font-weight: bold;
+	  }	
+	</style>
+
     <section class="page-section" id="bijus">
         <div class="container">
             <div class="text-center">
@@ -21,6 +27,31 @@
                     </h4>
                 </div>
             </div>
+		   <p:carousel 
+		   		value="#{bijusCarouselController.bijus}" 
+		   		headerText="bijuterias" 
+		   		itemStyle="text-align:center" 
+		   		responsive="true"
+		   		var="biju">
+		   	 <p:panelGrid 
+		     	style="width:100%;margin:10px 0px" 
+		        styleClass="ui-panelgrid-blank"
+	        	columnClasses="label,value" 
+	        	columns="2" 
+	        	layout="grid">
+	            <f:facet name="header">
+	                <img src="#{request.contextPath}/img/bijus/#{biju.imagem}"
+	                	 style="width:240px; height:320px;" 
+	                	 alt="" /> 
+	            </f:facet>
+	            <h:outputText value="Descricao" />
+	            <h:outputText value="#{biju.descricao}" />
+	 
+	            <h:outputText value="Preco" />
+	            <h:outputText value="R$#{biju.preco}" />
+		     </p:panelGrid>
+		     <f:facet name="footer"></f:facet>
+		   </p:carousel>           
         </div>
     </section>
 

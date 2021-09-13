@@ -1,10 +1,28 @@
 package bijus.entity;
 
-public abstract class Peca {
+import java.io.Serializable;
+import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
+@Entity
+public class Peca implements Serializable {
+
+	private static final long serialVersionUID = -7105945454989499779L;
+	
+	@Id
+	private Integer id;
+	
+	@Lob
+    @Column(name = "imagem", columnDefinition="LONGVARBINARY")
+	private byte[] imagem;
+	
 	private String descricao;
 	private String categoria;
-	private String imagem;
+	private String tipo;
 	private String status;
 	private Double preco;
 
@@ -15,10 +33,10 @@ public abstract class Peca {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public String getImagem() {
+	public byte[] getImagem() {
 		return imagem;
 	}
-	public void setImagem(String imagem) {
+	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
 	public Double getPreco() {
@@ -38,6 +56,34 @@ public abstract class Peca {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Peca other = (Peca) obj;
+		return Objects.equals(id, other.id);
 	}
 	
 }

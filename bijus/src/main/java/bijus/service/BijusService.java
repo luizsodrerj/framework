@@ -1,36 +1,43 @@
 package bijus.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bijus.entity.Bijuteria;
 import bijus.entity.Joia;
+import bijus.entity.Peca;
+import framework.persistence.jpa.PersistenceServiceUtil;
 
 public class BijusService {
 
-	private static List<Bijuteria>bijus = new ArrayList<Bijuteria>();
-	private static List<Joia>joias = new ArrayList<Joia>();
+	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
+	
+	private List<Bijuteria>bijus;
+	private List<Joia>joias;
 
-	static {
-		loadJoias();
-		loadBijus();
+	
+	public List<Peca> getPecas() {
+		try {
+			return persistence.findAll(Peca.class, null);
+		} finally {
+			persistence.close();
+		}
 	}
-
-	public static List<Joia> getJoias() {
+	
+	public List<Joia> getJoias() {
 		if (joias.isEmpty()) {
 			loadJoias();
 		}
 		return joias;
 	}
 
-	public static List<Bijuteria> getBijus() {
+	public List<Bijuteria> getBijus() {
 		if (bijus.isEmpty()) {
 			loadBijus();
 		}
 		return bijus;
 	}
 	
-	private static void loadBijus() {
+	private void loadBijus() {
 		String[] images = new String[] {
 							"18.33.11.jpeg",
 							"18.33.12.jpeg",
@@ -42,13 +49,13 @@ public class BijusService {
 		for (String image : images) {
 			Bijuteria biju = new Bijuteria();
 			biju.setDescricao("Pulseira");
-			biju.setImagem(image);
+			//biju.setImagem(image);
 			biju.setPreco(10D);
 			bijus.add(biju);
 		}
 	}
 
-	private static void loadJoias() {
+	private void loadJoias() {
 		String[] images = new String[] {
 							"11.44.37.jpeg",
 							"11.44.38.jpeg",
@@ -60,7 +67,7 @@ public class BijusService {
 		for (String image : images) {
 			Joia joia = new Joia();
 			joia.setDescricao("Colar");
-			joia.setImagem(image);
+			//joia.setImagem(image);
 			joia.setPreco(25D);
 			joias.add(joia);
 		}

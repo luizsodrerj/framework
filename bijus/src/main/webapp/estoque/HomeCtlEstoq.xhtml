@@ -1,0 +1,43 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head> 
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bijus</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/favico.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+    </h:head>
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:13%; margin-left:27%;">
+	        <div class="container">
+	          <h:form>
+	            <h:commandLink 
+	            	action="#{listPecasController.list}"
+	            	value="Clique aqui para iniciar o Controle de Estoque"
+	            	styleClass="btn btn-primary btn-lg text-uppercase"/>
+	          </h:form>
+	        </div>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

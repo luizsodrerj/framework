@@ -17,13 +17,16 @@ public class BijusCarouselController {
 	private List<Bijuteria>bijus = new ArrayList<Bijuteria>();
 	private List<Joia>joias = new ArrayList<Joia>();
 
+	private BijusService bijusService = new BijusService();
+	
+	
 	
 	public BijusCarouselController() {
 		bijus.addAll(
-			BijusService.getBijus()	
+			bijusService.getBijus()	
 		);
 		joias.addAll(
-			BijusService.getJoias()	
+			bijusService.getJoias()	
 		);
 	}
 

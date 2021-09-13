@@ -1,0 +1,83 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head> 
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bijus</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/favico.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+    </h:head>
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:7%;">
+	        <div class="container">
+				<p:dataGrid 
+					value="#{listPecasController.pecas}"  
+					var="peca" 
+			        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			        rowsPerPageTemplate="6,12,16"
+			        rows="12" columns="3"
+			        paginator="true" 
+					layout="grid"
+			        id="pecas">
+				         
+			        <f:facet name="header">
+			            Lista de #{msgRes['lb.pecas']} do Estoque 
+			        </f:facet>
+				 
+			        <p:panel header="#{peca.descricao}" style="text-align:center">
+			        	<h:panelGrid columns="1" style="width:100%; text-align:center;">
+			                <!-- 
+			                <:graphicImage 
+			                	name="demo/images/car/#{car.brand}.gif"
+			                	rendered="#{not empty peca.imagem}"/> 
+			                -->
+							<h:outputText 
+								value="#{msgRes['msg.img.nao.disp']}"
+								rendered="#{empty peca.imagem}" />
+			        	</h:panelGrid>
+			            <h:panelGrid columns="2" style="width:100%; text-align:left;">
+			 				<h:outputText value="Categoria" style="font-weight: bold;"/>
+			                <h:outputText value="#{peca.categoria}" />
+			 				
+			 				<h:outputText value="Tipo de #{msgRes['lb.peca']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.tipo}" />
+			 
+			 				<h:outputText value="#{msgRes['lb.preco']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.preco}">
+				 				<f:convertNumber 
+				 					type="currency"
+	         						locale="pt_BR"/>
+			 				</h:outputText>
+			            </h:panelGrid>
+		 				<h:panelGrid columns="1" style="width:100%; text-align:center;">
+			                <button type="button" class="btn btn-outline-primary">
+			                	Ver Detalhe
+			                </button>
+		                </h:panelGrid>
+			        </p:panel>
+				</p:dataGrid>	  
+	        </div>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/estoque/header.xhtml"/>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:6%;">
+	        <div class="container">
+	          <h:form enctype="multipart/form-data" id="form">
+				<p:panelGrid styleClass="ui-noborder">  
+					<p:row>
+						<p:column colspan="2">
+							<p:fileUpload 
+								mode="advanced"
+								value="#{ctrlEstoqueController.file}"
+								listener="${ctrlEstoqueController.handleFileUpload}" 
+								allowTypes="/(\.|\/)(gif|jpe?g|jpg|png)$/"
+								label="Escolher Imagem"
+								update="form,imagem"
+								dragDropSupport="false"
+		                  		sizeLimit="500000" 
+		                  		fileLimit="1"
+		                  		/>
+				        </p:column>
+				    </p:row>    
+			        <p:row>  
+				        <p:column colspan="2">
+			                <p:graphicImage 
+				                value="/image?id=1"
+				                rendered="#{not empty ctrlEstoqueController.file}"
+				                id="imagem"
+				                width="150" 
+				                height="135"/>
+				        </p:column>
+					</p:row>
+				    <p:row>  
+						<p:column>  
+  							Descricao da #{msgRes['lb.peca']}
+				        </p:column>  
+				        <p:column>  
+				            <p:inputText 
+				            	value="#{ctrlEstoqueController.peca.descricao}"
+				            	id="desc"/> 
+				        </p:column>  
+			        </p:row>
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" style="margin-top: 10px;">
+				    <p:row>  
+						<p:column>  
+				            <h:commandButton 
+				            	action="#{ctrlEstoqueController.upload}"
+				            	styleClass="btn btn-primary btn-lg"
+				            	value="Confirmar"/>
+				        </p:column>  
+						<p:column>  
+				            <h:commandButton 
+				            	action="#{listPecasController.list}"
+				            	styleClass="btn btn-primary btn-lg"
+				            	value="Cancelar"/>
+				        </p:column>  
+					</p:row>			        
+				</p:panelGrid>
+	          </h:form>
+	        </div>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

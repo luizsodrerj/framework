@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
@@ -14,6 +16,7 @@ public class Peca implements Serializable {
 	private static final long serialVersionUID = -7105945454989499779L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Lob
@@ -25,7 +28,7 @@ public class Peca implements Serializable {
 	private String tipo;
 	private String status;
 	private Double preco;
-
+	
 	
 	public String getCategoria() {
 		return categoria;

@@ -6,17 +6,9 @@
  	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-	<h:head> 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Bijus</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/favico.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
-    </h:head>
+
+	<ui:include src="/estoque/header.xhtml"/>
+
     <body id="page-top">
     
     	<f:loadBundle basename="msg" var="msgRes"/>

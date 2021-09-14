@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import bijus.entity.Peca;
 import bijus.service.BijusService;
@@ -18,9 +21,15 @@ public class ListPecasController {
 	private List<Peca>pecas = new ArrayList<Peca>();
 	
 	
-	
 	public String list() {
 		pecas = bijusService.getPecas();
+	
+		HttpSession session = ((HttpServletRequest)
+								FacesContext.getCurrentInstance()
+											.getExternalContext()
+											.getRequest()
+										   ).getSession();
+		session.setAttribute("imageList",pecas);
 		
 		return "/estoque/ListPecas.xhtml";
 	}

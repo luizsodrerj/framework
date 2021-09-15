@@ -18,4 +18,15 @@ public enum Categoria {
 		return descricao;
 	}
 	
+//	public static void main(String[] args) {
+//		List<Categoria>list = Arrays.asList(Categoria.values());
+//	}
+	
 }
+
+
+
+
+
+
+

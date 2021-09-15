@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     
@@ -23,7 +25,7 @@
 						<p:column colspan="2">
 							<p:fileUpload 
 								mode="advanced"
-								value="#{ctrlEstoqueController.file}"
+								value="#{ctrlEstoqueController.peca.file}"
 								listener="${ctrlEstoqueController.handleFileUpload}" 
 								allowTypes="/(\.|\/)(gif|jpe?g|jpg|png)$/"
 								label="Escolher Imagem"
@@ -38,20 +40,71 @@
 				        <p:column colspan="2">
 			                <p:graphicImage 
 				                value="/image?id=1"
-				                rendered="#{not empty ctrlEstoqueController.file}"
+				                rendered="#{not empty ctrlEstoqueController.peca.file}"
 				                id="imagem"
-				                width="150" 
-				                height="135"/>
+				                height="135"
+				                width="150"/>
 				        </p:column>
 					</p:row>
 				    <p:row>  
-						<p:column>  
-  							Descricao da #{msgRes['lb.peca']}
-				        </p:column>  
+						<p:column>
+							<span style="font-weight: bold;">#{msgRes['lb.descricao']} da #{msgRes['lb.peca']}</span>
+						</p:column>  
 				        <p:column>  
 				            <p:inputText 
 				            	value="#{ctrlEstoqueController.peca.descricao}"
+				            	style="width: 515px;"
 				            	id="desc"/> 
+				        </p:column>  
+			        </p:row>
+				    <p:row>  
+						<p:column><span style="font-weight: bold;">Categoria</span></p:column>  
+				        <p:column>  
+				            <p:selectOneMenu 
+				            	value="#{ctrlEstoqueController.peca.categoria}"
+				            	style="width: 230px;"
+				            	id="categoria">
+				            	<f:selectItem 
+				            		itemLabel="Selecione uma Categoria" 
+				            		itemValue="" />
+				            	<f:selectItems 
+				            		value="#{ctrlEstoqueController.peca.categorias}"/>
+				            </p:selectOneMenu>  
+				        </p:column>  
+			        </p:row>
+				    <p:row>  
+						<p:column><span style="font-weight: bold;">Tipo de #{msgRes['lb.peca']}</span></p:column>  
+				        <p:column>  
+				            <p:selectOneMenu 
+				            	value="#{ctrlEstoqueController.peca.tipo}"
+				            	style="width: 230px;"
+				            	id="tipo">
+				            	<f:selectItem 
+				            		itemLabel="Selecione um Tipo" 
+				            		itemValue="" />
+				            	<f:selectItems 
+				            		value="#{ctrlEstoqueController.peca.tipos}"/>
+				            </p:selectOneMenu>
+				            <br/>  
+				            Caso #{msgRes['lb.nao']} encontre o Tipo de #{msgRes['lb.peca']}
+				            na lista <br/> 
+				            
+				            clique 
+				            <h:commandLink 
+				            	action="#{cadTipoPecaController.initialize}" 
+				            	value=" aqui" />
+				            para cadastrar um novo Tipo.
+				        </p:column>  
+			        </p:row>
+				    <p:row>  
+						<p:column><span style="font-weight: bold;">#{msgRes['lb.preco']}</span></p:column>  
+				        <p:column>  
+							<p:inputNumber 
+								id="preco" 
+								value="#{ctrlEstoqueController.peca.preco}"
+                                thousandSeparator="." 
+                                decimalSeparator=","/>
+                                				            	
 				        </p:column>  
 			        </p:row>
 				</p:panelGrid>
@@ -59,7 +112,8 @@
 				    <p:row>  
 						<p:column>  
 				            <h:commandButton 
-				            	action="#{ctrlEstoqueController.upload}"
+				            	actionListener="#{ctrlEstoqueController.persistPeca}"
+				            	action="#{listPecasController.list}"
 				            	styleClass="btn btn-primary btn-lg"
 				            	value="Confirmar"/>
 				        </p:column>  

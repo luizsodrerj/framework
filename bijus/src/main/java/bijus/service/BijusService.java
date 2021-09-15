@@ -15,6 +15,18 @@ public class BijusService {
 	private List<Joia>joias;
 
 	
+
+	public void persistPeca(Peca peca) {
+		try {
+			persistence.beginTransaction();
+			persistence.persist(peca);
+			persistence.commit();
+		} finally {
+			persistence.close();
+		}
+	}
+	
+	 
 	public List<Peca> getPecas() {
 		try {
 			return persistence.findAll(Peca.class, null);

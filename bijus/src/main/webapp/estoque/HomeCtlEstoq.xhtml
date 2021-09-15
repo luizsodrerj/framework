@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     
@@ -21,7 +23,16 @@
 	            <h:commandLink 
 	            	action="#{listPecasController.list}"
 	            	value="Clique aqui para iniciar o Controle de Estoque"
-	            	styleClass="btn btn-primary btn-lg text-uppercase"/>
+	            	styleClass="btn btn-primary btn-lg text-uppercase"
+	            	style="width: 580px;"/>
+	            	
+	            <br/><br/>
+	            
+	        	<h:commandLink 
+	        		value="Adicionar Novas #{msgRes['lb.pecas']} ao Estoque" 
+	        		action="#{ctrlEstoqueController.showCtrlEstoqueForm}"
+	        		styleClass="btn btn-primary btn-lg text-uppercase"
+	        		style="width: 580px;"/>
 	          </h:form>
 	        </div>
 		</div>

@@ -16,7 +16,7 @@
 		<ui:include src="/estoque/navbar.xhtml"/>
 		    	
     	<div style="margin-top:7%;">
-    	  <h:form>
+    	  <h:form id="form">
 	        <div class="container">
 	        	<div style="margin-bottom: 6px;">
 		        	<h:commandButton 
@@ -65,12 +65,21 @@
 			 				</h:outputText>
 			            </h:panelGrid>
 		 				<h:panelGrid columns="1" style="width:100%; text-align:center;">
-			                <button type="button" class="btn btn-outline-primary">
-			                	Ver Detalhe
-			                </button>
+ 		 					<a onclick="document.forms[0].id.value = '#{peca.id}'; document.getElementById('form:btDetail').click(); return false;"
+		 					   href="#"
+		 					   class="btn btn-outline-primary">	
+		 					   Ver Detalhe
+		 					</a>	
 		                </h:panelGrid>
 			        </p:panel>
-				</p:dataGrid>	  
+				</p:dataGrid>
+				<div style="display: hidden;">
+					<h:commandButton
+						action="#{ctrlEstoqueController.detail}"
+						id="btDetail"
+						/>
+				</div>
+				<input type="hidden" name="id"/>	
 	        </div>
 		  </h:form>
 		</div>

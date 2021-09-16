@@ -24,6 +24,7 @@ public class PecaBean {
 	
 	private String status;
 	private Double preco;
+	private Integer qtd;
 	private Integer id;
 	
 	
@@ -133,6 +134,14 @@ public class PecaBean {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(Integer qtd) {
+		this.qtd = qtd;
 	}
 
 

@@ -100,11 +100,19 @@
 						<p:column><span style="font-weight: bold;">#{msgRes['lb.preco']}</span></p:column>  
 				        <p:column>  
 							<p:inputNumber 
-								id="preco" 
 								value="#{ctrlEstoqueController.peca.preco}"
                                 thousandSeparator="." 
-                                decimalSeparator=","/>
+                                decimalSeparator=","
+                                id="preco"/>
                                 				            	
+				        </p:column>  
+			        </p:row>
+				    <p:row>  
+						<p:column><span style="font-weight: bold;">Qtd. Estoque</span></p:column>  
+				        <p:column>  
+							<p:inputNumber 
+								value="#{ctrlEstoqueController.peca.qtd}"
+								id="qtd"/>
 				        </p:column>  
 			        </p:row>
 				</p:panelGrid>

@@ -12,8 +12,11 @@ import framework.persistence.jpa.PersistenceServiceUtil;
 public class BijusService extends BaseService {
 
 	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
+
+	private EstoqueService estoqueService = new EstoqueService();
 	
 	private List<Bijuteria>bijus;
+	private List<Peca>semijoias;
 	private List<Joia>joias;
 
 	
@@ -64,6 +67,13 @@ public class BijusService extends BaseService {
 		return joias;
 	}
 
+	public List<Peca> getSemiJoias() {
+		if (semijoias.isEmpty()) {
+			loadSemiJoias();;
+		}
+		return semijoias;
+	}
+	
 	public List<Bijuteria> getBijus() {
 		if (bijus.isEmpty()) {
 			loadBijus();
@@ -72,40 +82,38 @@ public class BijusService extends BaseService {
 	}
 	
 	private void loadBijus() {
-		String[] images = new String[] {
-							"18.33.11.jpeg",
-							"18.33.12.jpeg",
-							"18.33.1211.jpeg",
-							"18.33.122.jpeg",
-							"18.33.123.jpeg",
-							"11.46.24.jpeg"
-						  };
-		for (String image : images) {
+		List<Peca>pecas = estoqueService.getBijus();
+		
+		for (Peca peca : pecas) {
 			Bijuteria biju = new Bijuteria();
-			biju.setDescricao("Pulseira");
-			//biju.setImagem(image);
-			biju.setPreco(10D);
-			bijus.add(biju);
+			populatePeca(bijus, biju, peca);
 		}
 	}
 
+	private void loadSemiJoias() {
+		semijoias = estoqueService.getSemiJoias();
+	}
+
 	private void loadJoias() {
-		String[] images = new String[] {
-							"11.44.37.jpeg",
-							"11.44.38.jpeg",
-							"11.44.39.jpeg",
-							"11.44.40.jpeg",
-							"11.44.401.jpeg",
-							"11.44.402.jpeg",
-						  };
-		for (String image : images) {
+		List<Peca>pecas = estoqueService.getJoias();
+		
+		for (Peca peca : pecas) {
 			Joia joia = new Joia();
-			joia.setDescricao("Colar");
-			//joia.setImagem(image);
-			joia.setPreco(25D);
-			joias.add(joia);
+			populatePeca(joias, joia, peca);
 		}
 	}
+	
+	private void populatePeca(
+					List list, 
+					Peca destino, 
+					Peca origem
+				) {
+		destino.setDescricao(origem.getDescricao());
+		destino.setImagem(origem.getImagem());
+		destino.setPreco(origem.getPreco());
+		list.add(destino);
+	}
+	
 	
 }
 

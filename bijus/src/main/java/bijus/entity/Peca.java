@@ -9,8 +9,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(
+		name  = "Peca.bijuterias",
+		query = "select p from Peca p where p.categoria like 'Biju%'"  
+	),	
+	@NamedQuery(
+		name = "Peca.semijoias",
+		query = "select p from Peca p where p.categoria like 'Semi%'"  
+	),	
+	@NamedQuery(
+		name = "Peca.joias",
+		query = "select p from Peca p where p.categoria like 'J%'"  
+	)	
+})
 public class Peca implements Serializable {
 
 	private static final long serialVersionUID = -7105945454989499779L;
@@ -22,6 +38,9 @@ public class Peca implements Serializable {
 	@Lob
     @Column(name = "imagem", columnDefinition="LONGVARBINARY")
 	private byte[] imagem;
+	
+	@Column(name = "QTD_ESTOQUE", columnDefinition="INTEGER")
+	private Integer qtdEstoque;
 	
 	private String descricao;
 	private String categoria;
@@ -72,6 +91,12 @@ public class Peca implements Serializable {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
+	}
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
 	@Override
 	public int hashCode() {

@@ -115,7 +115,13 @@
 				            	actionListener="#{ctrlEstoqueController.persistPeca}"
 				            	action="#{listPecasController.list}"
 				            	styleClass="btn btn-primary btn-lg"
-				            	value="Confirmar"/>
+				            	value="Salvar"/>
+				        </p:column>  
+						<p:column>  
+				            <h:commandButton 
+				            	action="#{ctrlEstoqueController.resetImage}"
+				            	styleClass="btn btn-primary btn-lg"
+				            	value="Limpar Imagem"/>
 				        </p:column>  
 						<p:column>  
 				            <h:commandButton 

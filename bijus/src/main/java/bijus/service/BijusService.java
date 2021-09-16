@@ -2,12 +2,14 @@ package bijus.service;
 
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import bijus.entity.Bijuteria;
 import bijus.entity.Joia;
 import bijus.entity.Peca;
 import framework.persistence.jpa.PersistenceServiceUtil;
 
-public class BijusService {
+public class BijusService extends BaseService {
 
 	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
 	
@@ -16,6 +18,26 @@ public class BijusService {
 
 	
 
+	public void merge(Peca peca) {
+		try {
+			persistence.beginTransaction();
+			
+			Peca persistedPeca = persistence.findObject(Peca.class,peca.getId());
+			
+			BeanUtils.copyProperties(persistedPeca, peca);
+
+			persistence.merge(persistedPeca);
+			persistence.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			persistence.rollbackTransaction();
+			throw new RuntimeException(e);
+		} finally {
+			persistence.close();
+		}
+	}
+	
 	public void persistPeca(Peca peca) {
 		try {
 			persistence.beginTransaction();

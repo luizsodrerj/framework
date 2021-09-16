@@ -23,8 +23,6 @@ import util.FacesUtil;
 @ManagedBean
 @SessionScoped
 public class CtrlEstoqueController {
-
-	private PersistenceServiceUtil persis = new PersistenceServiceUtil();
 	
 	private BijusService service = new BijusService();
 
@@ -36,7 +34,7 @@ public class CtrlEstoqueController {
 		this.peca = new PecaBean();
 
 		Integer id = Integer.valueOf(FacesUtil.getRequest().getParameter("id"));
-		Peca peca  = persis.findObject(Peca.class, id); 
+		Peca peca  = service.findObject(Peca.class, id); 
 		this.peca.copy(this,peca);
 		
 		loadCategoria();
@@ -44,11 +42,21 @@ public class CtrlEstoqueController {
 		
 		return "/estoque/CtlEstoquePeca.xhtml";
 	}
-	
+
+	public void resetImage() {
+		peca.setFileBytes(null);
+		peca.setFile(null);
+	}
+
 	public void persistPeca(ActionEvent event) {
 		Peca peca = this.peca.getCopy();
 		
-		service.persistPeca(peca); 
+		if (this.peca.getId() != null) {
+			peca.setId(this.peca.getId());
+			service.merge(peca);
+		} else {
+			service.persistPeca(peca);	
+		}
 	}
 	
 	public void handleFileUpload(FileUploadEvent event) {

@@ -25,6 +25,7 @@ public class PecaBean {
 	
 	private String status;
 	private Double preco;
+	private Integer id;
 	
 	
 	public void copy(CtrlEstoqueController controller, Peca peca) {
@@ -36,8 +37,9 @@ public class PecaBean {
 			fileBytes = peca.getImagem();
 			controller.setImageViewer(fileBytes);
 		}
-		preco	  = peca.getPreco();
-		tipo	  = peca.getTipo();
+		preco	= peca.getPreco();
+		tipo	= peca.getTipo();
+		id		= peca.getId();
 	}
 	
 	public Peca getCopy() {
@@ -117,6 +119,14 @@ public class PecaBean {
 
 	public void setFileBytes(byte[] fileBytes) {
 		this.fileBytes = fileBytes;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

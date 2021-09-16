@@ -5,7 +5,6 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import org.primefaces.model.file.UploadedFile;
-import org.primefaces.model.file.UploadedFileWrapper;
 
 import bijus.controller.CtrlEstoqueController;
 import bijus.entity.Peca;
@@ -28,13 +27,17 @@ public class PecaBean {
 	private Integer id;
 	
 	
+	public boolean isImageNotNull() {
+		return file != null || fileBytes != null;
+	}
+	
 	public void copy(CtrlEstoqueController controller, Peca peca) {
 		descricao = peca.getDescricao();
 		categoria = peca.getCategoria();
 		
 		if (peca.getImagem() != null) {
-			file	  = new UploadedFileWrapper();	
 			fileBytes = peca.getImagem();
+			file	  = null;	
 			controller.setImageViewer(fileBytes);
 		}
 		preco	= peca.getPreco();
@@ -52,8 +55,11 @@ public class PecaBean {
 
 		peca.setImagem(
 			file != null ?	
-			file.getContent() :
-			null	
+			file.getContent() : (
+				fileBytes != null ? 
+				fileBytes : 
+				null
+			)
 		);
 		return peca;
 	}

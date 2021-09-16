@@ -40,7 +40,7 @@
 				        <p:column colspan="2">
 			                <p:graphicImage 
 				                value="/image?id=1"
-				                rendered="#{not empty ctrlEstoqueController.peca.file}"
+				                rendered="#{ctrlEstoqueController.peca.imageNotNull}"
 				                id="imagem"
 				                height="135"
 				                width="150"/>

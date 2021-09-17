@@ -40,19 +40,29 @@
 	        	columns="2" 
 	        	layout="grid">
 	            <f:facet name="header">
-	                <img src="#{request.contextPath}/img/bijus/#{joia.imagem}"
-	                	 style="width:240px; height:320px;" 
-	                	 alt="" /> 
+	                <h:graphicImage 
+	                	rendered="#{not empty joia.imagem}"
+	                	value="/image?id=#{joia.id}"
+	                	height="320"
+	                	width="240"/> 
+
+	                <h:graphicImage 
+		                value="/img/not-available.jpeg"
+		                rendered="#{empty joia.imagem}"
+	                	height="320"
+	                	width="240"/> 
 	            </f:facet>
-	 
-	            <h:outputText value="Descricao" />
+	            <h:outputText value="#{msgRes['lb.descricao']}" />
 	            <h:outputText value="#{joia.descricao}" />
 	 
-	            <h:outputText value="Preco" />
-	            <h:outputText value="R$#{joia.preco}" />
+	            <h:outputText value="#{msgRes['lb.preco']}" />
+	            <h:outputText value="#{joia.preco}">
+					<f:convertNumber 
+				 		type="currency"
+	         			locale="pt_BR"/>	            
+	            </h:outputText>
 		     </p:panelGrid>
-		     <f:facet name="footer">
-		     </f:facet>
+		     <f:facet name="footer"></f:facet>
 		   </p:carousel>           
        </div>
     </section>

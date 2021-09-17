@@ -5,22 +5,60 @@
     xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
  	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html">
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
 
 	<f:loadBundle basename="msg" var="msgRes"/>
 
-        <section class="page-section bg-light" id="semijoias">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">#{msgRes['lb.semijoias']}</h2>
-	                <div class="timeline-heading">
-	                    <h4 class="subheading">
-	                        Veja nossa oferta de #{msgRes['lb.semijoias']}. 
-	               			Encontre a sua preferida.
-	                    </h4>
-	                </div>
-                </div>
-            </div>
-        </section>
+      <section class="page-section bg-light" id="semijoias">
+         <div class="container">
+           <div class="text-center">
+	         <h2 class="section-heading text-uppercase">#{msgRes['lb.semijoias']}</h2>
+	         <div class="timeline-heading">
+				<h4 class="subheading">
+	              Veja nossa oferta de #{msgRes['lb.semijoias']}. 
+	              Encontre a sua preferida.
+	            </h4>
+	         </div>
+           </div>
+		   <p:carousel 
+		   		value="#{bijusCarouselController.semiJoias}" 
+		   		headerText="#{msgRes['lb.semijoias']}" 
+		   		itemStyle="text-align:center" 
+		   		responsive="true"
+		   		var="semiJoia">
+		   	 <p:panelGrid 
+		     	style="width:100%;margin:10px 0px" 
+		        styleClass="ui-panelgrid-blank"
+	        	columnClasses="label,value" 
+	        	columns="2" 
+	        	layout="grid">
+	            <f:facet name="header">
+	                <h:graphicImage 
+	                	rendered="#{not empty semiJoia.imagem}"
+	                	value="/image?id=#{semiJoia.id}"
+	                	height="320"
+	                	width="240"/> 
+
+	                <h:graphicImage 
+		                value="/img/not-available.jpeg"
+		                rendered="#{empty semiJoia.imagem}"
+	                	height="320"
+	                	width="240"/> 
+	            </f:facet>
+	            <h:outputText value="#{msgRes['lb.descricao']}" />
+	            <h:outputText value="#{semiJoia.descricao}" />
+	 
+	            <h:outputText value="#{msgRes['lb.preco']}" />
+	            <h:outputText value="#{semiJoia.preco}">
+					<f:convertNumber 
+				 		type="currency"
+	         			locale="pt_BR"/>	            
+	            </h:outputText>
+		     </p:panelGrid>
+		     <f:facet name="footer"></f:facet>
+		   </p:carousel>           
+         </div>
+      </section>
 
 </ui:composition>

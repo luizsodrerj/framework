@@ -1,5 +1,6 @@
 package bijus.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -15,9 +16,9 @@ public class BijusService extends BaseService {
 
 	private EstoqueService estoqueService = new EstoqueService();
 	
-	private List<Bijuteria>bijus;
-	private List<Peca>semijoias;
-	private List<Joia>joias;
+	private List<Bijuteria>bijus = new ArrayList<Bijuteria>();
+	private List<Peca>semijoias  = new ArrayList<Peca>();
+	private List<Joia>joias 	 = new ArrayList<Joia>();
 
 	
 
@@ -90,10 +91,6 @@ public class BijusService extends BaseService {
 		}
 	}
 
-	private void loadSemiJoias() {
-		semijoias = estoqueService.getSemiJoias();
-	}
-
 	private void loadJoias() {
 		List<Peca>pecas = estoqueService.getJoias();
 		
@@ -103,6 +100,10 @@ public class BijusService extends BaseService {
 		}
 	}
 	
+	private void loadSemiJoias() {
+		semijoias = estoqueService.getSemiJoias();
+	}
+
 	private void populatePeca(
 					List list, 
 					Peca destino, 
@@ -111,6 +112,7 @@ public class BijusService extends BaseService {
 		destino.setDescricao(origem.getDescricao());
 		destino.setImagem(origem.getImagem());
 		destino.setPreco(origem.getPreco());
+		destino.setId(origem.getId());
 		list.add(destino);
 	}
 	

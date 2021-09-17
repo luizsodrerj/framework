@@ -41,6 +41,7 @@ public class PecaBean {
 			file	  = null;	
 			controller.setImageViewer(fileBytes);
 		}
+		qtd		= peca.getQtdEstoque();
 		preco	= peca.getPreco();
 		tipo	= peca.getTipo();
 		id		= peca.getId();
@@ -51,8 +52,9 @@ public class PecaBean {
 		
 		peca.setDescricao(descricao);
 		peca.setCategoria(categoria);
-		peca.setTipo(tipo);
+		peca.setQtdEstoque(qtd);
 		peca.setPreco(preco);
+		peca.setTipo(tipo);
 
 		peca.setImagem(
 			file != null ?	

@@ -45,9 +45,9 @@
 			<version>3.6.0.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>javaee</groupId>
+			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>5</version>
+			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -110,6 +110,20 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+				  <warSourceExcludes>
+					node_modules/**
+				  </warSourceExcludes>
+				</configuration>
+			</plugin>			
+			<!-- 
+			-->
 		</plugins>
 	</build>
 </project>
+
+

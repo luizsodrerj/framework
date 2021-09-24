@@ -3,5 +3,6 @@
 /.project
 /target/
 /.settings/
+/.idea/
 /bin/
 /.tern-project

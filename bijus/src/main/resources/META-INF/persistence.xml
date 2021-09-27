@@ -9,6 +9,7 @@
 		
 		<class>bijus.entity.TipoPeca</class>
 		<class>bijus.entity.Peca</class>
+		<class>bijus.entity.Mensagem</class>
 				
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost" />

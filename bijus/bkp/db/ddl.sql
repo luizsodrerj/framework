@@ -9,3 +9,13 @@ CREATE TABLE Peca (
 );
 
 
+CREATE TABLE mensagem (
+	id			INTEGER IDENTITY PRIMARY KEY,
+	nome		VARCHAR(500),
+	email		VARCHAR(300),
+	telefone	VARCHAR(11),
+	mensagem	VARCHAR(1500),
+	status		INTEGER DEFAULT 1,
+	data		DATE
+);
+

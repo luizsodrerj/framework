@@ -27,9 +27,12 @@
               <!-- Name input-->
               <span class="ui-float-label">
                   <p:inputText
+                    value="#{mensagensController.msg.nome}"
                     styleClass="form-control"
                     id="name"/>
-                  <p:outputLabel for="@previous" value="Seu nome *" />
+                  <p:outputLabel 
+                  	value="Seu nome *" 
+                  	for="@previous"/>
               </span>
               <div class="invalid-feedback"></div>
             </div>
@@ -37,9 +40,12 @@
               <!-- Email address input-->
               <span class="ui-float-label">
                   <p:inputText
+                  	value="#{mensagensController.msg.email}" 
                     styleClass="form-control"
                     id="email"/>
-                  <p:outputLabel for="@previous" value="Seu e-mail *" />
+                  <p:outputLabel 
+                  	value="Seu e-mail *" 
+                  	for="@previous"/>
               </span>
               <div class="invalid-feedback"></div>
               <div class="invalid-feedback"></div>
@@ -48,10 +54,13 @@
               <!-- Phone number input-->
               <span class="ui-float-label">
                   <p:inputMask
+                    value="#{mensagensController.msg.telefone}"
                     styleClass="form-control"
                     mask="(99)99999-9999"
                     id="phone"/>
-                  <p:outputLabel for="@previous" value="Seu telefone *" />
+                  <p:outputLabel 
+                  	value="Seu telefone *" 
+                  	for="@previous"/>
               </span>
               <div class="invalid-feedback"></div>
             </div>
@@ -59,7 +68,11 @@
           <div class="col-md-6">
             <div class="form-group form-group-textarea mb-md-0">
               <!-- Message input-->
-              <textarea class="form-control" id="message" placeholder="Sua Mensagem *" data-sb-validations="required"></textarea>
+			  <p:inputTextarea
+			  	value="#{mensagensController.msg.mensagem}"
+			  	placeholder="Sua Mensagem *"
+			  	styleClass="form-control"
+			  	id="message"/>
               <div class="invalid-feedback"></div>
             </div>
           </div>

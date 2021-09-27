@@ -115,4 +115,25 @@ public class Mensagem implements Serializable {
 		return true;
 	}
 
+	public static enum MessageStatus {
+		NOVA(1),
+		LIDA(2);
+		
+		private Integer id; 
+		
+		
+		MessageStatus(Integer id) {
+			this.id = id;
+		}
+		
+		public Integer getId() {
+			return id;
+		}
+	}
+	
 }
+
+
+
+
+

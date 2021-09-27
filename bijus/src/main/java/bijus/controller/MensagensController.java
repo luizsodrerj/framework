@@ -1,16 +1,17 @@
 package bijus.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import bijus.entity.Mensagem;
 import bijus.service.MensagensService;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class MensagensController {
 
 	private MensagensService service = new MensagensService();
@@ -20,8 +21,16 @@ public class MensagensController {
 
 	
 	
-	public void persist() {
+	public String persist() {
+		msg.setStatus(Mensagem.MessageStatus.NOVA.getId());
+		msg.setData(new Date());
+		msg.setId(null);
+		
 		service.persist(msg);
+	
+		getAll();
+		
+		return "/admin/MessageInbox.xhtml";
 	}
 	
 	

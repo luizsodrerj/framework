@@ -1,0 +1,77 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head> 
+        <meta charset="ISO-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bijus</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/favico.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+    </h:head>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<!-- <:include src="/estoque/navbar.xhtml"/> -->
+		    	
+    	<div style="margin-top:7%;">
+    	  <h:form id="form">
+	        <div class="container">
+	        	<div style="margin-bottom: 6px;">
+		        	<h:commandButton 
+		        		value="Filtrar Mensagens" 
+		        		styleClass="btn btn-primary btn-lg"/>
+	        	</div>
+				<h:dataTable 
+					value="#{mensagensController.mensagens}"  
+					style="width: 95%;"
+					var="message" 
+			        id="messages">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+				        <h:outputText value="#{message.nome}" />
+				    </h:column>
+					<h:column>
+						<f:facet name="header">E-mail</f:facet>
+				        <h:outputText value="#{message.email}" />
+				    </h:column>
+					<h:column>
+						<f:facet name="header">Telefone</f:facet>
+				        <h:outputText value="#{message.telefone}" />
+				    </h:column>
+					<h:column>
+						<f:facet name="header">Data Envio</f:facet>
+				        <h:outputText value="#{message.data}">
+				        	<f:convertDateTime pattern="dd/MM/yyyy"/>
+				        </h:outputText>
+				    </h:column>
+				</h:dataTable>
+				<div style="display: none;">
+					<h:commandButton
+						action="#{ctrlEstoqueController.detail}"
+						id="btDetail"
+						/>
+				</div>
+				<input type="hidden" name="id"/>	
+	        </div>
+		  </h:form>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

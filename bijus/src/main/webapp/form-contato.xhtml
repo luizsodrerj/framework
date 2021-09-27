@@ -20,7 +20,7 @@
           #{msgRes['lb.eh']} muito importante para #{msgRes['lb.nos']} sua #{msgRes['lb.opiniao']}.
         </h3>
       </div>
-      <form id="contactForm">
+      <h:form id="contactForm">
         <div class="row align-items-stretch mb-5">
           <div class="col-md-6">
             <div class="form-group" style="margin-bottom: 37px">
@@ -73,6 +73,7 @@
 			  	placeholder="Sua Mensagem *"
 			  	styleClass="form-control"
 			  	id="message"/>
+			  	
               <div class="invalid-feedback"></div>
             </div>
           </div>
@@ -98,13 +99,15 @@
             Ocorreu um erro ao tentar enviar a mensagem!
           </div>
         </div>
-        <!-- Submit Button-->
+        
         <div class="text-center">
-          <button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">
-            Enviar Mensagem
-          </button>
+          <h:commandButton
+          	styleClass="btn btn-primary btn-xl text-uppercase" 
+          	action="#{mensagensController.persist}" 
+          	value="Enviar Mensagem" />
         </div>
-      </form>
+        
+      </h:form>
     </div>
   </section>
 

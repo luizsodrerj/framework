@@ -14,12 +14,20 @@ import bijus.service.MensagensService;
 @RequestScoped
 public class MensagensController {
 
+	private static final String MESSAGE_INBOX_XHTML = "/admin/MessageInbox.xhtml";
+
 	private MensagensService service = new MensagensService();
 	
 	private List<Mensagem>mensagens = new ArrayList<>();
 	private Mensagem msg = new Mensagem();
 
 	
+	
+	public String showInbox() {
+		getAll();
+		
+		return MESSAGE_INBOX_XHTML;
+	}
 	
 	public String persist() {
 		msg.setStatus(Mensagem.MessageStatus.NOVA.getId());
@@ -30,7 +38,7 @@ public class MensagensController {
 	
 		getAll();
 		
-		return "/admin/MessageInbox.xhtml";
+		return MESSAGE_INBOX_XHTML;
 	}
 	
 	

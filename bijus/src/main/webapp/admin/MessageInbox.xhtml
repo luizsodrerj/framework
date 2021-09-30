@@ -30,12 +30,15 @@
 	        <div class="container">
 	        	<div style="margin-bottom: 6px;">
 		        	<h:commandButton 
-		        		value="Filtrar Mensagens" 
-		        		styleClass="btn btn-primary btn-lg"/>
+		        		action="#{mensagensController.showInbox}"
+		        		styleClass="btn btn-primary btn-lg"
+		        		value="Filtrar Mensagens"/>
 	        	</div>
+	        	<br/>
 				<h:dataTable 
-					value="#{mensagensController.mensagens}"  
+					value="#{mensagensController.mensagens}"
 					style="width: 95%;"
+					styleClass="table"  
 					var="message" 
 			        id="messages">
 					<h:column>

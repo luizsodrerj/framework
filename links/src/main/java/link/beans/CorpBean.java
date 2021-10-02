@@ -65,7 +65,7 @@ public class CorpBean extends BaseBean {
 		
 		try {
 			links = persistence.findByNamedQuery(
-							Link.FIND_BY_FILTER, 
+							Link.FIND_BY_CORP, 
 							new Object[] {
 								"%" + desc + "%",
 								"%" + url + "%"

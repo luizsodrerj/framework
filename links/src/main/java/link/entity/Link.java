@@ -13,20 +13,40 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "LINK")
-@NamedQueries(
+@NamedQueries({
 	@NamedQuery(
 		name  = Link.FIND_BY_FILTER,
 		query =   "SELECT o "
 				+ "FROM   Link o "
 				+ "WHERE  (upper(o.descricao) LIKE ? "
-				+ "OR     o.url LIKE ?)"
+				+ "OR     o.url LIKE ?)  "
+				+ "AND 	  o.corp IS NULL "
+	),
+	@NamedQuery(
+		name  = Link.FIND_BY_CORP,
+		query =   "SELECT o "
+				+ "FROM   Link o "
+				+ "WHERE  (upper(o.descricao) LIKE ? "
+				+ "OR     o.url LIKE ?)  "
+				+ "AND 	  o.corp IS NOT NULL "
+				+ "ORDER BY o.corp "
+	),
+	@NamedQuery(
+		name  = Link.FILTER_BY_CORP,
+		query =   "SELECT DISTINCT lk.corp "
+				+ "FROM   Link lk "
+				+ "WHERE  lk.corp IS NOT NULL "
+				+ "ORDER BY lk.corp "
 	)	
-)
+})
 public class Link implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	public static final String FIND_BY_FILTER = "link.findByFilter";
+	public static final String FILTER_BY_CORP = "link.filterByCorp";
+	public static final String FIND_BY_CORP = "link.findByCorp";
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,6 +56,7 @@ public class Link implements Serializable {
 	
 	private String url;
 
+	private String corp;
 	
 	
 	public Integer getId() {
@@ -60,6 +81,15 @@ public class Link implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	
+	public String getCorp() {
+		return corp;
+	}
+
+	public void setCorp(String corp) {
+		this.corp = corp;
 	}
 
 	@Override

@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 import link.entity.Link;
 
-@ManagedBean(name = "linkBean")
+@ManagedBean(name = "corpBean")
 @SessionScoped
-public class LinkBean extends BaseBean {
+public class CorpBean extends BaseBean {
 
 	private List<Link>links = new ArrayList<Link>();
 
@@ -18,7 +19,37 @@ public class LinkBean extends BaseBean {
 	
 	private Link link = new Link();
 	
-
+	private List<SelectItem>corps = new ArrayList<SelectItem>();
+	
+	
+	
+	public String displayCorpLinks() {
+		loadCorps();
+		
+		return "/CorpLinks.xhtml";
+	}
+	
+	private void loadCorps() {
+		try {
+			persistence.connect();
+			corps.clear();
+			
+			List<Object>result = persistence.getEntityManager()
+											.createNamedQuery(Link.FILTER_BY_CORP)
+										   	.getResultList();
+			for (Object corp : result) {
+				corps.add(
+					new SelectItem(
+						corp.toString(), 
+						corp.toString()
+					)	
+				);
+			}
+		} finally {
+			persistence.close();
+		}
+	}
+	
 	
 	public String removeLink() {
 		remove();
@@ -91,7 +122,9 @@ public class LinkBean extends BaseBean {
 		this.searchParameter = searchParameter;
 	}
 	
-	
+	public List<SelectItem> getCorps() {
+		return corps;
+	}
 	
 	
 	

@@ -50,7 +50,7 @@ public class PersistenceService {
 		this.persistenceUnitName = persistenceUnitName;
 	}
 	
-	public EntityManager geEntityManager() {
+	public EntityManager getEntityManager() {
 		return manager;
 	}
 	

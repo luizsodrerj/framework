@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Gerenciador de Links</title>
+
+  <link href="#{request.contextPath}/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+</h:head>
+<body>
+
+  <ui:include src="/includeNav.xhtml"></ui:include>
+
+  <f:loadBundle var="msg" basename="messages" />
+
+  <h:form>
+
+	<div class="row" style="margin-left:1px; margin-top: 50px;">
+
+		<input
+		  onclick="window.location.href = '#{request.contextPath}/faces/linkForm.xhtml'"
+		  class="waves-effect waves-light btn-large blue darken-4"
+		  style="width: 207px; margin-left: 5px;"	
+		  value="Novo Link"
+		  type="button"/>
+
+		<input
+			onclick="window.location.href = '#{request.contextPath}/faces/CorpLinks.xhtml'"
+			class="waves-effect waves-light btn-large red darken-4"
+			style="width: 207px; margin-left: 5px;" 
+			value="Links Corporativos"
+			type="button" />
+	
+		<p:spacer width="185" height="20"/>
+	
+		<p:inputText 
+			value="#{linkBean.searchParameter}"
+			styleClass="browser-default"
+			style="width: 450px;"
+			id="searchParameter"/>
+	
+		<p:spacer width="25" height="20"/>
+	
+		<h:commandButton 
+			action="#{linkBean.search}"
+			class="waves-effect waves-light btn-large orange darken-4" 
+			value="Pesquisar" />
+	
+		<br/><br/><br/>
+	
+		<h:dataTable var="link" value="#{linkBean.links}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg.descricao}" />
+				</f:facet>
+				<h:outputText value="#{link.descricao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="URL" />
+				</f:facet>
+				<a href="#{link.url}">
+					<h:outputText value="#{link.url}" />
+				</a>
+			</h:column>
+			<h:column>
+				<h:commandLink 
+					action="#{linkBean.removeLink}"
+					onclick="return confirm('Deseja realmente deletar este link?')"
+					class="waves-effect waves-light btn-large red darken-4" 
+					value="Deletar">
+					<f:param 
+						value="#{link.id}"
+						name="linkId"/>
+				</h:commandLink>	
+			</h:column>
+		</h:dataTable>
+	
+	</div>
+  </h:form>
+
+</body>
+</html>
+
+
+
+
+
+
+

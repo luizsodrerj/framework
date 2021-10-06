@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -41,50 +43,38 @@
     	
       <div class="row">
       	<div class="col s1">
-          	<p:outputLabel value="#{msg.descricao}"/>
+          	<p:outputLabel value="Nome"/>
       	</div>
         <div class="col s11">
           	<p:inputText 
-          		value="#{linkBean.link.descricao}"
+          		value="#{coBean.nome}"
           		styleClass="browser-default"
-          		id="descricao"/>
+          		id="nome"/>
         </div>
       </div>
+      <br/>
       <div class="row">
-      	<div class="col s1">
-          <p:outputLabel value="URL"/>
+      	<div class="col s7">
+          <p:outputLabel value="Lista de Corps."/>
       	</div>
+      </div>
+      <div class="row">
         <div class="col s11">
-          <p:inputText 
-          	value="#{linkBean.link.url}"
-          	styleClass="browser-default"
-          	id="url"/>
-        </div>
-      </div>
-      <div class="row">
-      	<div class="col s1">
-          <p:outputLabel value="Corp"/>
-      	</div>
-        <div class="col s8">
-          <h:selectOneMenu 
-          	value="#{linkBean.link.crp}"
-          	style="display: table-row;"
-          	id="corp">
-          	<f:selectItem
-          		itemLabel="----" 
-          		itemValue=""/>
-          	<f:selectItems value="${linkBean.cos}"/>
-          </h:selectOneMenu>	
+        	<ul>
+				<ui:repeat var="corp" value="#{coBean.cos}">
+					<li><h5>#{corp.nome}</h5></li>
+				</ui:repeat>				
+        	</ul>
         </div>
       </div>
 	  
-	  <br/>	
+	  <br/><br/>
 	  
 	  <div class="row center">
 	  	<div class="col s2">
 		  	<h:commandButton 
 		  		styleClass="waves-effect waves-light btn-large blue darken-4 cmdLink"
-		  		action="#{linkBean.createLink}" 
+		  		action="#{coBean.createCorp}" 
 		  		value="Salvar" />  	
 	  	</div>
 	  </div>		

@@ -24,19 +24,11 @@
 
 	<div class="row" style="margin-left:1px; margin-top: 50px;">
 
-		<input
-		  onclick="window.location.href = '#{request.contextPath}/faces/linkForm.xhtml'"
-		  class="waves-effect waves-light btn-large blue darken-4"
-		  style="width: 207px; margin-left: 5px;"	
-		  value="Novo Link"
-		  type="button"/>
-
-		<input
-			onclick="window.location.href = '#{request.contextPath}/faces/CorpLinks.xhtml'"
-			class="waves-effect waves-light btn-large red darken-4"
+		<h:commandButton 
+			action="#{linkBean.newLink}"
+			styleClass="waves-effect waves-light btn-large blue darken-4"
 			style="width: 207px; margin-left: 5px;" 
-			value="Links Corporativos"
-			type="button" />
+			value="Novo Link"/>
 	
 		<p:spacer width="185" height="20"/>
 	

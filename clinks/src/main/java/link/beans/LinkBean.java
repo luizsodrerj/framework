@@ -5,20 +5,38 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
+import link.entity.Co;
 import link.entity.Link;
 
 @ManagedBean(name = "linkBean")
 @SessionScoped
 public class LinkBean extends BaseBean {
 
+	private List<SelectItem>cos = new ArrayList<SelectItem>();
 	private List<Link>links = new ArrayList<Link>();
-
+	
 	private String searchParameter;
 	
 	private Link link = new Link();
 	
 
+	
+	public String newLink() {
+		cos.clear();
+		
+		List<Co>list = persistence.findAll(Co.class);
+		for (Co co : list) {
+			cos.add(
+				new SelectItem(
+					co.getNome(), 
+					co.getNome()
+				)	
+			);
+		}
+		return "/linkForm.xhtml";		
+	}
 	
 	public String removeLink() {
 		remove();
@@ -91,7 +109,9 @@ public class LinkBean extends BaseBean {
 		this.searchParameter = searchParameter;
 	}
 	
-	
+	public List<SelectItem> getCos() {
+		return cos;
+	}	
 	
 	
 	

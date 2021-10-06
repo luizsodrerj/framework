@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
@@ -12,14 +13,12 @@
       <ul class="right hide-on-med-and-down">
         <li>
         	<h:form>
-	        	<h:commandLink 
-	        		action="#{corpBean.displayCorpLinks}" 
-	        		value="Links Corporativos"/>
+	        	<p:commandLink
+					action="#{coBean.findAllCorps}"
+	        		value="Cadastro de Corps."
+	        		ajax="false"/>	
         	</h:form>	
         </li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Gerenciar Links</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

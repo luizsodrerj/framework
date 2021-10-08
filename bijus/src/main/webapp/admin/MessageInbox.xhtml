@@ -7,17 +7,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-	<h:head> 
-        <meta charset="ISO-8859-1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Bijus</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/favico.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
-    </h:head>
+	<ui:include src="/header.xhtml" />
 
     <body id="page-top">
     
@@ -43,7 +33,11 @@
 			        id="messages">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
-				        <h:outputText value="#{message.nome}" />
+						
+	 					<a onclick="document.forms[0].id.value = '#{message.id}'; document.getElementById('form:btDetail').click(); return false;"
+	 					   href="#">	
+	 					   #{message.nome}
+	 					</a>	
 				    </h:column>
 					<h:column>
 						<f:facet name="header">E-mail</f:facet>
@@ -60,13 +54,14 @@
 				        </h:outputText>
 				    </h:column>
 				</h:dataTable>
+				<input type="hidden" name="id"/>	
+				
 				<div style="display: none;">
 					<h:commandButton
-						action="#{ctrlEstoqueController.detail}"
-						id="btDetail"
-						/>
+						action="#{mensagensController.showMessage}"
+						id="btDetail"/>
 				</div>
-				<input type="hidden" name="id"/>	
+				
 	        </div>
 		  </h:form>
 		</div>

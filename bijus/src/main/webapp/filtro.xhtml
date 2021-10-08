@@ -7,22 +7,68 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-	<ui:include src="/header.xhtml"/>
+	<ui:include src="/header-index.xhtml"/>
 
     <body id="page-top">
     
     	<f:loadBundle basename="msg" var="msgRes"/>
     	
-		<ui:include src="/estoque/navbar.xhtml"/>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                	<img src="#{request.contextPath}/assets/img/nav-bar-logo.png" alt="..." />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item">
+                        	<a class="nav-link" style="color:black;" href="#contact">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 		    	
     	<div style="margin-top:7%;">
     	  <h:form id="form">
 	        <div class="container">
-	        	<div style="margin-bottom: 6px;">
-		        	<h:commandButton 
-		        		value="Adicionar Nova #{msgRes['lb.peca']} ao Estoque" 
-		        		action="#{ctrlEstoqueController.showCtrlEstoqueForm}"
-		        		styleClass="btn btn-primary btn-lg"/>
+	        	<div style="margin-bottom: 4px;">
+					<p:panelGrid styleClass="ui-noborder">  
+						<p:row>
+							<p:column>Filtro:</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox
+									itemLabel="#{msgRes['lb.joias']}" 
+									value="true"/>	
+								<p:selectBooleanCheckbox
+									itemLabel="#{msgRes['lb.semijoias']}" 
+									value="true"/>	
+								<p:selectBooleanCheckbox
+									itemLabel="bijuterias" 
+									value="true"/>
+									
+								Filtrar por #{msgRes['lb.preco']}
+								
+								<h:selectOneMenu id="filtroPreco">
+									<f:selectItem
+										itemLabel="de 1,00 a 10,00"
+										itemValue="1-10"/>	
+									<f:selectItem
+										itemLabel="de 10,00 a 20,00"
+										itemValue="10-20"/>	
+									<f:selectItem
+										itemLabel="de 20,00 a 50,00"
+										itemValue="20-50"/>	
+									<f:selectItem
+										itemLabel="Acima de 50,00"
+										itemValue="+50"/>	
+								</h:selectOneMenu>		
+							</p:column>
+						</p:row>
+					</p:panelGrid>		
 	        	</div>
 				<p:dataGrid 
 					value="#{listPecasController.pecas}"  

@@ -9,12 +9,14 @@ import javax.faces.bean.RequestScoped;
 
 import bijus.entity.Mensagem;
 import bijus.service.MensagensService;
+import util.FacesUtil;
 
 @ManagedBean
 @RequestScoped
 public class MensagensController {
 
 	private static final String MESSAGE_INBOX_XHTML = "/admin/MessageInbox.xhtml";
+	private static final String MESSAGE_XHTML = "/admin/message.xhtml";
 
 	private MensagensService service = new MensagensService();
 	
@@ -22,6 +24,13 @@ public class MensagensController {
 	private Mensagem msg = new Mensagem();
 
 	
+	
+	public String showMessage() {
+		Long id = Long.valueOf(FacesUtil.getRequest().getParameter("id"));
+		msg 	= service.findObject(Mensagem.class, id);
+		
+		return MESSAGE_XHTML;
+	}
 	
 	public String showInbox() {
 		getAll();

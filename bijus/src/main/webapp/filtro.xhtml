@@ -50,20 +50,21 @@
 									itemLabel="bijuterias" 
 									value="true"/>
 									
-								Filtrar por #{msgRes['lb.preco']}
-								
 								<h:selectOneMenu id="filtroPreco">
+									<f:selectItem 
+										itemLabel="Filtrar por #{msgRes['lb.preco']}" 
+										itemValue="0"/>
 									<f:selectItem
-										itemLabel="de 1,00 a 10,00"
+										itemLabel="de R$1,00 a R$10,00"
 										itemValue="1-10"/>	
 									<f:selectItem
-										itemLabel="de 10,00 a 20,00"
+										itemLabel="de R$10,00 a R$20,00"
 										itemValue="10-20"/>	
 									<f:selectItem
-										itemLabel="de 20,00 a 50,00"
+										itemLabel="de R$20,00 a R$50,00"
 										itemValue="20-50"/>	
 									<f:selectItem
-										itemLabel="Acima de 50,00"
+										itemLabel="Acima de R$50,00"
 										itemValue="+50"/>	
 								</h:selectOneMenu>		
 							</p:column>

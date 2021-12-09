@@ -15,7 +15,7 @@
 		<mysql.connector.version>5.1.31</mysql.connector.version>
 		<hibernate.version>4.0.0.Final</hibernate.version>
 		<spring.version>4.0.1.RELEASE</spring.version>
-		<jackson.library>2.9.10.7</jackson.library>
+		<jackson.library>2.9.10.8</jackson.library>
 	</properties>
 
 	<dependencies>

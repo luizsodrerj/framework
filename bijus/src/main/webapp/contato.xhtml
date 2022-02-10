@@ -1,0 +1,63 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+  	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+	<f:loadBundle basename="msg" var="msgRes"/>
+
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">
+                	Entre em contato conosco
+                </h2>
+                <div class="row">
+	            	<div class="col-md-3"></div>
+	                <div class="col-md-8">
+		                <h3 class="section-subheading text-muted text-left">
+		                	<img src="#{request.contextPath}/img/what.png" style="width: 55px;" alt="" />
+		                	WhatsApp - 21 9999-9999
+		                </h3>
+	                </div>
+	                <div class="col-md-3"></div>
+	                <div class="col-md-8">
+		                <h3 class="section-subheading text-muted text-left">
+		                	<img src="#{request.contextPath}/img/insta.png" style="width: 55px;" alt="" />
+		                	Instagram - www.instagram.com/bijus
+		                </h3>
+	                </div>
+	            	<div class="col-md-3"></div>
+	                <div class="col-md-8">
+		                <h3 class="section-subheading text-muted text-left">
+		                	<img src="#{request.contextPath}/img/face.png" style="width: 55px;" alt="" />
+		                	Facebook - www.facebook.com
+		                </h3>
+	                </div>
+	            	<div class="col-md-3"></div>
+	                <div class="col-md-8">
+		                <h3 class="section-subheading text-muted text-left">
+		                	<img src="#{request.contextPath}/img/twit.png" style="width: 55px;" alt="" />
+		                	Twitter - www.twitter.com
+		                </h3>
+	                </div>
+	                <div class="col-md-3"></div>
+	                <div class="col-md-8">
+		                <h3 class="section-subheading text-muted text-left">
+		                	<img src="#{request.contextPath}/img/g.png" style="width: 55px;" alt="" />
+		                	E-mail - bijugirls@gmail.com
+		                </h3>
+	                </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+
+    <ui:include src="/form-contato.xhtml"/>
+
+</ui:composition>
+

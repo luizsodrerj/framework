@@ -1,0 +1,93 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/header.xhtml"/>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:7%;">
+    	  <h:form id="form">
+	        <div class="container">
+	        	<div style="margin-bottom: 6px;">
+		        	<h:commandButton 
+		        		value="Adicionar Nova #{msgRes['lb.peca']} ao Estoque" 
+		        		action="#{ctrlEstoqueController.showCtrlEstoqueForm}"
+		        		styleClass="btn btn-primary btn-lg"/>
+	        	</div>
+				<p:dataGrid 
+					value="#{listPecasController.pecas}"  
+					var="peca" 
+			        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			        rowsPerPageTemplate="6,12,16"
+			        rows="12" columns="3"
+			        paginator="true" 
+					layout="grid"
+			        id="pecas">
+				         
+			        <f:facet name="header">
+			            Lista de #{msgRes['lb.pecas']} do Estoque 
+			        </f:facet>
+				 
+			        <p:panel header="#{peca.descricao}" style="text-align:center">
+			        	<h:panelGrid columns="1" style="width:100%; text-align:center;">
+			                <h:panelGroup rendered="#{not empty peca.imagem}">
+				                <h:graphicImage 
+				                	value="/image?id=#{peca.id}"
+				                	width="150" height="125"/> 
+			                </h:panelGroup>
+			                <h:graphicImage 
+				                value="/img/not-available.jpeg"
+				                rendered="#{empty peca.imagem}"
+				                width="150" height="125"/>
+			        	</h:panelGrid>
+			            <h:panelGrid columns="2" style="width:100%; text-align:left;">
+			 				<h:outputText value="Categoria" style="font-weight: bold;"/>
+			                <h:outputText value="#{peca.categoria}" />
+			 				
+			 				<h:outputText value="Tipo de #{msgRes['lb.peca']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.tipo}" />
+			 
+			 				<h:outputText value="#{msgRes['lb.preco']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.preco}">
+				 				<f:convertNumber 
+				 					type="currency"
+	         						locale="pt_BR"/>
+			 				</h:outputText>
+			            </h:panelGrid>
+		 				<h:panelGrid columns="1" style="width:100%; text-align:center;">
+ 		 					<a onclick="document.forms[0].id.value = '#{peca.id}'; document.getElementById('form:btDetail').click(); return false;"
+		 					   class="btn btn-outline-primary"
+		 					   href="#">	
+		 					   Ver Detalhe
+		 					</a>	
+		                </h:panelGrid>
+			        </p:panel>
+				</p:dataGrid>
+				<div style="display: none;">
+					<h:commandButton
+						action="#{ctrlEstoqueController.detail}"
+						id="btDetail"
+						/>
+				</div>
+				<input type="hidden" name="id"/>	
+	        </div>
+		  </h:form>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

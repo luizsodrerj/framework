@@ -1,0 +1,140 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/header-index.xhtml"/>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                	<img src="#{request.contextPath}/assets/img/nav-bar-logo.png" alt="..." />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item">
+                        	<a class="nav-link" style="color:black;" href="#contact">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+		    	
+    	<div style="margin-top:7%;">
+    	  <h:form id="form">
+	        <div class="container">
+	        	<div style="margin-bottom: 4px;">
+					<p:panelGrid styleClass="ui-noborder">  
+						<p:row>
+							<p:column>Filtro:</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox
+									itemLabel="#{msgRes['lb.joias']}" 
+									value="true"/>	
+								<p:selectBooleanCheckbox
+									itemLabel="#{msgRes['lb.semijoias']}" 
+									value="true"/>	
+								<p:selectBooleanCheckbox
+									itemLabel="bijuterias" 
+									value="true"/>
+									
+								<h:selectOneMenu id="filtroPreco">
+									<f:selectItem 
+										itemLabel="Filtrar por #{msgRes['lb.preco']}" 
+										itemValue="0"/>
+									<f:selectItem
+										itemLabel="de R$1,00 a R$10,00"
+										itemValue="1-10"/>	
+									<f:selectItem
+										itemLabel="de R$10,00 a R$20,00"
+										itemValue="10-20"/>	
+									<f:selectItem
+										itemLabel="de R$20,00 a R$50,00"
+										itemValue="20-50"/>	
+									<f:selectItem
+										itemLabel="Acima de R$50,00"
+										itemValue="+50"/>	
+								</h:selectOneMenu>		
+							</p:column>
+						</p:row>
+					</p:panelGrid>		
+	        	</div>
+				<p:dataGrid 
+					value="#{listPecasController.pecas}"  
+					var="peca" 
+			        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			        rowsPerPageTemplate="6,12,16"
+			        rows="12" columns="3"
+			        paginator="true" 
+					layout="grid"
+			        id="pecas">
+				         
+			        <f:facet name="header">
+			            Lista de #{msgRes['lb.pecas']} do Estoque 
+			        </f:facet>
+				 
+			        <p:panel header="#{peca.descricao}" style="text-align:center">
+			        	<h:panelGrid columns="1" style="width:100%; text-align:center;">
+			                <h:panelGroup rendered="#{not empty peca.imagem}">
+				                <h:graphicImage 
+				                	value="/image?id=#{peca.id}"
+				                	width="150" height="125"/> 
+			                </h:panelGroup>
+			                <h:graphicImage 
+				                value="/img/not-available.jpeg"
+				                rendered="#{empty peca.imagem}"
+				                width="150" height="125"/>
+			        	</h:panelGrid>
+			            <h:panelGrid columns="2" style="width:100%; text-align:left;">
+			 				<h:outputText value="Categoria" style="font-weight: bold;"/>
+			                <h:outputText value="#{peca.categoria}" />
+			 				
+			 				<h:outputText value="Tipo de #{msgRes['lb.peca']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.tipo}" />
+			 
+			 				<h:outputText value="#{msgRes['lb.preco']}" style="font-weight: bold;"/>
+			 				<h:outputText value="#{peca.preco}">
+				 				<f:convertNumber 
+				 					type="currency"
+	         						locale="pt_BR"/>
+			 				</h:outputText>
+			            </h:panelGrid>
+		 				<h:panelGrid columns="1" style="width:100%; text-align:center;">
+ 		 					<a onclick="document.forms[0].id.value = '#{peca.id}'; document.getElementById('form:btDetail').click(); return false;"
+		 					   class="btn btn-outline-primary"
+		 					   href="#">	
+		 					   Ver Detalhe
+		 					</a>	
+		                </h:panelGrid>
+			        </p:panel>
+				</p:dataGrid>
+				<div style="display: none;">
+					<h:commandButton
+						action="#{ctrlEstoqueController.detail}"
+						id="btDetail"
+						/>
+				</div>
+				<input type="hidden" name="id"/>	
+	        </div>
+		  </h:form>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

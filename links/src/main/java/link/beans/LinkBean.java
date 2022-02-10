@@ -1,23 +1,17 @@
 package link.beans;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import link.entity.Link;
-import link.persistence.PersistenceService;
 
 @ManagedBean(name = "linkBean")
 @SessionScoped
-public class LinkBean {
+public class LinkBean extends BaseBean {
 
-	private PersistenceService persistence = new PersistenceService();
-	
 	private List<Link>links = new ArrayList<Link>();
 
 	private String searchParameter;
@@ -27,22 +21,8 @@ public class LinkBean {
 
 	
 	public String removeLink() {
-		try {
-			HttpServletRequest request = (HttpServletRequest)         
-										 FacesContext.getCurrentInstance()
-										 			 .getExternalContext()
-										 			 .getRequest();
-			String linkId = request.getParameter("linkId");
-			Integer id 	  = Integer.valueOf(linkId);
-			
-			persistence.beginTransaction();
-			Link link = persistence.findObject(Link.class,id);
-			persistence.remove(link);
-			persistence.commit();
-			
-		} finally {
-			persistence.close();
-		}
+		remove();
+		
 		searchParameter = "";
 		
 		return search();

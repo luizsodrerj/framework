@@ -1,0 +1,77 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:include src="/header-index.xhtml" />
+	
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                	<img src="#{request.contextPath}/assets/img/nav-bar-logo.png" alt="..." />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#joias">#{msgRes['lb.joias']}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#semijoias">#{msgRes['lb.semijoias']}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#bijus">Bijuterias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+                        <li class="nav-item">
+                        	<h:form>
+                        		<h:commandLink 
+                        			action="#{mensagensController.showInbox}"
+                        			styleClass="nav-link" 
+                        			value="admin" />
+                        	</h:form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">#{msgRes['lb.msg.welcome']}</div>
+                <div class="masthead-heading text-uppercase">
+                	#{msgRes['lb.msg.tela.ini']}
+                </div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#services">
+                	Clique aqui e explore nosso site para encontrar sua #{msgRes['lb.joia']} preferida
+                </a>
+            </div>
+        </header>
+        
+        <!-- JOIAS-->
+		<ui:include src="/joias.xhtml"/>
+        
+        <!-- SEMIJOIAS-->
+        <ui:include src="/semijoias.xhtml"/>
+        
+        <!-- BIJUS-->
+		<ui:include src="/bijus.xhtml"/>
+        
+        <!-- Contato-->
+        <ui:include src="/contato.xhtml"/>
+        
+        <!-- Footer-->
+		<ui:include src="/footer.xhtml"/>
+
+        <!-- Bootstrap core JS-->
+		        
+		<!-- <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" /> -->
+		        
+        <!-- Core theme JS-->
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/header.xhtml"/>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:13%; margin-left:27%;">
+	        <div class="container">
+	          <h:form>
+	            <h:commandLink 
+	            	action="#{listPecasController.list}"
+	            	value="Clique aqui para iniciar o Controle de Estoque"
+	            	styleClass="btn btn-primary btn-lg text-uppercase"
+	            	style="width: 690px;"/>
+	            	
+	            <br/><br/>
+	            
+	        	<h:commandLink 
+	        		value="Adicionar Novas #{msgRes['lb.pecas']} ao Estoque" 
+	        		action="#{ctrlEstoqueController.showCtrlEstoqueForm}"
+	        		styleClass="btn btn-primary btn-lg text-uppercase"
+	        		style="width: 690px;"/>
+	          </h:form>
+	        </div>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

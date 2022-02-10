@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/header.xhtml"/>
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<ui:include src="/estoque/navbar.xhtml"/>
+		    	
+    	<div style="margin-top:6%;">
+	        <div class="container">
+	          <h:form id="form">
+				<p:panelGrid styleClass="ui-noborder">  
+				    <p:row>  
+						<p:column>Tipo de #{msgRes['lb.peca']}</p:column>  
+				        <p:column>  
+				            <p:inputText 
+				            	value="#{cadTipoPecaController.tipo.tipo}"
+				            	style="width: 315px;"
+				            	id="desc"/> 
+				        </p:column>  
+			        </p:row>
+				    <p:row>  
+				        <p:column colspan="2">  
+						  <p:dataList 
+						  	value="#{cadTipoPecaController.tipos}" 
+						  	style="margin-top: 12px;"
+						  	type="ordered"
+						  	var="tipo">
+						        <f:facet name="header">
+						            Lista de Tipos de #{msgRes['lb.pecas']}
+						        </f:facet>
+						        #{tipo.tipo}
+						  </p:dataList>
+				        </p:column>  
+			        </p:row>
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" style="margin-top: 10px;">
+				    <p:row>  
+						<p:column>  
+				            <h:commandButton 
+				            	action="#{cadTipoPecaController.persistTipoPeca}"
+				            	styleClass="btn btn-primary btn-lg"
+				            	value="Salvar"/>
+				        </p:column>  
+						<p:column>  
+				            <h:commandButton 
+				            	action="#{listPecasController.list}"
+				            	styleClass="btn btn-primary btn-lg"
+				            	value="Cancelar"/>
+				        </p:column>  
+					</p:row>			        
+				</p:panelGrid>
+	          </h:form>
+	        </div>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

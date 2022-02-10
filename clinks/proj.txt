@@ -1,0 +1,4 @@
+
+env var CLINK_DB = ...
+
+jdbc:h2:$CLINK_DB;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9092

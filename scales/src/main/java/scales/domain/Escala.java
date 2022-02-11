@@ -10,7 +10,13 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Escala.findAll", query="SELECT e FROM Escala e")
+@NamedQueries({
+	@NamedQuery(
+		name = "Escala.findByMesAno", 
+		query= "SELECT e FROM Escala e " +
+			   "WHERE e.inicio = ?1"
+	)
+})
 public class Escala implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

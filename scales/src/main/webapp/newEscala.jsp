@@ -24,40 +24,38 @@
 
   <form action="/filterScales">
 
-  <jsp:useBean id="filtroBean" class="scales.web.FiltroBean" scope="page"></jsp:useBean>
+  <jsp:useBean id="nomeBean" class="scales.web.NomeBean" scope="page"></jsp:useBean>
   
   <c:set value="${pageContext.request}"
-  		 target="${filtroBean}"
+  		 target="${nomeBean}"
   		 property="request"	/>
-  
+
    
   <div class="content">
 	<div class="container">
-	  <div class="row">
-	    <div class="col">
-	      <input 
-	      	onkeypress="return maskField(this, '99/9999', event)"
-		    style="width:115px; margin-top: 7px;"  	
-	      	type="text"
-	      	name="data"
-	      	id="data">
+	  <div class="mb-3 row">
+	    <label for="inputNome" class="col-sm-2 col-form-label">Colaborador</label>
+	    <div class="col-sm-7">
+			<select class="form-select">
+			  <option selected>Selecione um Colaborador</option>
+			  <c:forEach var="colaborador" items="${nomes}">
+				  <option value="${colaborador}">
+				  	${colaborador}
+				  </option>
+			  </c:forEach>
+			</select>						      
 	    </div>
-	    <div class="col-10">
+	  </div>	  
+	  <div class="row">
+	    <div class="col-2">
 	      <button 
-	      	type="button"
-	      	class="btn btn-primary btn-lg">
-	      	Filtrar
-	      </button>
-	      
-	      <button 
-	      	type="button"
-	      	onclick="document.location.href = 'newEscala.jsp'" 
-	      	class="btn btn-success btn-lg"
-	      	style="margin-left: 20px;">
-	      	Nova Escala
+	      	class="btn btn-primary btn-lg"
+	      	type="button">
+	      	Salvar
 	      </button>
 	    </div>
 	  </div>
+	  
 	</div>	
   </div>
   

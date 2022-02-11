@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 public class NomeBean {
 
@@ -17,8 +18,26 @@ public class NomeBean {
 											}
 										);		
 	
+	private HttpServletRequest request;
+
+	
+	
+	public NomeBean() {
+	}
+	
 	public static List<String> list() {
 		return list;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		ServletContext context  = request.getSession().getServletContext(); 
+		this.request 			= request;
+		
+		NomeBean.nomes(context);
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
 	}
 	
 	public static List<String> nomes(ServletContext context) {

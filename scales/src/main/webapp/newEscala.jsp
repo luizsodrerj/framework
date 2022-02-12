@@ -36,7 +36,7 @@
 	  <div class="mb-3 row">
 	    <label for="inputNome" style="text-align:right;" class="col-sm-2 col-form-label">Colaborador</label>
 	    <div class="col-sm-7">
-			<select class="form-select">
+			<select class="form-select" name="colaborador" id="colaborador">
 			  <option selected>Selecione um Colaborador</option>
 			  <c:forEach var="colaborador" items="${nomes}">
 				  <option value="${colaborador}">

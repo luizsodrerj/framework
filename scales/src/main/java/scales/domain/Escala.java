@@ -14,7 +14,8 @@ import java.util.Date;
 	@NamedQuery(
 		name = "Escala.findByMesAno", 
 		query= "SELECT e FROM Escala e " +
-			   "WHERE e.inicio = ?1"
+			   "WHERE MONTH(e.inicio) = ?1 "+ 
+			   "AND YEAR(e.fim) 	  = ?2 "
 	)
 })
 public class Escala implements Serializable {

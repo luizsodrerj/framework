@@ -1,6 +1,8 @@
 package scales.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,24 +35,7 @@ public class PersistScaleServlet extends HttpServlet {
 		String inputFim 			  = request.getParameter("inputFim");
 		
 		try {
-			persis.beginTransaction();
-			
-			Escala escala = new Escala();
-			escala.setNomePlantonista(colaborador);
-			escala.setInicio(
-				DateUtil.parse(
-					inputIni, 
-					DateUtil.dd_MM_yyyy
-				)	
-			);
-			escala.setFim(
-				DateUtil.parse(
-					inputFim, 
-					DateUtil.dd_MM_yyyy
-				)	
-			);
-			persis.persist(escala);
-			persis.commit();
+			persist(persis, colaborador, inputIni, inputFim);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +44,31 @@ public class PersistScaleServlet extends HttpServlet {
 			persis.close();
 		}
 		request.getRequestDispatcher("/index.jsp")
-			   .forward(request, response);
+			   .forward(
+				  request, 
+				  response
+				);
+	}
+
+	private void persist(PersistenceServiceUtil persis, String colaborador, String inputIni, String inputFim) throws ParseException {
+		persis.beginTransaction();
+		
+		Escala escala = new Escala();
+		escala.setNomePlantonista(colaborador);
+		escala.setInicio(
+			DateUtil.parse(
+				inputIni, 
+				DateUtil.dd_MM_yyyy
+			)	
+		);
+		escala.setFim(
+			DateUtil.parse(
+				inputFim, 
+				DateUtil.dd_MM_yyyy
+			)	
+		);
+		persis.persist(escala);
+		persis.commit();
 	}
 
 }

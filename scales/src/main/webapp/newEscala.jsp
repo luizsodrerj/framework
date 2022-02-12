@@ -22,7 +22,7 @@
   
   </style>	
 
-  <form action="/filterScales">
+  <form action="${pageContext.request.contextPath}/save">
 
   <jsp:useBean id="nomeBean" class="scales.web.NomeBean" scope="page"></jsp:useBean>
   
@@ -74,6 +74,7 @@
 		</div>	  
 	    <div class="col-7">
 	      <button 
+	      	onclick="document.forms[0].submit()"
 	      	class="btn btn-primary btn-lg"
 	      	style="width: 128px;"
 	      	type="button">

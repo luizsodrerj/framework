@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" 	prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"	prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,15 +23,19 @@
   
   </style>	
 
-  <form action="/filterScales">
+  <script type="text/javascript">
+
+
+  </script>	
+
+  <form action="${pageContext.request.contextPath}/index.jsp">
 
   <jsp:useBean id="filtroBean" class="scales.web.FiltroBean" scope="page"></jsp:useBean>
   
   <c:set value="${pageContext.request}"
   		 target="${filtroBean}"
   		 property="request"	/>
-  
-   
+     
   <div class="content">
 	<div class="container">
 	  <div class="row">
@@ -44,8 +49,10 @@
 	    </div>
 	    <div class="col-10">
 	      <button 
-	      	type="button"
-	      	class="btn btn-primary btn-lg">
+	      	onclick="document.forms[0].submit()"
+	      	class="btn btn-primary btn-lg"
+	      	style="width: 140px;"
+	      	type="button"> 
 	      	Filtrar
 	      </button>
 	      
@@ -58,6 +65,34 @@
 	      </button>
 	    </div>
 	  </div>
+	</div>
+	<div style="margin-top:35px; width:70%">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Colaborador</th>
+		      <th scope="col">In&iacute;cio</th>
+		      <th scope="col">Fim</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			  <c:forEach var="scale" items="${filtroBean.escalas}">
+			    <tr>
+			      <td>${scale.nomePlantonista}</td>
+			      <td>
+			      	<fmt:formatDate 
+			      		value="${scale.inicio}"
+			      		pattern="dd/MM/yyyy"/>
+			      </td>
+			      <td>
+			      	<fmt:formatDate 
+			      		value="${scale.fim}"
+			      		pattern="dd/MM/yyyy"/>
+			      </td>
+			    </tr>	
+			  </c:forEach>
+		  </tbody>
+		</table> 	
 	</div>	
   </div>
   

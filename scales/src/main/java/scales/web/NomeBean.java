@@ -13,7 +13,7 @@ public class NomeBean {
 												"Walter Moscardini",
 												"Luiz Sodre",
 												"Rhawan Brenner",
-												"Américo Afonso",
+												"Americo Afonso",
 												"Helder Nogueira"
 											}
 										);		

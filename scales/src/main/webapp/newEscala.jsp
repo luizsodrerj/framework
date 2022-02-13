@@ -24,12 +24,18 @@
 
   <form action="${pageContext.request.contextPath}/save">
 
-  <jsp:useBean id="nomeBean" class="scales.web.NomeBean" scope="page"></jsp:useBean>
+  <jsp:useBean id="scaleBean" class="scales.web.ScaleBean" scope="page"></jsp:useBean>
+  <jsp:useBean id="nomeBean"  class="scales.web.NomeBean" scope="page"></jsp:useBean>
   
+  <c:set value="${pageContext.request}"
+  		 target="${scaleBean}"
+  		 property="request"	/>
+
   <c:set value="${pageContext.request}"
   		 target="${nomeBean}"
   		 property="request"	/>
 
+  <input type="hidden" name="id" value="${param.id}">
    
   <div class="content">
 	<div class="container">
@@ -51,6 +57,7 @@
 	    <div class="col-sm-7">
 	      <input 
 	      	onkeypress="return maskField(this, '99/99/9999', event)"
+		    value="${scaleBean.inicio}"  	
 		    style="width:125px;"  	
 	      	type="text"
 	      	name="inputIni"
@@ -62,6 +69,7 @@
 	    <div class="col-sm-7">
 	      <input 
 	      	onkeypress="return maskField(this, '99/99/9999', event)"
+	      	value="${scaleBean.fim}"
 		    style="width:125px;"  	
 	      	type="text"
 	      	name="inputFim"

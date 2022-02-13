@@ -36,6 +36,9 @@
   		 target="${filtroBean}"
   		 property="request"	/>
      
+  <c:set value="${pageContext.request.contextPath}"
+  		 var="context"/>
+     
   <div class="content">
 	<div class="container">
 	  <div class="row">
@@ -78,7 +81,11 @@
 		  <tbody>
 			  <c:forEach var="scale" items="${filtroBean.escalas}">
 			    <tr>
-			      <td>${scale.nomePlantonista}</td>
+			      <td>
+			      	<a href="${context}/newEscala.jsp?id=${scale.id}">
+			      		${scale.nomePlantonista}
+			      	</a>
+			      </td>
 			      <td>
 			      	<fmt:formatDate 
 			      		value="${scale.inicio}"

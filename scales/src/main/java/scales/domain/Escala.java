@@ -15,7 +15,8 @@ import java.util.Date;
 		name = "Escala.findByMesAno", 
 		query= "SELECT e FROM Escala e " +
 			   "WHERE MONTH(e.inicio) = ?1 "+ 
-			   "AND YEAR(e.fim) 	  = ?2 "
+			   "AND YEAR(e.fim) 	  = ?2 "+ 
+			   "ORDER BY e.inicio "
 	)
 })
 public class Escala implements Serializable {

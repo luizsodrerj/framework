@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import framework.persistence.jpa.PersistenceServiceUtil;
 import framework.util.DateUtil;
 import scales.domain.Escala;
@@ -33,10 +35,14 @@ public class PersistScaleServlet extends HttpServlet {
 		String colaborador 			  = request.getParameter("colaborador");
 		String inputIni 	    	  = request.getParameter("inputIni");
 		String inputFim 			  = request.getParameter("inputFim");
+		String id					  = request.getParameter("id");
 		
 		try {
-			persist(persis, colaborador, inputIni, inputFim);
-			
+			if (StringUtils.isNotEmpty(id)) {
+				update(persis, colaborador, inputIni, inputFim, id);
+			} else {
+				persist(persis, colaborador, inputIni, inputFim);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException(e);
@@ -50,7 +56,39 @@ public class PersistScaleServlet extends HttpServlet {
 				);
 	}
 
-	private void persist(PersistenceServiceUtil persis, String colaborador, String inputIni, String inputFim) throws ParseException {
+	private void update(
+					PersistenceServiceUtil persis, 
+					String colaborador, 
+					String inputIni, 
+					String inputFim,
+					String id
+				 )  throws ParseException {
+		persis.beginTransaction();
+		
+		Escala escala = persis.findObject(Escala.class,Integer.valueOf(id));
+		escala.setNomePlantonista(colaborador);
+		escala.setInicio(
+			DateUtil.parse(
+				inputIni, 
+				DateUtil.dd_MM_yyyy
+			)	
+		);
+		escala.setFim(
+			DateUtil.parse(
+				inputFim, 
+				DateUtil.dd_MM_yyyy
+			)	
+		);
+		persis.merge(escala);
+		persis.commit();
+	}
+
+	private void persist(
+					PersistenceServiceUtil persis, 
+					String colaborador, 
+					String inputIni, 
+					String inputFim
+				 )  throws ParseException {
 		persis.beginTransaction();
 		
 		Escala escala = new Escala();

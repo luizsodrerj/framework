@@ -68,6 +68,31 @@
 	      </button>
 	    </div>
 	  </div>
+	  <div class="row" style="margin-top:23px;">
+	    <div class="col-2">
+	    	<input
+	    	  name="filterByRange"	 
+	    	  id="filterByRange"
+	    	  value="byRange"
+	    	  type="checkbox">
+	    	  
+	    	Por Per&iacute;odo  
+	    </div>
+	    <div class="col-9">
+	      <input 
+	      	onkeypress="return maskField(this, '99/99/9999', event)"
+		    style="width:125px;"
+	      	type="text"
+	      	name="ini"
+	      	id="ini">
+	      <input 
+	      	onkeypress="return maskField(this, '99/99/9999', event)"
+		    style="width:125px; margin-left:20px;"
+	      	type="text"
+	      	name="fim"
+	      	id="fim">
+	    </div>
+	  </div>		  
 	</div>
 	<div style="margin-top:35px; width:70%">
 		<table class="table">

@@ -17,6 +17,13 @@ import java.util.Date;
 			   "WHERE MONTH(e.inicio) = ?1 "+ 
 			   "AND YEAR(e.fim) 	  = ?2 "+ 
 			   "ORDER BY e.inicio "
+	),
+	@NamedQuery(
+		name = "Escala.findByPeriodo", 
+		query= "SELECT e FROM Escala e " +
+			   "WHERE e.inicio >= ?1   " +
+			   "AND   e.fim    <= ?2   " + 
+			   "ORDER BY e.inicio "
 	)
 })
 public class Escala implements Serializable {

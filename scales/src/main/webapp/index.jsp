@@ -66,6 +66,14 @@
 	      	style="margin-left: 20px;">
 	      	Nova Escala
 	      </button>
+
+	      <button 
+	      	type="button"
+	      	onclick="document.location.href = 'drives.jsp'" 
+	      	class="btn btn-info btn-lg"
+	      	style="margin-left: 25px;">
+	      	Acionamentos
+	      </button>
 	    </div>
 	  </div>
 	  <div class="row" style="margin-top:23px;">

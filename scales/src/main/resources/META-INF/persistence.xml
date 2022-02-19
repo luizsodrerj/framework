@@ -8,6 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<class>scales.domain.Escala</class>
+		<class>scales.domain.ScaleDrive</class>
 		
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost" />

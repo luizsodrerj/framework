@@ -10,4 +10,14 @@
     <servlet-name>PersistScaleServlet</servlet-name>
     <url-pattern>/save</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PersistDriveServlet</display-name>
+    <servlet-name>PersistDriveServlet</servlet-name>
+    <servlet-class>scales.web.PersistDriveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersistDriveServlet</servlet-name>
+    <url-pattern>/PersistDrive</url-pattern>
+  </servlet-mapping>
 </web-app>

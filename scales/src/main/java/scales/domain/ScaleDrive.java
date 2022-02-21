@@ -26,12 +26,11 @@ public class ScaleDrive implements Serializable {
 	@Column(name="DRIVE_DATE")
 	private Date driveDate;
 
-	@Column(name="END_TIME")
-	private Timestamp endTime;
-
 	@Column(name="START_TIME")
 	private Timestamp startTime;
 
+	@Column(name="END_TIME")
+	private Timestamp endTime;
 	
 	
 	public ScaleDrive() {

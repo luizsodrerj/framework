@@ -69,7 +69,7 @@
 
 	      <button 
 	      	type="button"
-	      	onclick="document.location.href = 'drives.jsp'" 
+	      	onclick="document.location.href = 'scaleDrives.jsp'" 
 	      	class="btn btn-info btn-lg"
 	      	style="margin-left: 25px;">
 	      	Acionamentos

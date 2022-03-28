@@ -24,6 +24,8 @@ import org.apache.struts.util.MessageResources;
  * @date	18/12/2004
  */
 public class SumValueTag extends TagSupport {
+	private static final long serialVersionUID = 1L;
+	
 	private String 				name;
 	private String 				property;
 	private String 				valueProperty;

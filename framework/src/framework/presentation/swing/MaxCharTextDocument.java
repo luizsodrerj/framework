@@ -13,7 +13,9 @@ import javax.swing.text.BadLocationException;
  * @author	Luiz Alberto
  */
 public class MaxCharTextDocument extends PlainDocument  {
-    private int maxLength;
+    private static final long serialVersionUID = 1L;
+    
+	private int maxLength;
 
     /**
      * Inicializa a classe com um número máximo de caracteres 

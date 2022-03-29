@@ -8,6 +8,11 @@ package framework.exceptions;
 public class DAOException extends Exception {
     
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Inicializa a classe
      */
     public DAOException() {

@@ -9,6 +9,11 @@ package framework.exceptions;
 public class BusinessException extends Exception  {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Construtor simples
      */
     public BusinessException() {

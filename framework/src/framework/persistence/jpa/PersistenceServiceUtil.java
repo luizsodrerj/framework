@@ -112,7 +112,6 @@ public class PersistenceServiceUtil {
 	 * @param params	Parâmetros para a query
 	 * @return			Lista contendo os registros encontrados 
 	 */
-	@SuppressWarnings("unchecked")
 	public <T> List<T> findByQuery(String query, Object[] params) {
 		connect();
 
@@ -136,7 +135,6 @@ public class PersistenceServiceUtil {
 	 * @param params	Parâmetros para a query
 	 * @return			Lista contendo os registros encontrados 
 	 */
-	@SuppressWarnings("unchecked")
 	public <T> List<T> findByNamedQuery(String name, Object[] params) {
 		connect();
 

@@ -8,6 +8,11 @@ package framework.exceptions;
 public class ServiceException extends RuntimeException {
     
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Inicializa a classe com a mensagem de erro
      * @param message mensagem de erro
      */

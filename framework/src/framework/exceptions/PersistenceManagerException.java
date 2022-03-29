@@ -8,6 +8,8 @@ package framework.exceptions;
  */
 public class PersistenceManagerException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
 	public PersistenceManagerException() {
 		super();
 	}

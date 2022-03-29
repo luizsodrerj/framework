@@ -13,7 +13,9 @@ import javax.swing.ListModel;
  */
 public class ListBox extends JList {
     
-    private List<Object>   objects = new ArrayList<Object>();
+    private static final long serialVersionUID = 1L;
+    
+	private List<Object>   objects = new ArrayList<Object>();
     private Vector<Object> values  = new Vector<Object>();
     
     

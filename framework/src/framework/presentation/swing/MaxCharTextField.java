@@ -12,7 +12,9 @@ import javax.swing.text.Document;
  * @author	Luiz Alberto
  */
 public class MaxCharTextField extends JTextField  {
-    private int maxLength;
+    private static final long serialVersionUID = 1L;
+    
+	private int maxLength;
     
     /**
      * Inicializa a classe com um número máximo de caracteres 

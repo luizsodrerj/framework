@@ -25,6 +25,16 @@ public class Window {
 
     
     
+    public static void setSystemLookAndFeel() {
+    	try {
+	        UIManager.setLookAndFeel(
+	            UIManager.getSystemLookAndFeelClassName()
+	        );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
     public static void setNimbusLookAndFeel() {
     	try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

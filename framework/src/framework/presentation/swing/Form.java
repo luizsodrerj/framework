@@ -63,7 +63,7 @@ public class Form extends JFrame {
 	}
 
 	protected void showCalendar() {
-		Calendar dialog = new Calendar();
+		Calendar dialog = new Calendar(data);
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		Window.centralizeWindow(dialog);
 		dialog.populateDaysOfMonth();

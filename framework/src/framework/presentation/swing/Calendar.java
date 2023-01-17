@@ -20,6 +20,8 @@ import java.awt.event.ItemEvent;
 
 public class Calendar extends JDialog {
 
+	private static final long serialVersionUID = 1L;
+
 	private Dimension defaultBtDim = new Dimension(48,23);
 	
 	private JTextField inputDate;
@@ -54,6 +56,7 @@ public class Calendar extends JDialog {
 	protected void showYearChooser() {
 		YearChooser dialog = new YearChooser(this, ano.getText());
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setModal(true);
 		Window.centralizeWindow(dialog);
 		dialog.populateYears();
 		dialog.setVisible(true);

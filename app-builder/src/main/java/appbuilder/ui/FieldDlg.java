@@ -94,7 +94,7 @@ public class FieldDlg extends JDialog {
 		
 		switch (typeId) {
 			case ComponentType.CAIXA_DE_TEXTO:
-				label = new Label("Exemplo de Caixa de Texto:");
+				label = new Label(this.label.getText());
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
 				JTextField tx = new JTextField();
@@ -103,7 +103,7 @@ public class FieldDlg extends JDialog {
 				addPreviewComponent(JTextField.class, tx, false, label);
 				break;
 			case ComponentType.AREA_DE_TEXTO:
-				label = new Label("Exemplo de Area de Texto:");
+				label = new Label(this.label.getText());
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
 				JTextArea ta = new JTextArea();
@@ -111,7 +111,7 @@ public class FieldDlg extends JDialog {
 				addPreviewComponent(JTextArea.class, ta, false, label);
 				break;
 			case ComponentType.CAIXA_DE_CHECAGEM:
-				label = new Label("Exemplo de Caixa de Checagem:");
+				label = new Label(this.label.getText());
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
 				JCheckBox ck = new JCheckBox();
@@ -119,7 +119,7 @@ public class FieldDlg extends JDialog {
 				addPreviewComponent(JCheckBox.class, ck, true, label);
 				break;
 			case ComponentType.LISTA_DE_VALORES:
-				label = new Label("Exemplo de Lista de Valores:");
+				label = new Label(this.label.getText());
 				label.setHorizontalAlignment(SwingConstants.RIGHT);
 				label.setPreferredSize(prefSize);
 				JComboBox cb = new JComboBox();
@@ -175,19 +175,29 @@ public class FieldDlg extends JDialog {
 	}
 	
 	private void getAllComponentTypes() {
-		try {
-			compTypes = persistence.findAll(ComponentType.class, null);
-		} finally {
-			persistence.close();
-		} 
+//		try {
+//			compTypes = persistence.findAll(ComponentType.class, null);
+//		} finally {
+//			persistence.close();
+//		}
+		
+		compTypes = new ArrayList<ComponentType>();
+		ComponentType type = new ComponentType();
+		type.setId(ComponentType.CAIXA_DE_TEXTO);
+		type.setTipo("Campo de Texto");
+		compTypes.add(type);
 	}
 	
 	private void getAllDataTypes() {
-		try {
-			types = persistence.findAll(DataType.class, null);
-		} finally {
-			persistence.close();
-		} 
+//		try {
+//			types = persistence.findAll(DataType.class, null);
+//		} finally {
+//			persistence.close();
+//		} 
+		types = new ArrayList<DataType>();
+		DataType type = new DataType();
+		type.setDescricao("Texto");
+		types.add(type);
 	}
 	
 	public void postConstruct() {

@@ -53,7 +53,7 @@ public class MainFrame extends BaseFrame {
 					frame.setBackGroundImage();
 					frame.setVisible(true);
 					
-					persis.connect();
+					//persis.connect();
 					
 				} catch (Exception e) {
 					e.printStackTrace();

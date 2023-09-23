@@ -68,7 +68,7 @@ public class Clock extends JFrame {
 	 */
 	public Clock() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 79);
+		setBounds(100, 100, 550, 116);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

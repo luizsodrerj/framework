@@ -1,6 +1,8 @@
+/src/main/webapp/WEB-INF/classes
 /.classpath
 /.project
 /target/
 /.settings/
 /bin/
 /.tern-project
+

@@ -90,46 +90,61 @@ public class FieldDlg extends JDialog {
 		Dimension prefSize	= new Dimension(375, 45);
 		ComponentType type 	= compTypes.get(tipoComponente.getSelectedIndex() - 1);
 		int typeId 			= type.getId();  
-		Label label			= null;
 		
 		switch (typeId) {
 			case ComponentType.CAIXA_DE_TEXTO:
-				label = new Label(this.label.getText());
-				label.setHorizontalAlignment(SwingConstants.RIGHT);
-				label.setPreferredSize(prefSize);
-				JTextField tx = new JTextField();
-				tx.setPreferredSize(prefSize);
-				tx.setColumns(25);
-				addPreviewComponent(JTextField.class, tx, false, label);
+				addTextBox(prefSize);
 				break;
 			case ComponentType.AREA_DE_TEXTO:
-				label = new Label(this.label.getText());
-				label.setHorizontalAlignment(SwingConstants.RIGHT);
-				label.setPreferredSize(prefSize);
-				JTextArea ta = new JTextArea();
-				ta.setPreferredSize(new Dimension(375, 75));
-				addPreviewComponent(JTextArea.class, ta, false, label);
+				addTextArea(prefSize);
 				break;
 			case ComponentType.CAIXA_DE_CHECAGEM:
-				label = new Label(this.label.getText());
-				label.setHorizontalAlignment(SwingConstants.RIGHT);
-				label.setPreferredSize(prefSize);
-				JCheckBox ck = new JCheckBox();
-				ck.setSelected(true);
-				addPreviewComponent(JCheckBox.class, ck, true, label);
+				addCheckBox(prefSize);
 				break;
 			case ComponentType.LISTA_DE_VALORES:
-				label = new Label(this.label.getText());
-				label.setHorizontalAlignment(SwingConstants.RIGHT);
-				label.setPreferredSize(prefSize);
-				JComboBox cb = new JComboBox();
-				cb.setPreferredSize(prefSize);
-				addPreviewComponent(JComboBox.class, cb, false, label);				
+				addComboBox(prefSize);				
 				break;
 			default:
 				break;
 		}
 		panel.doLayout();
+	}
+
+	private void addComboBox(Dimension prefSize) {
+		Label label = new Label(this.label.getText());
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setPreferredSize(prefSize);
+		JComboBox cb = new JComboBox();
+		cb.setPreferredSize(prefSize);
+		addPreviewComponent(JComboBox.class, cb, false, label);
+	}
+
+	private void addCheckBox(Dimension prefSize) {
+		Label label = new Label(this.label.getText());
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setPreferredSize(prefSize);
+		JCheckBox ck = new JCheckBox();
+		ck.setSelected(true);
+		addPreviewComponent(JCheckBox.class, ck, true, label);
+	}
+
+	private void addTextArea(Dimension prefSize) {
+		Label label = new Label(this.label.getText());
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setPreferredSize(prefSize);
+		JTextArea ta = new JTextArea();
+		ta.setPreferredSize(new Dimension(375, 75));
+		addPreviewComponent(JTextArea.class, ta, false, label);
+	}
+
+	private void addTextBox(Dimension prefSize) {
+		Label label = new Label(this.label.getText());
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setPreferredSize(prefSize);
+		JTextField tx = new JTextField();
+		tx.setPreferredSize(prefSize);
+		tx.setColumns(25);
+		addPreviewComponent(JTextField.class, tx, false, label);
 	}
 
 	private void addPreviewComponent(

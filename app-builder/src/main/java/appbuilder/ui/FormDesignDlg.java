@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import appbuilder.entity.ComponentType;
+import appbuilder.entity.Form;
 import appbuilder.entity.FormField;
 import framework.presentation.swing.Window;
 import framework.swing.Button;
@@ -37,7 +38,19 @@ public class FormDesignDlg extends JDialog {
 	private JTextField textField;
 	private JPanel previewPane;
 
+
 	
+	void criarForm() {
+		Form form = new Form();
+		
+		for (FormField formField : fields) {
+			form.addFormField(formField);	
+		}
+		AppDlg.addForm(form);
+		
+		this.dispose();
+	}
+
 
 	public void setFields(List<FormField> fields) {
 		this.fields = fields;
@@ -53,44 +66,61 @@ public class FormDesignDlg extends JDialog {
 		for (FormField field : fields) {
 			ComponentType compType 	= field.getComponentType();
 			String fieldLabel		= field.getLabel();
-			Label label				= null;
 			
 			switch (compType.getId()) {
 				case ComponentType.CAIXA_DE_TEXTO:
-					label = getLabel(fieldLabel);
-					JTextField tx = new JTextField();
-					tx.setPreferredSize(prefSize);
-					tx.setColumns(35);
-					addToPreview(tx, label);
+					addTextBox(prefSize, fieldLabel);
 					break;
 				case ComponentType.AREA_DE_TEXTO:
-					label = getLabel(fieldLabel);
-					JTextArea ta = new JTextArea();
-					ta.setPreferredSize(new Dimension(395, 75));
-					addToPreview(ta, label);
+					addTextArea(fieldLabel);
 					break;
 				case ComponentType.CAIXA_DE_CHECAGEM:
-					label = getLabel(fieldLabel);
-					JCheckBox ck = new JCheckBox();
-					ck.setSelected(true);
-					addToPreview(ck, label);
+					addCheckBox(fieldLabel);
 					break;
 				case ComponentType.LISTA_DE_VALORES:
-					label = getLabel(fieldLabel);
-					JComboBox cb = new JComboBox();
-					cb.setPreferredSize(
-						new Dimension(
-							(int)prefSize.getWidth() + 45, 
-							(int)prefSize.getHeight()
-						)
-					);
-					addToPreview(cb, label);
+					addComboBox(prefSize, fieldLabel);
 					break;
 				default:
 					break;
 			}
 			previewPane.doLayout();
 		}
+	}
+
+	private void addTextBox(Dimension prefSize, String fieldLabel) {
+		Label label = getLabel(fieldLabel);
+		JTextField tx = new JTextField();
+		tx.setPreferredSize(prefSize);
+		tx.setColumns(35);
+		addToPreview(tx, label);
+	}
+	
+	private void addComboBox(Dimension prefSize, String fieldLabel) {
+		Label label;
+		label = getLabel(fieldLabel);
+		JComboBox cb = new JComboBox();
+		cb.setPreferredSize(
+			new Dimension(
+				(int)prefSize.getWidth() + 45, 
+				(int)prefSize.getHeight()
+			)
+		);
+		addToPreview(cb, label);
+	}
+
+	private void addCheckBox(String fieldLabel) {
+		Label label;
+		label = getLabel(fieldLabel);
+		JCheckBox ck = new JCheckBox();
+		ck.setSelected(true);
+		addToPreview(ck, label);
+	}
+
+	private void addTextArea(String fieldLabel) {
+		Label label = getLabel(fieldLabel);
+		JTextArea ta = new JTextArea();
+		ta.setPreferredSize(new Dimension(395, 75));
+		addToPreview(ta, label);
 	}
 
 	private Label getLabel(String fieldLabel) {
@@ -179,6 +209,11 @@ public class FormDesignDlg extends JDialog {
 		contentPanel.add(cancelar);
 		
 		JButton finalizar = new Button("Finalizar e Retornar");
+		finalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				criarForm();
+			}
+		});
 		finalizar.setBounds(861, 69, 301, 47);
 		contentPanel.add(finalizar);
 		
@@ -196,4 +231,5 @@ public class FormDesignDlg extends JDialog {
 		previewPane.setBounds(12, 243, 1150, 472);
 		contentPanel.add(previewPane);
 	}
+
 }

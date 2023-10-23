@@ -12,20 +12,41 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import appbuilder.entity.App;
+import appbuilder.entity.Form;
 import framework.presentation.swing.Window;
 import framework.swing.Button;
 import framework.swing.Label;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class AppDlg extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+
+	private static List<Form>forms = new ArrayList<Form>();
+
+	private static List<App>apps = new ArrayList<App>();
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 
+	
+	public static void addForm(Form form) {
+		forms.add(form);
+	}
+
+	void saveApplication() {
+		App app = new App();
+		
+		for (Form form : forms) {
+			app.addForm(form);	
+		}
+		apps.add(app);
+	}
 	
 	void createFormAction() {
 		FormDesignDlg dialog = new FormDesignDlg();
@@ -72,6 +93,11 @@ public class AppDlg extends JDialog {
 		textField.setColumns(10);
 		
 		JButton save = new Button("Salvar e Finalizar");
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				saveApplication();
+			}
+		});
 		save.setBounds(507, 23, 250, 42);
 		contentPanel.add(save);
 		
@@ -93,5 +119,6 @@ public class AppDlg extends JDialog {
 		createForm.setBounds(507, 133, 250, 42);
 		contentPanel.add(createForm);
 	}
+
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name="FORM_FIELDS")
 @NamedQuery(name="FormField.findAll", query="SELECT f FROM FormField f")
 public class FormField implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,6 +23,8 @@ public class FormField implements Serializable {
 
 	private String label;
 
+	private String value;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="ID_DATA_TYPE")
@@ -86,6 +89,14 @@ public class FormField implements Serializable {
 
 	public void setDataType(DataType dataType) {
 		this.dataType = dataType;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	@Override

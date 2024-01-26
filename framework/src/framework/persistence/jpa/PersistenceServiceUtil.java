@@ -233,7 +233,7 @@ public class PersistenceServiceUtil {
 		}
 	}
 
-	public EntityManager geEntityManager() {
+	public EntityManager getEntityManager() {
 		return this.manager;
 	}
 }

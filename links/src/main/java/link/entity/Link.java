@@ -20,24 +20,7 @@ import javax.persistence.Table;
 				+ "FROM   Link o "
 				+ "WHERE  (upper(o.descricao) LIKE ? "
 				+ "OR     o.url LIKE ?)  "
-				+ "AND 	  o.corp IS NULL "
-	),
-	@NamedQuery(
-		name  = Link.FIND_BY_CORP,
-		query =   "SELECT o "
-				+ "FROM   Link o "
-				+ "WHERE  (upper(o.descricao) LIKE ? "
-				+ "OR     o.url LIKE ?)  "
-				+ "AND 	  o.corp IS NOT NULL "
-				+ "ORDER BY o.corp "
-	),
-	@NamedQuery(
-		name  = Link.FILTER_BY_CORP,
-		query =   "SELECT DISTINCT lk.corp "
-				+ "FROM   Link lk "
-				+ "WHERE  lk.corp IS NOT NULL "
-				+ "ORDER BY lk.corp "
-	)	
+	)
 })
 public class Link implements Serializable {
 
@@ -56,7 +39,7 @@ public class Link implements Serializable {
 	
 	private String url;
 
-	private String corp;
+	//private String corp;
 	
 	
 	public Integer getId() {
@@ -84,13 +67,17 @@ public class Link implements Serializable {
 	}
 
 	
+/*
 	public String getCorp() {
 		return corp;
 	}
+*/
 
+/*
 	public void setCorp(String corp) {
 		this.corp = corp;
 	}
+*/
 
 	@Override
 	public int hashCode() {

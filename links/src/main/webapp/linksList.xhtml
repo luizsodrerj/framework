@@ -28,16 +28,9 @@
 		  onclick="window.location.href = '#{request.contextPath}/faces/linkForm.xhtml'"
 		  class="waves-effect waves-light btn-large blue darken-4"
 		  style="width: 207px; margin-left: 5px;"	
-		  value="Novo Link"
+		  value="Criar Novo Link"
 		  type="button"/>
 
-		<input
-			onclick="window.location.href = '#{request.contextPath}/faces/CorpLinks.xhtml'"
-			class="waves-effect waves-light btn-large red darken-4"
-			style="width: 207px; margin-left: 5px;" 
-			value="Links Corporativos"
-			type="button" />
-	
 		<p:spacer width="185" height="20"/>
 	
 		<p:inputText 
@@ -52,37 +45,43 @@
 			action="#{linkBean.search}"
 			class="waves-effect waves-light btn-large orange darken-4" 
 			value="Pesquisar" />
-	
+
+		<style>
+			.c2 {
+				width: 815px !important;
+			}
+		</style>
+
 		<br/><br/><br/>
-	
-		<h:dataTable var="link" value="#{linkBean.links}">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg.descricao}" />
-				</f:facet>
-				<h:outputText value="#{link.descricao}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="URL" />
-				</f:facet>
-				<a href="#{link.url}">
-					<h:outputText value="#{link.url}" />
-				</a>
-			</h:column>
-			<h:column>
-				<h:commandLink 
-					action="#{linkBean.removeLink}"
-					onclick="return confirm('Deseja realmente deletar este link?')"
-					class="waves-effect waves-light btn-large red darken-4" 
-					value="Deletar">
-					<f:param 
-						value="#{link.id}"
-						name="linkId"/>
-				</h:commandLink>	
-			</h:column>
-		</h:dataTable>
-	
+		<div style="width: 85%; margin-left: 55px;">
+			<h:dataTable var="link" value="#{linkBean.links}" style="word-wrap: anywhere;" columnClasses="c1,c2,c3">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg.descricao}" />
+					</f:facet>
+					<h:outputText value="#{link.descricao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="URL" />
+					</f:facet>
+					<a href="#{link.url}">
+						<h:outputText value="#{link.url}" />
+					</a>
+				</h:column>
+				<h:column>
+					<h:commandLink
+						action="#{linkBean.removeLink}"
+						onclick="return confirm('Deseja realmente deletar este link?')"
+						class="waves-effect waves-light btn-large red darken-4"
+						value="Deletar">
+						<f:param
+							value="#{link.id}"
+							name="linkId"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</div>
 	</div>
   </h:form>
 

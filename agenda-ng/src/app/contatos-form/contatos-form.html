@@ -1,0 +1,20 @@
+
+<div class="row" style="margin-left:95px;">
+  <div class="row">
+      <div class="col s8">
+        <div class="card flex justify-center">
+            <p-autocomplete
+              [(ngModel)]="value"
+              (completeMethod)="search($event)"
+              style="width: 400px;"
+              [suggestions]="items"/>
+
+            <p-button
+              label="Selecionar"
+              [style]="{'margin-left': '20px'}"
+              severity="contrast" />
+        </div>
+		  </div>
+
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<server description="Intro REST Guide Liberty server">
+    <featureManager>
+        <feature>javaee-8.0</feature>
+    </featureManager>
+
+    <httpEndpoint httpPort="8080" httpsPort="9443"
+                  id="defaultHttpEndpoint" host="*" />
+
+    <webApplication location="agenda-back-app.war" contextRoot="agenda-back-app"/>
+</server>

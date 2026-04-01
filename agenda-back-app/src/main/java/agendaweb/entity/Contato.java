@@ -59,7 +59,7 @@ public class Contato implements Serializable {
                 null;
         contato = dto.getContato();
         referencia = dto.getReferencia();
-        endereco = dto.getReferencia();
+        endereco = dto.getEndereco();
         telefones = dto.getTelefones();
         emails = dto.getEmails();
         obs = dto.getObs();

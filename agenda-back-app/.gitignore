@@ -10,4 +10,5 @@
 *.launch
 .settings/
 *.sublime-workspace
+.smarttomcat/
 /target

@@ -20,7 +20,7 @@ public class ContatoDTO {
         id = contato.getId().toString();
         this.contato = contato.getContato();
         referencia = contato.getReferencia();
-        endereco = contato.getReferencia();
+        endereco = contato.getEndereco();
         telefones = contato.getTelefones();
         emails = contato.getEmails();
         obs = contato.getObs();

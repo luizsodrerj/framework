@@ -4,6 +4,7 @@ import agendaweb.entity.Contato;
 import agendaweb.entity.ContatoDTO;
 import agendaweb.repository.AgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class AgendaContatosController {
     @Autowired
     AgendaRepository agendaRepository;
 
+    @CrossOrigin
     @PostMapping("/new-contato")
     public ResponseEntity<ContatoDTO> create(@RequestBody ContatoDTO dto) {
         Contato contato = new Contato();
@@ -27,6 +29,7 @@ public class AgendaContatosController {
         return new ResponseEntity<>(new ContatoDTO(agendaRepository.save(contato)), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PutMapping()
     public ResponseEntity<ContatoDTO> update(@RequestBody ContatoDTO dto) {
         Contato contato = agendaRepository.findOne(Integer.valueOf(dto.getId()));
@@ -35,6 +38,7 @@ public class AgendaContatosController {
         return new ResponseEntity<>(new ContatoDTO(agendaRepository.save(contato)), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ContatoDTO get(@PathVariable String id) {
         Contato contato = agendaRepository.findOne(Integer.valueOf(id));
@@ -42,22 +46,27 @@ public class AgendaContatosController {
         return new ContatoDTO(contato);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public void remove(@PathVariable String id) {
         Contato contato = agendaRepository.findOne(Integer.valueOf(id));
         agendaRepository.delete(contato);
     }
 
+    @CrossOrigin
     @GetMapping("/autocomplete/{suggest}")
     public List<ContatoDTO> autoComplete(@PathVariable String suggest) {
-        return toDtoList(
-           agendaRepository.findByContatoContainingIgnoreCase(suggest)
-        );
+        Sort.Order order = new Sort.Order(Sort.Direction.ASC, "contato").ignoreCase();
+        Sort sort = new Sort(order);
+
+        return  suggest != null && !suggest.trim().equals("") ?
+                toDtoList(agendaRepository.findByContatoContainingIgnoreCase(suggest,sort)) :
+                getAll();
     }
 
     @GetMapping("/all")
     public List<ContatoDTO> getAll() {
-        return toDtoList(agendaRepository.findAll());
+        return toDtoList(agendaRepository.findAllByOrderByContato());
     }
 
     private List<ContatoDTO> toDtoList(List<Contato>dados) {

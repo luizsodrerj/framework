@@ -1,0 +1,109 @@
+
+<div class="row" style="margin-left:200px; margin-top:10px;">
+  <div class="row">
+      <div class="col s5">
+        <label for="nome">Nome</label>
+        <input
+          [(ngModel)]="contato.contato"
+          class="browser-default"
+          pInputText
+          name="nome"
+          id="nome"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s5">
+        <label for="ref">Referência</label>
+        <input
+          [(ngModel)]="contato.referencia"
+          pInputText
+          name="ref"
+          id="ref"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s5">
+        <label for="end">Endereço</label>
+        <input
+          [(ngModel)]="contato.endereco"
+          pInputText
+          name="end"
+          id="end"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s5">
+        <label for="tels">Telefones</label>
+        <input
+          [(ngModel)]="contato.telefones"
+          pInputText
+          name="tels"
+          id="tels"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s5">
+        <label for="emails">E-mails</label>
+        <input
+          [(ngModel)]="contato.emails"
+          pInputText
+          name="emails"
+          id="emails"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s5">
+        <label for="obs">Obs</label>
+        <textarea
+            [(ngModel)]="contato.obs"
+            style="height: 190px;"
+            pTextarea
+            rows="10"
+            cols="30"
+            name="obs"
+            id="obs"></textarea>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col s1">
+        <p-button
+          label="Salvar"
+          (onClick)="save()"
+          [style]="{'width':'120px'}"
+          severity="contrast" />
+    </div>
+    <div class="col s1">
+        <p-button
+          label="Cancelar"
+          (onClick)="cancelar()"
+          [style]="{'width':'120px'}"
+          severity="warn" />
+    </div>
+    <div class="col s1">
+        <p-button
+          label="Remover"
+          (click)="dlgVisible = true"
+          [style]="{'width':'120px'}"
+          severity="danger" />
+    </div>
+  </div>
+
+</div>
+<p-dialog header="Remover Contato" [modal]="true" [(visible)]="dlgVisible" [style]="{ width: '25rem' }">
+    <div>
+        <span class="p-text-secondary block mb-8">
+            Você tem certeza que quer remover esse Contato?
+        </span>
+    </div>
+    <div style="text-align:right; margin-top: 15px;">
+        <p-button
+            [style]="{'margin-right':'10px'}"
+            (click)="dlgVisible = false"
+            label="Cancelar" />
+
+        <p-button
+            (click)="removeContato()"
+            label="Confirmar"
+            severity="danger" />
+    </div>
+</p-dialog>

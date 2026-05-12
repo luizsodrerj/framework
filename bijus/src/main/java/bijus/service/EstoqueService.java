@@ -5,33 +5,27 @@ import java.util.List;
 import bijus.entity.Peca;
 import framework.persistence.jpa.PersistenceServiceUtil;
 
-public class EstoqueService extends BaseService {
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
-	
+@Stateless
+public class EstoqueService {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
 	
 	public List<Peca> getBijus() {
-		try {
-			return persistence.findByNamedQuery("Peca.bijuterias", null);
-		} finally {
-			persistence.close();
-		}
+		return new PersistenceServiceUtil(entityManager).findByNamedQuery("Peca.bijuterias", null);
 	}
 
 	public List<Peca> getSemiJoias() {
-		try {
-			return persistence.findByNamedQuery("Peca.semijoias", null);
-		} finally {
-			persistence.close();
-		}
+		return new PersistenceServiceUtil(entityManager).findByNamedQuery("Peca.semijoias", null);
 	}
 
 	public List<Peca> getJoias() {
-		try {
-			return persistence.findByNamedQuery("Peca.joias", null);
-		} finally {
-			persistence.close();
-		}
+		return new PersistenceServiceUtil(entityManager).findByNamedQuery("Peca.joias", null);
 	}
 	
 }

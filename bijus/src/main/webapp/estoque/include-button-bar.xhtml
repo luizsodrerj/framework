@@ -1,0 +1,33 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+  <h:head></h:head>		
+
+    <p:panelGrid styleClass="ui-noborder" style="margin-top: 10px;">
+      <p:row>
+        <p:column>
+            <h:commandButton
+              actionListener="#{ctrlEstoqueController.persistPeca}"
+              action="#{listPecasController.list}"
+              styleClass="btn btn-dark btn-lg"
+              value="Salvar"/>
+        </p:column>
+        <p:column>
+            <h:commandButton
+              action="#{ctrlEstoqueController.resetImage}"
+              styleClass="btn btn-dark btn-lg"
+              value="Limpar Imagem"/>
+        </p:column>
+        <p:column>
+            <h:commandButton
+              action="#{listPecasController.list}"
+              styleClass="btn btn-dark btn-lg"
+              value="Cancelar"/>
+        </p:column>
+      </p:row>
+    </p:panelGrid>
+
+
+</ui:composition>

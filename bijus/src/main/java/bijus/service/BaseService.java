@@ -3,50 +3,32 @@ package bijus.service;
 import java.util.List;
 
 import framework.persistence.jpa.PersistenceServiceUtil;
+import javax.persistence.EntityManager;
+
 
 public abstract class BaseService {
 
-	private PersistenceServiceUtil persis = new PersistenceServiceUtil();
+	protected abstract EntityManager getEntityManager();
 
-	
+
 	public void persist(Object entity) {
-		try {
-			persis.beginTransaction();
-			persis.persist(entity);
-			persis.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			persis.rollbackTransaction();
-			throw new RuntimeException(e);
-		} finally {
-			persis.close();
-		}
+		getPersistence().persist(entity);
 	}
-	
-	public <T>T findObject(Class<T> classe, Object id) {
-		try {
-			return persis.findObject(classe, id);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			persis.close();
-		}
+
+	public void merge(Object entity) {
+		getPersistence().merge(entity);
 	}
-	
-	
+
+	public PersistenceServiceUtil getPersistence() {
+		return new PersistenceServiceUtil(getEntityManager());
+	}
+
+	public <T> T findObject(Class<T> classe, Object id) {
+		return getPersistence().findObject(classe,id);
+	}
+
 	public <T> List<T> findAll(Class<T> type, String orderBy) {
-		try {
-			return persis.findAll(type, orderBy);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			persis.close();
-		}
+		return getPersistence().findAll(type, orderBy);
 	}
 	
 }

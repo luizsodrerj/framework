@@ -23,10 +23,10 @@ public class ImageServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Peca>collection = (List<Peca>)request.getSession().getAttribute("imageList"); 
-		Integer id 			 = Integer.valueOf(request.getParameter("id"));
+		Long id 			 = Long.valueOf(request.getParameter("id"));
         Peca peca 			 = CollectionsUtil.find(collection,"id",id);
 		byte[]imagem		 = peca.getImagem();
-        
+
         response.setContentType("image/png");
         response.setHeader("Content-Disposition", "inline;filename=\"" + "image.png" + "\"");
          

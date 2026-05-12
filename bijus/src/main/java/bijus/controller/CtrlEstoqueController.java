@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -11,6 +12,7 @@ import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.PrimeFaces;
 
 import bijus.beans.PecaBean;
 import bijus.entity.Categoria;
@@ -23,27 +25,26 @@ import util.FacesUtil;
 @ManagedBean
 @SessionScoped
 public class CtrlEstoqueController {
-	
-	private BijusService service = new BijusService();
+	@EJB
+	private BijusService service;
 
 	private PecaBean peca = new PecaBean();
 
-	
 
 	public String detail() {
 		this.peca = new PecaBean();
 
-		Integer id = Integer.valueOf(FacesUtil.getRequest().getParameter("id"));
-		Peca peca  = service.findObject(Peca.class, id); 
+		Long id = Long.valueOf(FacesUtil.getRequest().getParameter("id"));
+		Peca peca  = service.getPeca(id);
 		this.peca.copy(this,peca);
-		
+
 		loadCategoria();
 		loadTipos();
 		
 		return "/estoque/CtlEstoquePeca.xhtml";
 	}
 
-	public void resetImage() {
+	public void resetImage() { 
 		peca.setFileBytes(null);
 		peca.setFile(null);
 	}
@@ -57,6 +58,7 @@ public class CtrlEstoqueController {
 		} else {
 			service.persistPeca(peca);	
 		}
+		PrimeFaces.current().executeScript("PF('dlgCadPecaOK').show()");
 	}
 	
 	public void handleFileUpload(FileUploadEvent event) {
@@ -67,9 +69,9 @@ public class CtrlEstoqueController {
 	public void setImageViewer(byte[] imageBytes) {
 		List<Peca>list	= new ArrayList<Peca>();
 		Peca peca 		= new Peca();
-		
+
 		peca.setImagem(imageBytes);
-		peca.setId(1);
+		peca.setId(1L);
 		list.add(peca);
 		
 		HttpSession session = FacesUtil.getSession();
@@ -119,12 +121,7 @@ public class CtrlEstoqueController {
 	}
 	
 	public List<TipoPeca> getTiposPeca() {
-		PersistenceServiceUtil persis = new PersistenceServiceUtil();
-		try {
-			return persis.findAll(TipoPeca.class,null);
-		} finally {
-			persis.close();
-		}
+		return service.findAllPecas();
 	}
 	
 	public PecaBean getPeca() {

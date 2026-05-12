@@ -3,6 +3,8 @@ package bijus.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpSession;
@@ -21,19 +23,20 @@ public class BijusCarouselController {
 	private List<Peca>semiJoias  = new ArrayList<Peca>();
 	private List<Joia>joias 	 = new ArrayList<Joia>();
 
-	private BijusService bijusService = new BijusService();
+	@EJB
+	private BijusService bijusService;
 	
 	
-	
-	public BijusCarouselController() {
+	@PostConstruct
+	public void postConstruct() {
 		bijus.addAll(
-			bijusService.getBijus()	
+			bijusService.getBijus()
 		);
 		joias.addAll(
-			bijusService.getJoias()	
+			bijusService.getJoias()
 		);
 		semiJoias.addAll(
-			bijusService.getSemiJoias()	
+			bijusService.getSemiJoias()
 		);
 		populateImageList();
 	}

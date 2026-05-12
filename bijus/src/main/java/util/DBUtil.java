@@ -10,8 +10,6 @@ import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import org.hibernate.ejb.Ejb3Configuration;
-
 import bijus.entity.Peca;
 
 public class DBUtil {
@@ -93,14 +91,17 @@ public class DBUtil {
         properties.put("hibernate.format_sql", "true");
 
         //Class.forName("org.hibernate.ejb.HibernatePersistence");
-        
+        /*
         Ejb3Configuration cfg = new Ejb3Configuration();
         cfg.addProperties(properties);
         cfg.addAnnotatedClass(Peca.class);
 
         return cfg.buildEntityManagerFactory();
-        
-//        return Persistence.createEntityManagerFactory("PU",properties);	
+
+        */
+
+//        return Persistence.createEntityManagerFactory("PU",properties);
+		return null;
 	}
 	
 	static void initDB() throws Exception {

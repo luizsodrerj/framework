@@ -33,7 +33,7 @@ public class Peca implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@Lob
     @Column(name = "imagem", columnDefinition="LONGVARBINARY")
@@ -79,10 +79,10 @@ public class Peca implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

@@ -12,7 +12,7 @@
 
 	<style>
 	  .value {
-		font-weight: bold;
+		  font-weight: bold;
 	  }
 	</style>
 
@@ -54,14 +54,13 @@
 	            </f:facet>
 	            <h:outputText value="#{msgRes['lb.descricao']}" />
 	            <h:outputText value="#{joia.descricao}" />
-
 	            <h:outputText value="#{msgRes['lb.preco']}" />
 	            <h:outputText value="#{joia.preco}">
-					<f:convertNumber
-				 		type="currency"
-	         			locale="pt_BR"/>
-	            </h:outputText>
-		     </p:panelGrid>
+                <f:convertNumber
+                    type="currency"
+                    locale="pt_BR"/>
+              </h:outputText>
+         </p:panelGrid>
 		     <f:facet name="footer"></f:facet>
 		   </p:carousel>
        </div>

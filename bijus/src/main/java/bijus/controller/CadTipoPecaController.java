@@ -5,72 +5,59 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.ejb.EJB;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import bijus.entity.TipoPeca;
+import bijus.service.TipoPecaService;
 import framework.persistence.jpa.PersistenceServiceUtil;
+import framework.util.StringUtil;
 import util.FacesUtil;
 
+
+
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class CadTipoPecaController {
 
-	private PersistenceServiceUtil persis = new PersistenceServiceUtil();
+	@EJB
+	private TipoPecaService service;
 
 	private List<TipoPeca>tipos = new ArrayList<TipoPeca>();
 	private TipoPeca tipo = new TipoPeca();
 	
 
 	public void persistTipoPeca() {
-		tipo.setId(null);
-		
-		try {
-			persis.beginTransaction();
-			persis.persist(tipo);
-			persis.commit();
-
-			tipos = persis.findAll(TipoPeca.class,null);
+		String id = FacesUtil.getRequest().getParameter("id");
+		if (id != null && !"".equals(id)) {
+			updateTipoPeca();
+		} else {
+			tipo.setId(null);
+			service.persist(tipo);
+			tipos = service.findAll(TipoPeca.class,null);
 			tipo  = new TipoPeca();
-			
-		} finally {
-			persis.close();
 		}
 	}
 
 	public void updateTipoPeca() {
-		try {
-			persis.beginTransaction();
+		service.updateTipoPeca(tipo, Integer.valueOf(FacesUtil.getRequest().getParameter("id")));
 
-			String id = FacesUtil.getRequest().getParameter("id");
-			
-			TipoPeca tipo = persis.findObject(TipoPeca.class,Integer.valueOf(id));
-			tipo.setTipo(this.tipo.getTipo());
-			
-			persis.merge(tipo);
-			persis.commit();
-			
-		} finally {
-			persis.close();
-		}
+		tipos = service.findAll(TipoPeca.class,null);
+		tipo = new TipoPeca();
 	}
 
-	public String getSelectedTipo() {
-		try {
-			String id = FacesUtil.getRequest().getParameter("id");
-			tipo = persis.findObject(TipoPeca.class,Integer.valueOf(id));
-			
-		} finally {
-			persis.close();
-		}
+	public String selectTipo() {
+		String id = FacesUtil.getRequest().getParameter("id");
+		tipo = service.findObject(TipoPeca.class,Integer.valueOf(id));
+
 		return "/estoque/CadTipoPeca.xhtml";
 	}
-	
-	
+
 	public String initialize() {
-		try {
-			tipos = persis.findAll(TipoPeca.class,null);
-		} finally {
-			persis.close();
-		}
+		tipos = service.findAll(TipoPeca.class,null);
+		tipo  = new TipoPeca();
+
 		return "/estoque/CadTipoPeca.xhtml";
 	}
 

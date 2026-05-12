@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ejb.EJB;
 
 import bijus.entity.Peca;
 import bijus.service.BijusService;
@@ -16,7 +17,8 @@ import bijus.service.BijusService;
 @SessionScoped
 public class ListPecasController {
 
-	private BijusService bijusService = new BijusService();
+	@EJB
+	private BijusService bijusService;
 
 	private List<Peca>pecas = new ArrayList<Peca>();
 	

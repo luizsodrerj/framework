@@ -3,51 +3,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>https://raw.github.com/WASdev/ci.maven.tools/master/LICENSE</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>bijus</groupId>
 	<artifactId>bijus</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-
 	<name>bijus</name>
-	<url>http://maven.apache.org</url>
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>3.6.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.0.Final</version>
-		</dependency>
-		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
+			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -59,17 +27,7 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>1.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.myfaces.core</groupId>
-			<artifactId>myfaces-impl</artifactId>
-			<version>2.0.0</version>
+			<version>10.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>framework</groupId>
@@ -96,6 +54,13 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.15.Final</version>
+		</dependency>
+		<!--
+		-->
 	</dependencies>
 
 	<build>
@@ -119,9 +84,15 @@
 					node_modules/**
 				  </warSourceExcludes>
 				</configuration>
-			</plugin>			
-			<!-- 
-			-->
+			</plugin>
+			<plugin>
+				<groupId>io.openliberty.tools</groupId>
+				<artifactId>liberty-maven-plugin</artifactId>
+				<version>3.12.0</version> <!-- Use the latest version -->
+				<configuration>
+					<serverName>defaultServer</serverName>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

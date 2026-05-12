@@ -3,6 +3,7 @@ package bijus.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import bijus.entity.TipoPeca;
 import org.apache.commons.beanutils.BeanUtils;
 
 import bijus.entity.Bijuteria;
@@ -10,98 +11,92 @@ import bijus.entity.Joia;
 import bijus.entity.Peca;
 import framework.persistence.jpa.PersistenceServiceUtil;
 
-public class BijusService extends BaseService {
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-	private PersistenceServiceUtil persistence = new PersistenceServiceUtil();
+@Stateless
+public class BijusService {
 
-	private EstoqueService estoqueService = new EstoqueService();
-	
-	private List<Bijuteria>bijus = new ArrayList<Bijuteria>();
-	private List<Peca>semijoias  = new ArrayList<Peca>();
-	private List<Joia>joias 	 = new ArrayList<Joia>();
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	
+	@EJB
+	private EstoqueService estoqueService;
+
+
+	private PersistenceServiceUtil getPersistence() {
+		return new PersistenceServiceUtil(entityManager);
+	}
+
+
+	public List<TipoPeca> findAllPecas() {
+		return getPersistence().findAll(TipoPeca.class,null);
+	}
+
+	public Peca getPeca(Long id) {
+		return entityManager.find(Peca.class, id);
+	}
 
 	public void merge(Peca peca) {
 		try {
-			persistence.beginTransaction();
-			
-			Peca persistedPeca = persistence.findObject(Peca.class,peca.getId());
-			
-			BeanUtils.copyProperties(persistedPeca, peca);
+			PersistenceServiceUtil persistence = getPersistence();
+			Peca persistedPeca = persistence.findObject(Peca.class, peca.getId());
 
+			BeanUtils.copyProperties(persistedPeca, peca);
 			persistence.merge(persistedPeca);
-			persistence.commit();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			persistence.rollbackTransaction();
 			throw new RuntimeException(e);
-		} finally {
-			persistence.close();
 		}
 	}
 	
 	public void persistPeca(Peca peca) {
-		try {
-			persistence.beginTransaction();
-			persistence.persist(peca);
-			persistence.commit();
-		} finally {
-			persistence.close();
-		}
+		getPersistence().persist(peca);
 	}
-	
-	 
+
 	public List<Peca> getPecas() {
-		try {
-			return persistence.findAll(Peca.class, null);
-		} finally {
-			persistence.close();
-		}
+		return getPersistence().findAll(Peca.class, null);
 	}
 	
 	public List<Joia> getJoias() {
-		if (joias.isEmpty()) {
-			loadJoias();
-		}
-		return joias;
+		return loadJoias();
 	}
 
 	public List<Peca> getSemiJoias() {
-		if (semijoias.isEmpty()) {
-			loadSemiJoias();;
-		}
-		return semijoias;
+		return loadSemiJoias();
 	}
 	
 	public List<Bijuteria> getBijus() {
-		if (bijus.isEmpty()) {
-			loadBijus();
-		}
-		return bijus;
+		return (List<Bijuteria>)loadBijus();
 	}
 	
-	private void loadBijus() {
+	private List<? extends Peca> loadBijus() {
 		List<Peca>pecas = estoqueService.getBijus();
-		
+		List<Bijuteria>bijus = new ArrayList<Bijuteria>();
+
 		for (Peca peca : pecas) {
 			Bijuteria biju = new Bijuteria();
 			populatePeca(bijus, biju, peca);
 		}
+		return bijus;
 	}
 
-	private void loadJoias() {
+	private List<Joia> loadJoias() {
 		List<Peca>pecas = estoqueService.getJoias();
-		
+		List<Joia>joias = new ArrayList<>();
+
 		for (Peca peca : pecas) {
 			Joia joia = new Joia();
 			populatePeca(joias, joia, peca);
 		}
+		return joias;
 	}
 	
-	private void loadSemiJoias() {
-		semijoias = estoqueService.getSemiJoias();
+	private List<Peca> loadSemiJoias() {
+		return estoqueService.getSemiJoias();
 	}
 
 	private void populatePeca(

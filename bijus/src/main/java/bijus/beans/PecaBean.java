@@ -25,7 +25,7 @@ public class PecaBean {
 	private String status;
 	private Double preco;
 	private Integer qtd;
-	private Integer id;
+	private Long id;
 	
 	
 	public boolean isImageNotNull() {
@@ -130,11 +130,11 @@ public class PecaBean {
 		this.fileBytes = fileBytes;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition template="../shopLayout.xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+<h:head></h:head>
+<h:form>
+ <div style="margin-top: 12%;">
+  <div class="container">
+
+    <p:panel header="#{shoppingCartController.bean.peca.descricao}" style="text-align:center;width: 555px;">
+      <h:panelGrid columns="1" style="width:100%; text-align:center;">
+        <h:panelGroup rendered="#{not empty shoppingCartController.bean.peca.imagem}">
+          <h:graphicImage
+            value="/image?id=#{shoppingCartController.bean.peca.id}"
+            width="150" height="125"/>
+        </h:panelGroup>
+        <h:graphicImage
+          value="/img/not-available.jpeg"
+          rendered="#{empty shoppingCartController.bean.peca.imagem}"
+          width="150" height="125"/>
+      </h:panelGrid>
+      <h:panelGrid columns="2" style="width:70%; text-align:right; margin-top:15px;">
+        <h:outputText value="Categoria" style="font-weight: bold;"/>
+        <h:outputText value="#{shoppingCartController.bean.peca.categoria}" />
+
+        <h:outputText value="Tipo de #{msg['lb.peca']}" style="font-weight: bold;"/>
+        <h:outputText value="#{shoppingCartController.bean.peca.tipo}" />
+
+        <h:outputText value="Informe a Quantidade Desejada" style="font-weight: bold;"/>
+        <h:inputText  value="#{shoppingCartController.bean.qtd}"
+                      style="width:60px;"/>
+
+        <h:outputText value="#{msg['lb.preco']}" style="font-weight: bold;"/>
+        <h:outputText value="#{shoppingCartController.bean.peca.preco}">
+          <f:convertNumber
+            type="currency"
+            locale="pt_BR"/>
+        </h:outputText>
+      </h:panelGrid>
+
+      <h:inputHidden value="#{shoppingCartController.bean.id}"/>
+
+      <h:panelGrid columns="1" style="width:100%; text-align:center; margin-top:25px;">
+        <p:commandButton
+          value="Adicionar Produto ao Carrinho"
+          styleClass="ui-button-warning"
+          icon="pi pi-shopping-cart"/>
+      </h:panelGrid>
+    </p:panel>
+
+  </div>
+ </div>
+</h:form>
+</ui:define>
+</ui:composition>

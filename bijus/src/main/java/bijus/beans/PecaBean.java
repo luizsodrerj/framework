@@ -11,6 +11,8 @@ import bijus.entity.Peca;
 
 public class PecaBean {
 
+	private Peca peca;
+
 	private UploadedFile file;
 	private byte[] fileBytes;
 	
@@ -146,7 +148,11 @@ public class PecaBean {
 		this.qtd = qtd;
 	}
 
+	public void setPeca(Peca peca) {
+		this.peca = peca;
+	}
 
-
-
+	public Peca getPeca() {
+		return peca;
+	}
 }

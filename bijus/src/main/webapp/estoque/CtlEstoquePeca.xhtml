@@ -7,14 +7,10 @@
     xmlns:p="http://primefaces.org/ui">
 <ui:define name="content">
 
-   	<f:loadBundle basename="msg" var="msgRes"/>
-
-		<ui:include src="../admin/nav.xhtml"/>
-
    <div style="margin-top:6%;">
      <div class="container">
 	     <h:form enctype="multipart/form-data" id="form">
-  
+
 				<p:panelGrid styleClass="ui-noborder">
 					 <p:row>
               <p:column colspan="2">
@@ -42,7 +38,7 @@
 					  </p:row>
 			      <p:row>
               <p:column>
-                <span style="font-weight: bold;">#{msgRes['lb.descricao']} da #{msgRes['lb.peca']}</span>
+                <span style="font-weight: bold;">#{msg['lb.descricao']} da #{msg['lb.peca']}</span>
               </p:column>
               <p:column>
                   <p:inputText
@@ -68,7 +64,7 @@
 			      </p:row>
             <p:row>
                 <p:column style="vertical-align: top;">
-                  <span style="font-weight: bold;">Tipo de #{msgRes['lb.peca']}</span>
+                  <span style="font-weight: bold;">Tipo de #{msg['lb.peca']}</span>
                 </p:column>
                 <p:column>
                     <p:selectOneMenu
@@ -82,7 +78,7 @@
                         value="#{ctrlEstoqueController.peca.tipos}"/>
                     </p:selectOneMenu>
                     <br/>
-                    Caso #{msgRes['lb.nao']} encontre o Tipo de #{msgRes['lb.peca']}
+                    Caso #{msg['lb.nao']} encontre o Tipo de #{msg['lb.peca']}
                     na lista <br/>
                     clique
                     <h:commandLink
@@ -93,7 +89,7 @@
                 </p:column>
             </p:row>
 				    <p:row>
-						  <p:column><span style="font-weight: bold;">#{msgRes['lb.preco']}</span></p:column>
+						  <p:column><span style="font-weight: bold;">#{msg['lb.preco']}</span></p:column>
 				        <p:column>
                   <p:inputNumber
                     value="#{ctrlEstoqueController.peca.preco}"
@@ -113,14 +109,14 @@
 			      </p:row>
 				</p:panelGrid>
 
-        <ui:include src="include-button-bar.xhtml"/>  
+        <ui:include src="include-button-bar.xhtml"/>
 
 	    </h:form>
 	   </div>
    </div>
 
-   <ui:include src="include-dialogs.xhtml"/>  
-   
+   <ui:include src="include-dialogs.xhtml"/>
+
 
 
 </ui:define>

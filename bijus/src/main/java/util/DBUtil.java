@@ -58,7 +58,7 @@ public class DBUtil {
 		try {
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
-			
+
 			Peca p = new Peca();
 			p.setDescricao("Teste Joia com Imagem");
 			p.setCategoria("Joia");
@@ -103,7 +103,7 @@ public class DBUtil {
 //        return Persistence.createEntityManagerFactory("PU",properties);
 		return null;
 	}
-	
+
 	static void initDB() throws Exception {
 		Connection c = null;
 		try {

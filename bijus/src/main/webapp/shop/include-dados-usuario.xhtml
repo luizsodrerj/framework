@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGroup rendered="#{not empty usuarioController.usuario.id}">
+		<div style="height: 26px;">
+	      <a class="nav-link" href="#{request.contextPath}/faces/shop/usuario/CadastroEndereco.xhtml" style="font-size: 0.8rem;">
+	        Olá, Beto
+	      </a>
+	    </div>
+	    <a class="nav-link" href="#{request.contextPath}/faces/shop/usuario/CadastroEndereco.xhtml" style="padding-top:0px; padding-bottom:33px;">
+	      Conta
+	    </a>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{empty usuarioController.usuario.id}">
+	    <h:commandLink 
+	    	action="/shop/usuario/CadastroUsuario.xhtml" 
+	    	style="padding-top:15px;"
+	    	styleClass="nav-link"
+	    	value="Conta" />
+	</h:panelGroup>
+	
+
+
+</ui:composition>

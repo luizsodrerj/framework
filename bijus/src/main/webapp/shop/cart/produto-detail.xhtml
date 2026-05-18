@@ -7,10 +7,31 @@
 <ui:define name="content">
 <h:head></h:head>
 <h:form>
- <div style="margin-top: 12%;">
+ <style>
+   [id*='headderPanel'] {
+     text-align:center;
+     width: 440px;
+   }
+   .parentDiv {
+     margin-left: -10px;
+     margin-top: 14%;
+   }
+   @media (min-width: 765px) {
+     [id*='headderPanel'] {
+       text-align:center;
+       width: 555px;
+     }
+     .parentDiv {
+       margin-left: 1px;
+       margin-top: 10%;
+     }
+   }
+ </style>
+
+ <div class="parentDiv">
   <div class="container">
 
-    <p:panel header="#{shoppingCartController.bean.peca.descricao}" style="text-align:center;width: 555px;">
+    <p:panel id="headderPanel" header="#{shoppingCartController.bean.peca.descricao}" style="text-align:center;width: 555px;">
       <h:panelGrid columns="1" style="width:100%; text-align:center;">
         <h:panelGroup rendered="#{not empty shoppingCartController.bean.peca.imagem}">
           <h:graphicImage
@@ -22,7 +43,7 @@
           rendered="#{empty shoppingCartController.bean.peca.imagem}"
           width="150" height="125"/>
       </h:panelGrid>
-      <h:panelGrid columns="2" style="width:70%; text-align:right; margin-top:15px;">
+      <h:panelGrid columns="2" style="width:75%; text-align:right; margin-top:15px;">
         <h:outputText value="Categoria" style="font-weight: bold;"/>
         <h:outputText value="#{shoppingCartController.bean.peca.categoria}" />
 
@@ -46,8 +67,19 @@
       <h:panelGrid columns="1" style="width:100%; text-align:center; margin-top:25px;">
         <p:commandButton
           value="Adicionar Produto ao Carrinho"
+          action="#{shoppingCartController.addProdutoToCart}"
           styleClass="ui-button-warning"
-          icon="pi pi-shopping-cart"/>
+          icon="pi pi-shopping-cart"
+          ajax="false"/>
+
+        <span style="margin-top: 7px;"></span>
+
+        <p:commandButton
+          action="#{shopPortifolioController.redirectToHome}"
+          value="Voltar e Continuar Comprando"
+          icon="pi pi-arrow-circle-left"
+          styleClass="ui-button-warning"
+          ajax="false"/>
       </h:panelGrid>
     </p:panel>
 

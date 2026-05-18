@@ -30,16 +30,10 @@
               styleClass="ui-button-warning"
               icon="pi pi-search"/>
         </h:form>
-        <ul class="navbar-nav mr-auto" style="margin-left:30px; margin-bottom:-32px;">
+        <h:form>
+         <ul class="navbar-nav mr-auto" style="margin-left:30px; margin-bottom:-32px;">
           <li class="nav-item">
-            <div style="height: 26px;">
-              <a class="nav-link" href="#" style="font-size: 0.8rem;">
-                Olá, Beto
-              </a>
-            </div>
-            <a class="nav-link" href="#" style="padding-top:0px; padding-bottom:33px;">
-              Conta
-            </a>
+          	  <ui:include src="include-dados-usuario.xhtml" />	
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="padding-top: 15px;">
@@ -47,25 +41,40 @@
             </a>
           </li>
           <li class="nav-item" style="margin-right: 0.1rem;">
-            <a class="nav-link" href="#" style="margin-top:2px;">
-              <p:button
-                rendered="true"
-                styleClass="ui-button-warning"
-                icon="pi pi-shopping-cart"/>
-            </a>
-            <a class="nav-link" style="display:none;">
-              <p:button
-                rendered="false"
-                styleClass="ui-button-warning"
-                icon="pi pi-cart-plus"/>
-            </a>
+            <h:panelGroup rendered="#{empty shoppingCartController.carrinho}">
+              <a class="nav-link" onclick="return false;" href="#" style="margin-top:2px;">
+                <p:button
+                  styleClass="ui-button-warning"
+                  icon="pi pi-shopping-cart"
+                  onclick="return false;"/>
+              </a>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty shoppingCartController.carrinho}">
+              <h:commandLink  action="#{shoppingCartController.onClickBtShoppingCart}"
+                              style="margin-top: 2px;"
+                              styleClass="nav-link">
+                 <p:button
+                    value="#{shoppingCartController.carrinho.size().toString()}"
+                    styleClass="ui-button-warning"
+                    icon="pi pi-shopping-cart"/>
+              </h:commandLink>
+            </h:panelGroup>
           </li>
           <li class="nav-item" style="margin-left: -8px;">
-            <a class="nav-link" href="#" style="padding-top:15px;">
-              Carrinho
-            </a>
+            <h:panelGroup rendered="#{empty shoppingCartController.carrinho}">
+              <a class="nav-link" href="#" style="padding-top:15px;" onclick="return false;">
+                Carrinho
+              </a>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty shoppingCartController.carrinho}">
+              <h:commandLink  action="#{shoppingCartController.onClickBtShoppingCart}"
+                              style="padding-top:15px;"
+                              styleClass="nav-link"
+                              value="Carrinho"/>
+            </h:panelGroup>
           </li>
-        </ul>
+         </ul>
+        </h:form>
       </div>
     </div>
   </nav>

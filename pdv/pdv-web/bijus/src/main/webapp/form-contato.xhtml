@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
+
+  <f:loadBundle basename="msg" var="msgRes"/>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">Entre em contato conosco</h2>
+        <h3 class="section-subheading text-muted">
+          #{msgRes['lb.eh']} muito importante para #{msgRes['lb.nos']} sua #{msgRes['lb.opiniao']}.
+        </h3>
+      </div>
+      <h:form id="contactForm">
+        <div class="row align-items-stretch mb-5">
+          <div class="col-md-6">
+            <div class="form-group" style="margin-bottom: 37px">
+              <!-- Name input-->
+              <span class="ui-float-label">
+                  <p:inputText
+                    value="#{mensagensController.msg.nome}"
+                    styleClass="form-control"
+                    id="name"/>
+                  <p:outputLabel 
+                  	value="Seu nome *" 
+                  	for="@previous"/>
+              </span>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group" style="margin-bottom: 37px">
+              <!-- Email address input-->
+              <span class="ui-float-label">
+                  <p:inputText
+                  	value="#{mensagensController.msg.email}" 
+                    styleClass="form-control"
+                    id="email"/>
+                  <p:outputLabel 
+                  	value="Seu e-mail *" 
+                  	for="@previous"/>
+              </span>
+              <div class="invalid-feedback"></div>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group mb-md-0">
+              <!-- Phone number input-->
+              <span class="ui-float-label">
+                  <p:inputMask
+                    value="#{mensagensController.msg.telefone}"
+                    styleClass="form-control"
+                    mask="(99)99999-9999"
+                    id="phone"/>
+                  <p:outputLabel 
+                  	value="Seu telefone *" 
+                  	for="@previous"/>
+              </span>
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form-group-textarea mb-md-0">
+              <!-- Message input-->
+			  <p:inputTextarea
+			  	value="#{mensagensController.msg.mensagem}"
+			  	placeholder="Sua Mensagem *"
+			  	styleClass="form-control"
+			  	id="message"/>
+			  	
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Submit success message-->
+        <!---->
+        <!-- This is what your users will see when the form-->
+        <!-- has successfully submitted-->
+        <div class="d-none" id="submitSuccessMessage">
+          <div class="text-center text-white mb-3">
+            <div class="fw-bolder">Form submission successful!</div>
+            To activate this form, sign up at
+            <br />
+            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+          </div>
+        </div>
+        <!-- Submit error message-->
+        <!---->
+        <!-- This is what your users will see when there is-->
+        <!-- an error submitting the form-->
+        <div class="d-none" id="submitErrorMessage">
+          <div class="text-center text-danger mb-3">
+            Ocorreu um erro ao tentar enviar a mensagem!
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h:commandButton
+          	styleClass="btn btn-primary btn-xl text-uppercase" 
+          	action="#{mensagensController.persist}" 
+          	value="Enviar Mensagem" />
+        </div>
+        
+      </h:form>
+    </div>
+  </section>
+
+
+</ui:composition>

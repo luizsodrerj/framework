@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head></h:head>
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="background-color:black;">
+    <div class="container">
+      <h:form>
+        <h:commandLink  action="#{shopPortifolioController.redirectToHome}"
+                        styleClass="navbar-brand">
+          <img src="#{request.contextPath}/assets/img/nav-bar-logo.png" style="margin-bottom:7px;" height="40px;" alt="..." />
+        </h:commandLink>
+      </h:form>
+      <button class="navbar-toggler" style="color:#fff;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+              onclick="jQuery('[id*=menuButton]').click();">
+          Menu <i class="fas fa-bars ms-1"></i>
+      </button>
+      <ui:include src="include-menu.xhtml" />
+
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <h:form styleClass="form-inline my-2 my-lg-0" style="display: flex;">
+          <input class="form-control mr-sm-2"
+                 style="width:550px;"
+                 type="search"
+                 placeholder="Pesquisar na BijuGirls"
+                 aria-label="Pesquisar"/>
+          <p:button
+              styleClass="ui-button-warning"
+              icon="pi pi-search"/>
+        </h:form>
+        <h:form>
+         <ul class="navbar-nav mr-auto" style="margin-left:30px; margin-bottom:-32px;">
+          <li class="nav-item">
+          	  <ui:include src="include-dados-usuario.xhtml" />	
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="padding-top: 15px;">
+              Pedidos
+            </a>
+          </li>
+          <li class="nav-item" style="margin-right: 0.1rem;">
+            <h:panelGroup rendered="#{empty shoppingCartController.carrinho}">
+              <a class="nav-link" onclick="return false;" href="#" style="margin-top:2px;">
+                <p:button
+                  styleClass="ui-button-warning"
+                  icon="pi pi-shopping-cart"
+                  onclick="return false;"/>
+              </a>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty shoppingCartController.carrinho}">
+              <h:commandLink  action="#{shoppingCartController.onClickBtShoppingCart}"
+                              style="margin-top: 2px;"
+                              styleClass="nav-link">
+                 <p:button
+                    value="#{shoppingCartController.carrinho.size().toString()}"
+                    styleClass="ui-button-warning"
+                    icon="pi pi-shopping-cart"/>
+              </h:commandLink>
+            </h:panelGroup>
+          </li>
+          <li class="nav-item" style="margin-left: -8px;">
+            <h:panelGroup rendered="#{empty shoppingCartController.carrinho}">
+              <a class="nav-link" href="#" style="padding-top:15px;" onclick="return false;">
+                Carrinho
+              </a>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty shoppingCartController.carrinho}">
+              <h:commandLink  action="#{shoppingCartController.onClickBtShoppingCart}"
+                              style="padding-top:15px;"
+                              styleClass="nav-link"
+                              value="Carrinho"/>
+            </h:panelGroup>
+          </li>
+         </ul>
+        </h:form>
+      </div>
+    </div>
+  </nav>
+
+
+</ui:composition>

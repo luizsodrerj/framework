@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition template="../shopLayout.xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+<h:head></h:head>
+<h:form>
+  <div style="margin-top:6%;">
+   <div class="container">
+
+	<style>
+		div.ui-panelgrid-cell.ui-g-12.ui-md-6 {
+			width: 18%;
+		}
+	
+		input[type="text"] {
+			width: 535px;
+		}
+	</style>
+
+    <p:panel header="Cadastro de Endereço" style="margin-top:10%; width:760px; text-align:center;">
+
+        <p:messages/>
+
+        <p:panelGrid columns="2" layout="grid">
+
+            <p:outputLabel value="Rua"/>
+            <p:inputText value="#{usuarioController.endereco.rua}"/>
+
+            <p:outputLabel value="Número"/>
+            <p:inputText value="#{usuarioController.endereco.numero}"/>
+
+            <p:outputLabel value="Complemento"/>
+            <p:inputText value="#{usuarioController.endereco.complemento}"/>
+
+            <p:outputLabel value="Bairro"/>
+            <p:inputText value="#{usuarioController.endereco.bairro}"/>
+
+            <p:outputLabel value="Cidade"/>
+            <p:inputText value="#{usuarioController.endereco.cidade}"/>
+
+            <p:outputLabel value="Estado"/>
+            <p:inputText value="#{usuarioController.endereco.estado}"/>
+
+            <p:outputLabel value="CEP"/>
+            <p:inputMask mask="99999-999"
+                         value="#{usuarioController.endereco.cep}"
+                         style="width: 225px;"/>
+
+            <p:outputLabel value="Telefone"/>
+            <p:inputMask mask="(99) 99999-9999"
+                         value="#{usuarioController.endereco.telefone.numero}"
+                         style="width: 225px;"/>
+
+        </p:panelGrid>
+
+        <p:commandButton value="Salvar"
+                         action="#{usuarioController.salvarEndereco()}"
+                         styleClass="ui-button-secondary"
+                         icon="pi pi-key"
+                         ajax="false"/>
+
+    </p:panel>
+
+   </div>
+  </div>
+</h:form>
+</ui:define>
+</ui:composition>

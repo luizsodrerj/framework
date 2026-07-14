@@ -1,0 +1,75 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:include src="/header.xhtml" />
+
+    <body id="page-top">
+    
+    	<f:loadBundle basename="msg" var="msgRes"/>
+    	
+		<!-- <:include src="/estoque/navbar.xhtml"/> -->
+		    	
+    	<div style="margin-top:7%;">
+    	  <h:form id="form">
+	        <div class="container">
+	        	<div style="margin-bottom: 6px;">
+		        	<h:commandButton 
+		        		action="#{mensagensController.showInbox}"
+		        		styleClass="btn btn-primary btn-lg"
+		        		value="Filtrar Mensagens"/>
+	        	</div>
+	        	<br/>
+				<h:dataTable 
+					value="#{mensagensController.mensagens}"
+					style="width: 95%;"
+					styleClass="table"  
+					var="message" 
+			        id="messages">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						
+	 					<a onclick="document.forms[0].id.value = '#{message.id}'; document.getElementById('form:btDetail').click(); return false;"
+	 					   href="#">	
+	 					   #{message.nome}
+	 					</a>	
+				    </h:column>
+					<h:column>
+						<f:facet name="header">E-mail</f:facet>
+				        <h:outputText value="#{message.email}" />
+				    </h:column>
+					<h:column>
+						<f:facet name="header">Telefone</f:facet>
+				        <h:outputText value="#{message.telefone}" />
+				    </h:column>
+					<h:column>
+						<f:facet name="header">Data Envio</f:facet>
+				        <h:outputText value="#{message.data}">
+				        	<f:convertDateTime pattern="dd/MM/yyyy"/>
+				        </h:outputText>
+				    </h:column>
+				</h:dataTable>
+				<input type="hidden" name="id"/>	
+				
+				<div style="display: none;">
+					<h:commandButton
+						action="#{mensagensController.showMessage}"
+						id="btDetail"/>
+				</div>
+				
+	        </div>
+		  </h:form>
+		</div>
+        
+        
+        <!-- Footer-->
+		<!-- <uiinclude src="/footer.xhtml"/> -->
+
+		        
+    </body>
+</html>

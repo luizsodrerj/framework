@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
+
+  <p:panel header="Valores totais do carrinho" style="text-align:center; margin-top:14%;">
+    <h:panelGrid columns="1">
+      <p:button
+        value="Encerrar Compra e Emitir Pedido"
+        styleClass="ui-button-success"
+        style="width: 284px;"
+        icon="pi pi-dollar"/>
+
+      <p:commandButton
+        action="#{shopPortifolioController.redirectToHome}"
+        value="Continuar Comprando"
+        icon="pi pi-shopping-cart"
+        styleClass="ui-button-warning"
+        style="width: 284px;"
+        ajax="false"/>
+    </h:panelGrid>
+  </p:panel>
+
+</ui:composition>
+

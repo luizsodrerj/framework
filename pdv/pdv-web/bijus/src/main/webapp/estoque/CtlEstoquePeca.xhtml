@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<ui:composition template="../commonLayout.xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+
+   <div style="margin-top:6%;">
+     <div class="container">
+	     <h:form enctype="multipart/form-data" id="form">
+
+				<p:panelGrid styleClass="ui-noborder">
+					 <p:row>
+              <p:column colspan="2">
+                <p:fileUpload
+                  mode="advanced"
+                  value="#{ctrlEstoqueController.peca.file}"
+                  listener="${ctrlEstoqueController.handleFileUpload}"
+                  allowTypes="/(\.|\/)(gif|jpe?g|jpg|png)$/"
+                  label="Escolher Imagem"
+                  update="form,imagem"
+                  dragDropSupport="false"
+                  sizeLimit="500000"
+                  fileLimit="1"/>
+              </p:column>
+				   </p:row>
+			      <p:row>
+				        <p:column colspan="2">
+                    <p:graphicImage
+                      value="/image?id=1"
+                      rendered="#{ctrlEstoqueController.peca.imageNotNull}"
+                      id="imagem"
+                      height="135"
+                      width="150"/>
+				        </p:column>
+					  </p:row>
+			      <p:row>
+              <p:column>
+                <span style="font-weight: bold;">#{msg['lb.descricao']} da #{msg['lb.peca']}</span>
+              </p:column>
+              <p:column>
+                  <p:inputText
+                    value="#{ctrlEstoqueController.peca.descricao}"
+                    style="width: 515px;"
+                    id="desc"/>
+              </p:column>
+            </p:row>
+            <p:row>
+                <p:column><span style="font-weight: bold;">Categoria</span></p:column>
+                <p:column>
+                    <p:selectOneMenu
+                      value="#{ctrlEstoqueController.peca.categoria}"
+                      style="width: 230px;"
+                      id="categoria">
+                      <f:selectItem
+                        itemLabel="Selecione uma Categoria"
+                        itemValue="" />
+                      <f:selectItems
+                        value="#{ctrlEstoqueController.peca.categorias}"/>
+                    </p:selectOneMenu>
+				        </p:column>
+			      </p:row>
+            <p:row>
+                <p:column style="vertical-align: top;">
+                  <span style="font-weight: bold;">Tipo de #{msg['lb.peca']}</span>
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu
+                      value="#{ctrlEstoqueController.peca.tipo}"
+                      style="width: 230px;"
+                      id="tipo">
+                      <f:selectItem
+                        itemLabel="Selecione um Tipo"
+                        itemValue="" />
+                      <f:selectItems
+                        value="#{ctrlEstoqueController.peca.tipos}"/>
+                    </p:selectOneMenu>
+                    <br/>
+                    Caso #{msg['lb.nao']} encontre o Tipo de #{msg['lb.peca']}
+                    na lista <br/>
+                    clique
+                    <h:commandLink
+                      style="color: blue !important;"
+                      action="#{cadTipoPecaController.initialize}"
+                      value=" aqui" />
+                    para cadastrar um novo Tipo.
+                </p:column>
+            </p:row>
+				    <p:row>
+						  <p:column><span style="font-weight: bold;">#{msg['lb.preco']}</span></p:column>
+				        <p:column>
+                  <p:inputNumber
+                    value="#{ctrlEstoqueController.peca.preco}"
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    id="preco"/>
+				      </p:column>
+	          </p:row>
+				    <p:row>
+              <p:column><span style="font-weight: bold;">Qtd. Estoque</span></p:column>
+              <p:column>
+                <p:inputNumber
+                  value="#{ctrlEstoqueController.peca.qtd}"
+                  decimalPlaces="0"
+                  id="qtd"/>
+              </p:column>
+			      </p:row>
+				</p:panelGrid>
+
+        <ui:include src="include-button-bar.xhtml"/>
+
+	    </h:form>
+	   </div>
+   </div>
+
+   <ui:include src="include-dialogs.xhtml"/>
+
+
+
+</ui:define>
+</ui:composition>

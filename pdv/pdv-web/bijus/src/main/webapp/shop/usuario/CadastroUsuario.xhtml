@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition template="../shopLayout.xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+<h:head></h:head>
+<h:form>
+  <div style="margin-top:6%;">
+   <div class="container">
+     <style>
+       .input {
+         width: 313px;
+       }
+       .span {
+         margin-left: 8px;
+       }
+     </style>
+
+     <p:panel header="Cadastro de Usuário" style="margin-top:14%; width:340px; text-align:center;">
+
+      <p:messages autoUpdate="true"/>
+
+      <p:outputLabel value="Nome"/>
+      <span class="span"></span>
+      <p:inputText
+          value="#{usuarioController.usuario.nome}"
+          styleClass="input"
+          required="true"/>
+
+      <br/><br/>
+
+      <p:outputLabel value="Email"/>
+      <span class="span" style="margin-right: 6px;"></span>
+      <p:inputText value="#{usuarioController.usuario.email}"
+                   styleClass="input"
+                   required="true"/>
+
+      <br/><br/>
+
+      <p:outputLabel value="Senha"/>
+      <span class="span"></span>
+      <p:password value="#{usuarioController.usuario.senha}"
+                  styleClass="input"
+                  required="true"/>
+
+      <br/><br/>
+
+      <p:commandButton
+        action="#{usuarioController.cadastrarUsuario}"
+        styleClass="ui-button-secondary"
+        value="Cadastrar"
+        icon="pi pi-key"
+        ajax="false"/>
+
+    </p:panel>
+
+
+   </div>
+  </div>
+</h:form>
+</ui:define>
+</ui:composition>

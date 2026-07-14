@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition template="../shopLayout.xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:define name="content">
+    <h:head></h:head>
+    <h:form>
+      <div style="margin-top:6%;">
+        <div class="container">
+
+          <ui:include src="include-resumo-cart.xhtml"/>
+
+          <p:dataGrid
+            value="#{shoppingCartController.carrinho}"
+            var="peca"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="12,15,21"
+            rows="21" columns="3"
+            paginator="true"
+            layout="grid"
+            id="pecas">
+            <f:facet name="header">
+              Lista de Produtos do Carrinho
+            </f:facet>
+            <p:panel header="#{peca.peca.descricao}" style="text-align:center">
+              <h:panelGrid columns="1" style="width:100%; text-align:center;">
+                <h:panelGroup rendered="#{not empty peca.peca.imagem}">
+                  <h:graphicImage
+                    value="/image?id=#{peca.peca.id}"
+                    width="150" height="125"/>
+                </h:panelGroup>
+                <h:graphicImage
+                  value="/img/not-available.jpeg"
+                  rendered="#{empty peca.peca.imagem}"
+                  width="150" height="125"/>
+              </h:panelGrid>
+              <h:panelGrid columns="2" style="width:100%; text-align:left;">
+                <h:outputText value="Categoria" style="font-weight: bold;"/>
+                <h:outputText value="#{peca.peca.categoria}" />
+                <h:outputText value="Tipo de Peça" style="font-weight: bold;"/>
+                <h:outputText value="#{peca.peca.tipo}" />
+                <h:outputText value="Quantidade Informada" style="font-weight: bold;"/>
+                <h:inputText  value="#{peca.qtd}"
+                              style="width:60px;"/>
+                <h:outputText value="Preço" style="font-weight: bold;"/>
+                <h:outputText value="#{peca.peca.preco}">
+                  <f:convertNumber
+                    type="currency"
+                    locale="pt_BR"/>
+                </h:outputText>
+              </h:panelGrid>
+              <h:panelGrid columns="1" style="width:100%; text-align:center;">
+                <a onclick="document.getElementById('id').value = '#{peca.peca.id}'; jQuery('[id*=btAddtoCart]').click(); return false;"
+                   class="btn btn-dark"
+                   href="#">
+                  Remover Produto do Carrinho
+                </a>
+              </h:panelGrid>
+            </p:panel>
+          </p:dataGrid>
+          <div style="display: none;">
+            <h:commandButton
+              action="#{shoppingCartController.prepareToAddToCart}"
+              id="btAddtoCart"/>
+          </div>
+          <input type="hidden" name="id" id="id"/>
+
+        </div>
+      </div>
+    </h:form>
+  </ui:define>
+</ui:composition>

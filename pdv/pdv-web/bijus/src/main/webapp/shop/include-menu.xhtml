@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+<h:form>
+
+  <p:commandButton
+      style="display: none;"
+      id="menuButton"
+      type="button"/>
+  <p:menu overlay="true" style="top: 34.000px;" trigger="menuButton" my="left top" at="left bottom">
+      <p:menuitem
+        value="Olá, Beto"
+        icon="pi pi-user"
+        ajax="false"/>
+      <p:menuitem
+        value="Conta"
+        ajax="false"/>
+      <p:menuitem
+        value="Pedidos"
+        icon="pi pi-calendar"
+        ajax="false"/>
+      <p:menuitem
+        value="Carrinho"
+        icon="pi pi-shopping-cart"
+        ajax="false"/>
+  </p:menu>
+
+</h:form>
+</ui:composition>

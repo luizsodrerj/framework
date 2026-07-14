@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+  <ui:include src="/header.xhtml" />
+
+  <f:loadBundle basename="msg" var="msgRes"/>
+
+  <body id="page-top">
+
+   <div style="margin-top:6%;">
+    <div class="container">
+      <h:form id="contactForm">
+        <div class="row align-items-stretch mb-5">
+          <div class="col-md-6">
+            <div class="form-group" style="margin-bottom: 37px">
+              <!-- Name input-->
+              <span class="ui-float-label">
+                  <p:inputText
+                    value="#{mensagensController.msg.nome}"
+                    styleClass="form-control"
+                    readonly="true"
+                    id="name"/>
+                  <p:outputLabel 
+                  	value="Nome" 
+                  	for="@previous"/>
+              </span>
+            </div>
+            <div class="form-group" style="margin-bottom: 37px">
+              <!-- Email address input-->
+              <span class="ui-float-label">
+                  <p:inputText
+                  	value="#{mensagensController.msg.email}" 
+                    styleClass="form-control"
+                    readonly="true"
+                    id="email"/>
+                  <p:outputLabel 
+                  	value="E-mail" 
+                  	for="@previous"/>
+              </span>
+            </div>
+            <div class="form-group mb-md-0">
+              <!-- Phone number input-->
+              <span class="ui-float-label">
+                  <p:inputMask
+                    value="#{mensagensController.msg.telefone}"
+                    styleClass="form-control"
+                    mask="(99)99999-9999"
+                    readonly="true"
+                    id="phone"/>
+                  <p:outputLabel 
+                  	value="Telefone" 
+                  	for="@previous"/>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form-group-textarea mb-md-0">
+              Mensagem <br/>
+			  <p:inputTextarea
+			  	value="#{mensagensController.msg.mensagem}"
+			  	styleClass="form-control"
+			  	readonly="true"
+			  	id="message"/>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <h:commandButton
+          	styleClass="btn btn-primary btn-xl text-uppercase" 
+          	value="Voltar" />
+        </div>
+        
+      </h:form>
+    </div>
+   </div>
+  </body>  
+  
+</html>

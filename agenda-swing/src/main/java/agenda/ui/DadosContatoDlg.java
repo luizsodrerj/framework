@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class DadosContatoDlg extends JDialog {
 
@@ -64,6 +66,7 @@ public class DadosContatoDlg extends JDialog {
 	 * Create the dialog.
 	 */
 	public DadosContatoDlg() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(100, 100, 1001, 756);
 		getContentPane().setLayout(null);
 		
@@ -134,6 +137,8 @@ public class DadosContatoDlg extends JDialog {
 		getContentPane().add(lblObs);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnSalvar.setBackground(new Color(70, 130, 180));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				salvarActionPerformed();
@@ -143,6 +148,8 @@ public class DadosContatoDlg extends JDialog {
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnCancelar.setBackground(new Color(255, 140, 0));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DadosContatoDlg.this.dispose(); 
@@ -152,6 +159,9 @@ public class DadosContatoDlg extends JDialog {
 		getContentPane().add(btnCancelar);
 		
 		JButton btnDeletar = new JButton("Deletar");
+		btnDeletar.setForeground(Color.WHITE);
+		btnDeletar.setBackground(new Color(255, 69, 0));
+		btnDeletar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnDeletar.setBounds(849, 85, 120, 28);
 		getContentPane().add(btnDeletar);
 

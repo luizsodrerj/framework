@@ -1,9 +1,14 @@
 package agenda.ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,9 +22,6 @@ import javax.swing.event.DocumentListener;
 import agenda.entity.Contato;
 import agenda.repo.AgendaRepository;
 import framework.presentation.swing.Window;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
@@ -136,6 +138,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 343);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -145,6 +148,8 @@ public class MainFrame extends JFrame {
 		contentPane.add(comboContatos);
 		
 		JButton btnSelecionarContato = new JButton("Selecionar Contato");
+		btnSelecionarContato.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnSelecionarContato.setBackground(new Color(70, 130, 180));
 		btnSelecionarContato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selecionarContato();
